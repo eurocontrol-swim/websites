@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Basic Steps to SWIM Implementation - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html" style="color: rgb(245,216,116);">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page shopping-cart-page">
+        <section class="clean-block clean-cart dark" style="background-color: rgb(31,31,31);">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info" style="color: rgb(241,215,122)!important;">Basic Steps to SWIM Implementation</h2>
+                    <p style="color: rgb(242,242,242);">This article describes three scenarios as "basic steps to implement SWIM". These are indicative and simplified to avoid overload.<br></p>
+                </div>
+                <div class="content" style="background-color: #2e2e2e;">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="items">
+                                <div class="product">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col text-justify">
+                                            <div>
+                                                <h4 style="color: rgb(241,215,122)!important;">Introduction</h4>
+                                                <p style="color: rgb(242,242,242);">SWIM stakeholders may ask the question: "What do I have to do to implement SWIM?" It is important to note that the answer to this question depends on context.<br></p>
+                                                <p style="color: rgb(242,242,242);">Indeed, ATM stakeholder role, information domain, service provider and/or service consumer, single service provider or multiple service providers, etc. are aspects that determine context possibly leading to differences in the steps to follow.<br></p>
+                                                <p style="color: rgb(242,242,242);">A service provider or consumer that implements SWIM may complement the scenarios described with organisation specific service management practice based on ISO/IEC 20000-1.<br></p>
+                                                <p style="color: rgb(242,242,242);">The following scenarios are described:<br></p>
+                                                <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="/*color: rgb(242,242,242);*/">
+                                                                    <p style="color: rgb(242,242,242);">Scenario<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Perspective<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Purpose<br></p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="color: rgb(242,242,242);">
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);"><a href="#1">Scenario 1: Using an existing digital on-line service.<br></a></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Service Provider.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Qualify my existing digital on-line service as an information service.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);"><a href="#2">Scenario 2: Providing a new digital on-line information service.<br></a></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Service Provider.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Provide a new information service that is re-usable and fulfils an information need.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);"><a href="#3">Scenario 3: Becoming an information service consumer.<br></a></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Service Consumer.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Consume an information service that meets my information need.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <p style="color: rgb(242,242,242);">Each scenario described below begins with a description of the starting point, followed by the question to be answered, the summary of the steps to take with a flowchart, and a table with further descriptions, notes and resources.<br></p>
+                                                <p style="color: rgb(242,242,242);">Each scenario is depicted showing the steps in relation to the: <a href="../information.html">information</a>, <a href="../information-services.html">information service</a> and <a href="../technical-infrastructure.html">technical infrastructure</a>.<br></p>
+                                                <h4 id="1" style="color: rgb(241,215,122)!important;">Scenario 1: Using an Existing Digital On-line Service<br></h4>
+                                                <p style="color: rgb(242,242,242);"><strong>Starting point</strong>: the use of Internet technologies and World Wide Web standards is current practice and digital on-line services are already provided. The "top-down" service&nbsp;identification using service orientation practices is not&nbsp;necessary since the service already exists. The organisation of the&nbsp;service&nbsp;provider may already perform service management activities.<br></p>
+                                                <p style="color: rgb(242,242,242);"><strong>The question:&nbsp;</strong>can the existing service qualify as an information service, and if not, what is required in order to achieve this goal?<br></p>
+                                                <p style="color: rgb(242,242,242);"><strong>Scenario summary:</strong><br></p>
+                                                <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="/*color: rgb(242,242,242);*/">
+                                                                    <p style="color: rgb(242,242,242);">Step #<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Activity</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="color: rgb(242,242,242);">
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">1</td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Collect information about the service.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">2</td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Collect applicable SWIM requirements.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">3<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Check the interface protocols used to perform the service.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>Check the information provided by the service.<br></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td>Complete the service description.<br></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>6</td>
+                                                                <td>Make the service known to SWIM stakeholders.<br></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <p style="color: rgb(242,242,242);"><strong>Flowchart:</strong><br></p>
+                                                <figure class="figure"><img class="img-fluid figure-img" src="../assets/img/Scenario1_Reference.png"></figure>
+                                                <p style="color: rgb(242,242,242);"><strong>Description of the indicative steps to follow</strong>:<br></p>
+                                                <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="/*color: rgb(242,242,242);*/">
+                                                                    <p style="color: rgb(242,242,242);">Activity<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Guidance<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Notes/Resources<br></p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="color: rgb(242,242,242);">
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">1.&nbsp;Collect information about the service.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">The purpose is to collect the information that will be needed for&nbsp;performing&nbsp;service description activities in step 5. The information may be available from existing technical documentation, e.g. interface control document (ICD), or documentation accompanying an API.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">-</p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">2. Collect applicable SWIM requirements.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">ICAO requirements may be complemented by regional and local SWIM requirements. Consider any policies that may apply.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">See the SWIM reference for <a href="../information.html">information</a>, <a href="../information-services.html">information service</a>, <a href="../technical-infrastructure.html">technical infrastructure</a>, and <a href="../registries.html">SWIM service registry</a>.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">3. Check the interface protocols used to perform the service.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">To perform this check, answer the following question:<br></p>
+                                                                    <ol type="a">
+                                                                        <li>Are the service interface protocols matching the applicable technical infrastructure requirements for the implementation of SWIM (i.e. the technology standards of the technical infrastructure interface bindings)? To accomplish the analysis:<ol type="i">
+                                                                                <li>Compare available interface specification documentation (e.g. ICDs) to the applicable technical infrastructure requirements.</li>
+                                                                                <li>Consider documenting the result of the inspection for convenient re-use at any later stage.</li>
+                                                                            </ol>
+                                                                        </li>
+                                                                        <li>If the answer to question 3 a) is yes, continue to step 4.</li>
+                                                                        <li>If the answer to question 3 a) is no, decide to make the information available over interface protocols prescribed by SWIM. At this step it could be decided to end the scenario (e.g. due to feasibility considerations). It could also be decided to wait until step 4 below is performed before proceeding. When working this step consider the following:<ol type="i">
+                                                                                <li>If no interface protocols are specified and applicable to you, consider adapting to those specified in another SWIM region. This implies testing.</li>
+                                                                                <li>Make implementation choices together with the service stakeholders in order to reach common design decisions.</li>
+                                                                                <li>Implement interface protocols applicable at global, regional and local levels.</li>
+                                                                            </ol>
+                                                                        </li>
+                                                                    </ol>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/technical-infrastructure.html">SWIM Technical Infrastrucuture Yellow Profile and related resources</a>.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">4. Check the&nbsp;information provided by&nbsp;the service.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">To perform this check, answer the following question:<br></p>
+                                                                    <ol type="a">
+                                                                        <li>Is the information aligned with the AIRM? Using an information exchange model which is already aligned with the AIRM will satisfy this requirement and result in a positive answer.</li>
+                                                                        <li>If the answer to question 4 a) is yes, continue to step 5 assuming that step 3 is achieved.</li>
+                                                                        <li>If the answer to question 4 a) is no, align the information with the AIRM.</li>
+                                                                    </ol>
+                                                                    <p style="color: rgb(242,242,242);">At this step it could be decided to end the scenario or continue since the alignment with the AIRM could be on-going in parallel for later achievement.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Alignment with the AIRM is achieved through the estbalishment of semantic correspendences between the information service payload and the AIRM.<br></p>
+                                                                    <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/information.html">SWIM Information Definition and related resources</a>.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">5. Complete the service description.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Whereas service description information is also&nbsp;required at the global level (i.e. Service Overview), additional regional/local service description requirements may apply.<br></p>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">The ICAO IMP is defining the Service Overview which contains the service description information to be made available at the global level.<br></p>
+                                                                    <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/information-services.html">SWIM Service Description and related resources</a>.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">6. Make the service known to SWIM stakeholders.<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">&nbsp;The use of a SWIM service registry is preferred.<br></p>
+                                                                    <ol type="a">
+                                                                        <li>Check applicable&nbsp;service registration policy.<br></li>
+                                                                        <li>Provide&nbsp;service description information.<br></li>
+                                                                    </ol>
+                                                                </td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">When providing service description information as structured metadata, consider harmonizing with metadata types already used in other contexts.<br></p>
+                                                                    <p style="color: rgb(242,242,242);">Cf. European&nbsp;<a href="https://reference.swim.aero/registries.html">SWIM service registry</a>.<br></p>
+                                                                </td>
+                                                                <td></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <h4 id="2" style="color: rgb(241,215,122)!important;">Scenario 2: Providing a New Digital On-line Information Service<br></h4>
+                                                <div role="tablist" id="accordion-1"></div>
+                                                <p style="color: rgb(242,242,242);"><strong>Starting point</strong>: The potential for providing information services exist. Various technologies are used which create data. However, data exchange is not yet based on information services. Engaging into SWIM involves considering collaborative service orientation practices which have not been started up yet.<br></p>
+                                                <p style="color: rgb(242,242,242);"><strong>The question</strong>: which steps should be taken to provide an information service that is re-usable, fulfils an information exchange requirement and is a member of the pool of services?<br></p>
+                                                <p style="color: rgb(242,242,242);"><strong>Scenario summary:</strong><br></p>
+                                                <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                    <table class="table">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="/*color: rgb(242,242,242);*/">
+                                                                    <p style="color: rgb(242,242,242);">Step #<br></p>
+                                                                </th>
+                                                                <th>
+                                                                    <p style="color: rgb(242,242,242);">Activity</p>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody style="color: rgb(242,242,242);">
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">1</td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Build a team with service orientation skills<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">2</td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Collect the applicable SWIM requirements.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: rgb(242,242,242);">3<br></td>
+                                                                <td>
+                                                                    <p style="color: rgb(242,242,242);">Document the overall service orientation process steps deemed viable to you.<br></p>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>4</td>
+                                                                <td>Perform service orientation.<br></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>5</td>
+                                                                <td>Complete the service description.<br></td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>6</td>
+                                                                <td>Make the service known to SWIM Stakeholders.<br></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                            <p style="color: rgb(242,242,242);"><strong>Flowchart</strong>:<br></p>
+                                            <figure class="figure"><img class="img-fluid figure-img" src="../assets/img/Scenario2_Reference.png"></figure>
+                                            <p style="color: rgb(242,242,242);"><strong>Description of the indicative steps to follow</strong>:<br></p>
+                                            <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="/*color: rgb(242,242,242);*/">
+                                                                <p style="color: rgb(242,242,242);">Activity<br></p>
+                                                            </th>
+                                                            <th>
+                                                                <p style="color: rgb(242,242,242);">Guidance<br></p>
+                                                            </th>
+                                                            <th>
+                                                                <p style="color: rgb(242,242,242);">Notes/Resources<br></p>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="color: rgb(242,242,242);">
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">1.&nbsp;Build a team with service orientation skills.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">The team is a multi-disciplinary collaboration group combining operational, service orientation, information and technical infrastructure skills together. Build the team by allocating operational expert, service architect, information architect, technical infrastructure expert and solution expert roles to people of the team. It is possible that more than one skill is available from one person. Service orientation involves operational experts for defining the operational context, contributing to the business process analysis, analysing the information exchange requirements, and validating the resulting services.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">-</p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">2. Collect applicable SWIM requirements.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">ICAO requirements may be complemented by regional and local SWIM requirements. Consider any policies that may apply.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">See the SWIM reference for <a href="../information.html">information</a>, <a href="../information-services.html">information service</a>, <a href="../technical-infrastructure.html">technical infrastructure</a>, and <a href="../registries.html">SWIM service registry</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">3. Document the overall service orientation process steps deemed viable to you.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Service orientation process steps can be more or less complex depending on your regional/local needs and reality. When defining service orientation process steps involve the experts that will have to execute it.&nbsp;Not all steps are necessarily required depending on the approach followed.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">See&nbsp;the&nbsp;<a href="https://reference.swim.aero/knowledge/service-orientation-process.html">service orientation process</a>.<br></p>
+                                                                <p style="color: rgb(242,242,242);">Understanding concepts related to the notion of&nbsp;<a href="https://reference.swim.aero/knowledge/understanding-the-glossary.html#service-diagram">information service</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">4. Perform service orientation.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Service orientation is a collaborative process involving stakeholders. One essential information service identification activity is business process analysis to determine information exchange requirements of the "to-be" situation. This analysis may lead to early identification and attribution of QoS characteristics that need to be met by the service. The choice of using particular standards is important for both the service provider and the service consumer (e.g. choice of interface bindings). For the purpose of this scenario it is assumed that this step results in information services that satisfy SWIM requirements collected in step 2 of this scenario.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/information.html">SWIM Information Definition and related resources</a>.<br></p>
+                                                                <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/technical-infrastructure.html">SWIM Technical Infrastrucuture Yellow Profile and related resources</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">5. Complete the service description.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Whereas service description information is also&nbsp;required at the global level (i.e. Service Overview), additional regional/local service description requirements may apply.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Cf. the EUROCONTROL specification for&nbsp;<a href="https://reference.swim.aero/information-services.html">SWIM Service Description and related resources</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">6. Make the service known to SWIM stakeholders.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">&nbsp;The use of a SWIM service registry is preferred.<br></p>
+                                                                <ol type="a">
+                                                                    <li>Check applicable&nbsp;service registration policy.<br></li>
+                                                                    <li>Provide&nbsp;service description information.<br></li>
+                                                                </ol>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">When providing service description information as structured metadata, consider harmonizing with metadata types already used in other contexts.<br></p>
+                                                                <p style="color: rgb(242,242,242);">Cf. European&nbsp;<a href="https://reference.swim.aero/registries.html">SWIM service registry</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <h4 id="3" style="color: rgb(241,215,122)!important;">Scenario 3: Becoming an Information Service Consumer<br></h4>
+                                            <p style="color: rgb(242,242,242);"><strong>Starting point</strong>: Information services exist, and service overviews are available. A service consumer has an information need and is interested to use an information service that will satisfy this need. Information services made available in principle resulted from service orientation activities, hence this aspect is considered out of scope of the scenario.<br></p>
+                                            <p style="color: rgb(242,242,242);"><strong>The question</strong>: are information services available that I can consume and that meet my&nbsp;application&nbsp;requirements and information needs?<br></p>
+                                            <p style="color: rgb(242,242,242);"><strong>Scenario summary:</strong><br></p>
+                                            <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="/*color: rgb(242,242,242);*/">
+                                                                <p style="color: rgb(242,242,242);">Step #<br></p>
+                                                            </th>
+                                                            <th>
+                                                                <p style="color: rgb(242,242,242);">Activity</p>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="color: rgb(242,242,242);">
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">1</td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Define the application requirements and information needs.<br></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">2</td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Find information services.<br></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">3<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Assess the feasibility to consume the information service.<br></p>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>4</td>
+                                                            <td>Make implementation choices.<br></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>5</td>
+                                                            <td>Adapt business processes.<br></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>6</td>
+                                                            <td>Participate in the SWIM stakeholder community.<br></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <p style="color: rgb(242,242,242);"><strong>Flowchart:</strong><br></p>
+                                            <figure class="figure"><img class="img-fluid figure-img" src="../assets/img/Scenario3_Reference.png"></figure>
+                                            <p style="color: rgb(242,242,242);"><strong>Description of the indicative steps to follow</strong>:<br></p>
+                                            <div class="table-responsive" style="color: rgb(242,242,242);">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="/*color: rgb(242,242,242);*/">
+                                                                <p style="color: rgb(242,242,242);">Activity<br></p>
+                                                            </th>
+                                                            <th>
+                                                                <p style="color: rgb(242,242,242);">Guidance<br></p>
+                                                            </th>
+                                                            <th>
+                                                                <p style="color: rgb(242,242,242);">Notes/Resources<br></p>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody style="color: rgb(242,242,242);">
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">1. Define the application requirements and information needs.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Before analysing available information services, it is important to have a clear view on what is needed. Finding the right information service depends on matching available information services to the SWIM enabled application information needs (i.e. IER), intended function (i.e. service function), and performance requirements (i.e. QoS parameters). These requirements may stem from an existing or newly envisaged application and the operational environment, including its processes, in which it will be used.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Understanding concepts related to the notion of&nbsp;<a href="https://reference.swim.aero/knowledge/understanding-the-glossary.html#service-diagram">information service</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">2. Find information services.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Use SWIM service registry functionality (e.g. search) to find information services and consult&nbsp;shared service description information.&nbsp;Possibly obtain&nbsp;more detailed service description information from the service provider using the point of contact information. Obtaining more detailed service description information may include signing an agreement with the service provider.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">The ICAO IMP is defining the Service Overview which contains the service description information to be made available at the global level. When available, use service overviews as a first indication, to identify information services that could match the defined application requirements and information needs.<br></p>
+                                                                <p style="color: rgb(242,242,242);">Cf. European&nbsp;<a href="https://reference.swim.aero/registries.html">SWIM service registry</a>.<br></p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">3. Assess the feasibility to consume the information service.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Investigate the feasibility to setup a service consumer application. Conclude whether the information service matches the need in terms of information, functionality, performance, and implementation feasibility. When the outcome is positive, this step may include signing an agreement with the service provider to access and consume the service.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">-</p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">4. Make implementation choices.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">To implement the service consumer interface, a decision is made whether to adapt an existing application or create a new application. At this stage further technical decisions in relation to the interface bindings used by the information service are also made. Establish the connection to the information service interface and integrate the service into the consumer application. Perform validation of the application.<br></p>
+                                                            </td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">-</p>
+                                                            </td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">5. Adapt business processes.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">At this stage of the scenario, configuring an information service into the service consumer environment creates a dependency that needs to be managed (e.g. to cater for eventualities such as a service outage or malfunctioning). As a consequence, the business processes are adapted in order to manage dependencies that result from the integration of the information service.<br></p>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td style="color: rgb(242,242,242);">6. Participate in the SWIM stakeholder community.<br></td>
+                                                            <td>
+                                                                <p style="color: rgb(242,242,242);">Service consumers should keep themselves informed about service evolutions. Potentially disruptive evolutions that may occur need to be known well in advance. Typically, this is where&nbsp;governance&nbsp;functions play a key role. Service consumers may consider contributing to the evolution of the consumed services.<br></p>
+                                                            </td>
+                                                            <td>-</td>
+                                                            <td></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="summary" style="background-color: rgb(181,210,234);">
+                                <h3 style="color: rgb(31,31,31);">RESOURCES</h3>
+                                <div role="tablist" id="accordion-2">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-2 .item-1" href="#accordion-2 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Get into SWIM workshop presentations<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-2">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Presentations about the workshop that took place on 22nd May 2019.&nbsp;<br></p>
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Please find below the presentations of this workshop on SWIM using a simplified service development process on example services, focusing on service identification and service design, bringing education on AIRM, XMs, and TI.<br></p>
+                                                <ul>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/0.Welcome.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; Welcome</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/1.Session-approach.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;1. Session Approach<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2.Identify-A-CDM-services.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2. Identify Services for A-CDM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2a.Identify_IER_AIRM.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.a Define IER wih AIRM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2b.Determine_NFR.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.b Define NFR</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3.Design-TOBT-Setting-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3. Design TOBT Setting Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3a.Design-MEP.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3.a Design MEP<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3b.Design_Payload.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3b Design Payload<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3c.Interface-Binding.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3c Interface Binding<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3d.Registration.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3d Registration<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4.Design-Flight-Publication-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;4. Design Flight Publication Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4a.Service-Design.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 4a Service Design<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/5.Conclusion.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;5. Session Conclusion<br></a></li>
+                                                </ul>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style="color: rgb(31,31,31);margin-top: 54px;">RElated knowledge</h3>
+                                <div role="tablist" id="accordion-1">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Service Orientation Process<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-1">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">This article introduces a service orientation process. It is an&nbsp;<strong>indicative reference</strong>&nbsp;for an architectural approach starting from requirements and ending in a running service instance available for operational use.<br></p>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<a class="text-right" href="service-orientation-process.html" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;Access</a><br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-heading" style="padding-top: 23px;margin-bottom: -18px;"><span class="text-center"><br>Last revision: June 26, 2019</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../../glossary.html">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation" target="_blank">Standardisation</a></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../../privacy-and-website-terms-use.html">Privacy and Terms of Use</a></li>
+                        <li><a href="https://www.cookiesandyou.com/" target="_blank">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p><img src="../assets/img/eurocontrol-logo.png" style="height: 124px;"></p>
+            <p>© 2021 EUROCONTROL</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+</body>
+
+</html>

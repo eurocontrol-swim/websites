@@ -1,0 +1,70 @@
+.grid:hover p span {
+  display: none;
+}
+
+.grid:hover p:after {
+  margin-top: 0px!important;
+  font-size: 12px;
+}
+
+.grid11:hover p:after {
+  content: 'Capture the business activities to be considered from an organisational interoperability point of view.';
+}
+
+.grid12:hover p:after {
+  content: 'Capture the scope of the ATM business terms for which a common and consistent representation is required.';
+}
+
+.grid13:hover p:after {
+  content: 'Capture the standards and technology choices that constrain the service implementation.';
+}
+
+.grid21:hover p:after {
+  content: 'Capture the business processes in support of the business activities. These can be used to identify services.';
+}
+
+.grid22:hover p:after {
+  content: 'Capture the operational language. Capture semantics of metadata in the service eco-system';
+}
+
+.grid23:hover p:after {
+  content: 'Capture the service eco-system';
+}
+
+.grid31:hover p:after {
+  content: 'Capture uses cases and use case scenarios to help understand the service’s functionality (a grouping of business processes). Capture the information exchange requirements. Capture the non-functional requirements.';
+}
+
+.grid32:hover p:after {
+  content: 'Capture the exchanged information.';
+}
+
+.grid33:hover p:after {
+  content: 'Capture the behaviour of the service, its operations and interfaces. Capture the service payload.';
+}
+
+.grid41:hover p:after {
+  content: 'Capture operational actors taking part in use cases and use case scenarios. ';
+}
+
+.grid42:hover p:after {
+  content: 'Capture an implementable representation of the exchanged information.';
+}
+
+.grid43:hover p:after {
+  content: 'Capture an implementable representation of the service including the service payload schema.';
+}
+
+.hover11:hover p {
+  /*margin-top: 0px;*/
+}
+
+:target {
+  padding-top: 79px;
+  margin-top: -79px;
+  display: inline-block;
+}
+
+.table thead th {
+}
+

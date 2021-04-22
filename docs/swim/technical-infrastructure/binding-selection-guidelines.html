@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Foundation - Technical Infrastructure - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../technical-infrastructure.html"><strong>Technical Infrastructure</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">SWIM TI Binding Selection Guidelines<br></h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;JULY 2nd, 2019</span></p>
+                        </div>
+                    </div>
+                    <h6 class="text-info"></h6>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-3 offset-md-1">
+                            <div class="toc">
+                                <h5>Contents</h5><ul class="toc_list list-unstyled">
+   <li>
+          <a href="#_Toc535573258">
+           1. 
+        
+        
+        SWIM TI YP Service Bindings Classification
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           2. 
+        References
+          </a>
+         </li>
+        </ul>
+      
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                            <div class="text"><div class="text">
+     </div>
+       <h2>
+        <a id="_Toc535573258">
+        </a>
+        SWIM TI YP Service Bindings Classification
+       </h2>
+       <p>
+        This document provides a classification of the SWIM TI Yellow Profile Service Bindings catalogue according to the following criteria:
+       </p>
+       <ul>
+        <li>
+         Message Exchange Patterns
+        </li>
+        <li>
+         Security characteristics
+        </li>
+        <li>
+         Performance characteristics
+        </li>
+       </ul>
+<p>This classification can be used by implementers as guidance for selecting the Service Binding or Service Bindings used to implement a service that matches the desired characteristics.</p>
+
+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 21px;">
+                    <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">       <h3>
+        <a id="_Toc535573259">
+        </a>
+        Message Exchange Patterns
+       </h3>
+       <p>
+        The following tables summarize the MEPs supported by the different SWIM-TI Yellow Profile Service Bindings, based either on primitive MEPs or application MEPs.
+       </p>
+       <h4>
+        <a id="_Toc535573260">
+        </a>
+        <a id="_Ref4589415">
+        </a>
+        Traceability of Primitive MEPs
+       </h4>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             SWIM-TI Fire-and-Forget
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             SWIM-TI Synchronous R/R
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS Light
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Basic Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Federated Security
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        NOTE: WS-Notification is an application level protocol built on top of WS SOAP, it provides support for Publish/Subscribe application MEPs.
+       </p>
+       <h4>
+        <a id="_Toc535573261">
+        </a>
+        Traceability of application MEPs
+       </h4>
+       <p>
+        Application MEPs are composed of adequate combinations of the Primitive MEPs. An implementer can build Application MEPs as illustrated in reference [2] using suitable Primitive MEP combinations.
+       </p>
+       <p>
+        For example:
+       </p>
+       <ul>
+        <li>
+         The Application Fan-Out MEP can be implemented using AMQP Messaging which supports the SWIM-TI Fire-and-Forget.
+        </li>
+        <li>
+         The Application Publish/Subscribe Push MEP can be implemented as:
+         <ul>
+          <li>
+           WS-Light for the Request/Response exchange (subscription) and AMQP Messaging for the Fan-Out exchange (publication) or,
+          </li>
+          <li>
+           WS SOAP for the Request/Response exchange (subscription) and AMQP Messaging for the Fan-Out exchange (publication) or,
+          </li>
+          <li>
+           WS-Notification SOAP for both interfaces or,
+          </li>
+          <li>
+           AMQP Messaging for both interfaces…
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc535573262">
+        </a>
+        Security
+       </h3>
+       <p>
+        This section provides a classification of the Service Bindings according to the security characteristics provided by each Service Binding;
+       </p>
+       <ul>
+        <li>
+         Confidentiality,
+        </li>
+        <li>
+         Integrity and
+        </li>
+        <li>
+         Authentication mechanisms.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc535573263">
+        </a>
+        WS Light
+       </h4>
+       <h5>
+        <a id="_Toc535573264">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The WS Light Service Binding guarantees point-to-point confidentiality of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573265">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The WS Light Service Binding guarantees point-to-point integrity of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573266">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The WS Light Service Binding provides the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509 and Client authentication with Username/Password
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Username/Password
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509 and anonymous client authentication
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            None
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Anonymous
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573267">
+        </a>
+        WS(-N) SOAP
+       </h4>
+       <h5>
+        <a id="_Toc535573268">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The WS(-N) SOAP Service Binding guarantees point-to-point confidentiality of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573269">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The WS(-N) SOAP Service Binding guarantees point-to-point integrity of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573270">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The WS(-N) SOAP Service Binding provides the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            None
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Anonymous
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573271">
+        </a>
+        WS(-N) SOAP with Basic Message Security
+       </h4>
+       <h5>
+        <a id="_Toc535573272">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The WS SOAP with Basic Message Security and WS-N with Basic Message Security Service Bindings guarantee point-to-point confidentiality of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573273">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The WS SOAP with Basic Message Security and WS-N with Basic Message Security Service Bindings guarantee point-to-point integrity of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573274">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The WS SOAP with Basic Message Security and WS-N with Basic Message Security Service Bindings provide the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509 and Client Authentication with Username/Password
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE
+           </p>
+           <p>
+            Username
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509 and Client Authentication with Username/Password
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            Transport
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE Username
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573275">
+        </a>
+        WS(-N) SOAP with Message Security
+       </h4>
+       <h5>
+        <a id="_Toc535573276">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The WS SOAP with Message Security and WS-N SOAP with Message Security Service Bindings may provide end-to-end confidentiality of the information at message layer using WS-Security and XML Encryption.
+       </p>
+       <h5>
+        <a id="_Toc535573277">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The WS SOAP with Message Security and WS-N SOAP with Message Security Service Bindings guarantee the end-to-end integrity of information at message layer using WS-Security and XML Digital Signature.
+       </p>
+       <h5>
+        <a id="_Toc535573278">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The WS SOAP with Message Security and WS-N with Message Security Service Bindings provide the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE X.509
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE X509
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573279">
+        </a>
+        WS(-N) SOAP with Federated Security
+       </h4>
+       <h5>
+        <a id="_Toc535573280">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The WS SOAP with Federated Security and WS-N SOAP with Federated Security Service Bindings may provide end-to-end confidentiality of the information at message layer using WS-Security and XML Encryption.
+       </p>
+       <h5>
+        <a id="_Toc535573281">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The WS SOAP with Federated Security and WS-N SOAP with Federated Security Service Bindings guarantee the end-to-end integrity of information at message layer using WS-Security and XML Digital Signature.
+       </p>
+       <h5>
+        <a id="_Toc535573282">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The WS SOAP with Message Security and WS-N with Message Security Service Bindings provide the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE X.509
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE X509
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE SAML
+           </p>
+          </td>
+          <td>
+           <p>
+            WSSE SAML
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573283">
+        </a>
+        AMQP Messaging
+       </h4>
+       <h5>
+        <a id="_Toc535573284">
+        </a>
+        Confidentiality
+       </h5>
+       <p>
+        The AMQP Messaging Service Binding guarantees point-to-point confidentiality of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573285">
+        </a>
+        Integrity
+       </h5>
+       <p>
+        The AMQP Messaging Service Binding guarantees point-to-point integrity of the information at transport layer using TLS 1.2.
+       </p>
+       <h5>
+        <a id="_Toc535573286">
+        </a>
+        Authentication
+       </h5>
+       <p>
+        The AMQP Messaging Service Binding provides the following options for authentication:
+       </p>
+       <p>
+        Mutual authentication with X.509
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509 and Client authentication with Username/Password
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Username/Password
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Server authentication with X.509 and anonymous Client authentication
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Server
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Client
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Authenticator
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            X.509 certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Anonymous
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h3>
+        <a id="_Toc535573287">
+        </a>
+        Performance
+       </h3>
+       <h4>
+        <a id="_Toc535573288">
+        </a>
+        Reliability
+       </h4>
+       <p>
+        The different SWIM TI YP Service Bindings provide varying degrees of message reliability, this enables implementers to select the Service Binding that best fits their needs.
+       </p>
+       <p>
+        All the SWIM TI Yellow Profile Service Bindings are layered on top of TCP which is a reliable transport protocol, ensuring delivery and order of the packages. On top of TCP, the Service Bindings might provide additional reliability controls. The following table provides a summary:
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Reliability
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Protocol
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Details
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS Light
+           </p>
+          </td>
+          <td>
+           <p>
+            N/A
+           </p>
+          </td>
+          <td>
+           <p>
+            N/A
+           </p>
+          </td>
+          <td>
+           <p>
+            N/A
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Basic Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Federated Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Basic Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Federated Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-ReliableMessaging
+           </p>
+          </td>
+          <td>
+           <p>
+            3 QoS (
+            <em>
+             AtLeastOnce, AtMostOnce, OnlyOnce
+            </em>
+            ) and
+            <em>
+             InOrder
+            </em>
+            assurance
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP 1.0
+           </p>
+          </td>
+          <td>
+           <p>
+            2 QoS (
+            <em>
+             settled
+            </em>
+            ,
+            <em>
+             unsettled
+            </em>
+            )
+            <sup>
+             <a href="#footnote-1" id="footnote-ref-1">
+              [1]
+             </a>
+            </sup>
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc535573289">
+        </a>
+        Bandwidth Efficiency
+       </h4>
+       <p>
+        The protocol stack of a Service Binding results in certain message overhead (minimum size that is added to each message) that depends on the specific protocols that comprise the Service Binding. These differences are most important when bandwidth resources are constrained or when the typical size of a message is small with respect to the protocol overhead (e.g. small but frequent publications).
+       </p>
+       <p>
+        The encoding format used for the data also has an impact on the final size of the messages transferred through the wire. Binary encoding typically results in more efficient representations of the data than text based encodings. Inside text-based encodings those that use XML as their data format are particularly verbose in contrast with other text-based alternatives (e.g. JSON).
+       </p>
+       <p>
+        The following table provides estimates
+        <sup>
+         <a href="#footnote-2" id="footnote-ref-2">
+          [2]
+         </a>
+        </sup>
+        of the message overhead associated to each Service Binding and the encoding used:
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Encoding
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Protocol Overhead
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS Light
+           </p>
+          </td>
+          <td>
+           <p>
+            Text
+           </p>
+          </td>
+          <td>
+           <p>
+            ~100 bytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~500 bytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Basic Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~1 Kbyte
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~4 Kbytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS SOAP with Federated Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~4 Kbytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~500 bytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Basic Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~1 Kbyte
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~4 Kbytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            WS-N SOAP with Federated Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Text (XML)
+           </p>
+          </td>
+          <td>
+           <p>
+            ~4 Kbytes
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Binary
+           </p>
+          </td>
+          <td>
+           <p>
+            ~100 bytes
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h2>
+        References
+       </h2>
+       <ol>
+        <li>
+         Eurocontrol SWIM TI Yellow Profile Specification, EUROCONTROL
+        </li>
+        <li>
+         <a id="_Ref4588266">
+         </a>
+         SWIM Technical Infrastructure Message Exchange Patterns Identification Guidelines, EUROCONTROL
+        </li>
+       </ol>
+<h2>Notes</h2>
+       <ol>
+        <li id="footnote-1">
+         <p>
+          AMQP 1.0 broker and client implementations provide more advanced reliability Qualities of Service like
+          <em>
+           AtLeastOnce
+          </em>
+          ,
+          <em>
+           AtMostOnce
+          </em>
+          and
+          <em>
+           OnlyOnce
+          </em>
+          that are built on top of the basic ones provided by the protocol.
+          <a href="#footnote-ref-1">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-2">
+         <p>
+          The estimates have been calculated using a minimal “Hello World” message. They include TLS encryption overhead for those Service Bindings relying on TLS.
+          <a href="#footnote-ref-2">
+           ↑
+          </a>
+         </p>
+        </li>
+       </ol>
+   
+  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+    <script src="../assets/js/list.min.js"></script>
+</body>
+
+</html>

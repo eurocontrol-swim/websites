@@ -1,0 +1,2555 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>SWIM-TI Yellow Profile Implementation Guidance: AMQP Messaging Service Binding - Technical Infrastructure - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../technical-infrastructure.html"><strong>Technical Infrastructure</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">SWIM-TI Yellow Profile Implementation Guidance: AMQP Messaging Service Binding<br></h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;&nbsp;JULY 2nd, 2019</span></p>
+                        </div>
+                    </div>
+                    <h6 class="text-info"></h6>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-3 offset-md-1">
+                            <div class="toc">
+                                <h5>Contents</h5><ul class="toc_list list-unstyled">
+
+         <li>
+          <a href="#">
+           1. 
+        Introduction
+          </a>
+         </li>
+         <li>
+          <a href="#_Ref8385284">
+           2. 
+        
+        
+        Brokers
+          </a>
+         </li>
+         <li>
+          <a href="#_Ref8312651">
+           3. 
+        
+        
+        Clients
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           4. 
+        References
+          </a>
+         </li>
+        </ul>
+  
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                            <div class="text"><div class="text">
+<h2>
+        Introduction
+       </h2>
+       <p>
+        This document provides implementation guidance for the AMQP Messaging Service Binding of the SWIM-TI Yellow Profile using a variety of Free and Open Source Software (FOSS) solutions. For each of the solutions analysed the satisfaction of the requirements that define the Service Binding is provided as well as the necessary configuration elements used to verify its satisfaction.
+       </p>
+       <p>
+        The proposed configuration options are aimed for minimum satisfaction of the requirements and should be understood as guidance of implementation, implementers should tailor their configuration to their needs.
+       </p>
+       <p>
+        In section 2 we cover a number of messaging brokers that support AMQP 1.0 messages and in section 3 we cover clients and libraries that can be used in producer or consumer side for sending and receiving AMQP 1.0 messages.
+       </p>
+</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 21px;">
+                    <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+       
+ 
+       
+       <h2>
+        <a id="_Ref8385284">
+        </a>
+        Brokers
+       </h2>
+       <h3>
+        RabbitMQ
+       </h3>
+       <p>
+        RabbitMQ is a multi-protocol message broker that supports AMQP 0.9.1, AMQP 1.0, MQTT 3.1.1 and STOMP. In this section, we will analyse its capabilities as an AMQP 1.0 broker and the satisfaction of the AMQP Messaging Service Binding requirements of the Eurocontrol Specification for SWIM TI Yellow Profile.
+       </p>
+       <p>
+        Additional details on RabbitMQ and its configuration are available in its extensive documentation:
+        <a href="https://www.rabbitmq.com/documentation.html">
+         https://www.rabbitmq.com/documentation.html
+        </a>
+       </p>
+       <h4>
+        Service Interface Binding Requirements
+       </h4>
+       <p>
+        The following table summarizes the Service Binding requirements of the AMQP Messaging Service Binding.
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Requirement Title
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Requirement ID
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Conformance Level
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Data Compression
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0041
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Encoding Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0049
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Type Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0048
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory Conditional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Transport Security Authentication&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0037
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0051
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP over TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0052
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0036
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0008
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        Data Compression
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ acts as a pass-through for messages between producers and consumers, it respects the message body set by the producer, in particular for the case where the message body consists of binary string of the compressed message data.
+       </p>
+       <p>
+        No specific configuration is needed on the part of the broker.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.1 for more details on how this compressed data can be set up on the producer side.
+       </p>
+       <h5>
+        AMQP Content Encoding Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ acts as a pass-through for messages between producers and consumers, it respects the Content-Encoding property set by the producer of the message. No specific configuration is needed.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.2 for more details on how this property can be set up on the producer side.
+       </p>
+       <h5>
+        AMQP Content Type Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ acts as a pass-through for messages between producers and consumers, it respects the Content-Type property set by the producer of the message. No specific configuration is needed.
+        <strong>
+         <br>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.3 for more details on how this property can be set up on the producer side.
+       </p>
+       <h5>
+        <a id="_Ref8313841">
+        </a>
+        AMQP Transport Security Authentication
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         TLS Server Authentication: To enable TLS server authentication the server must be configured with a X.509 certificate and private key and the certificate of the Root CA. This is done in the configuration file
+         <em>
+          rabbitmq.conf
+         </em>
+         , as shown in the following figure:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="468d292f-5802-41d5-9a50-2dc8f65b96c4.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         TLS Mutual Authentication: To use TLS mutual authentication we have to allow the clients to authenticate themselves by means of a X.509 certificate. The following snippet from the
+         <em>
+          rabbitmq.conf
+         </em>
+         explains how this is achieved:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="fcc40da6-48e5-413d-9387-725dea678176.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        The auth-mechanism-ssl plugin is activated with the rabbitmq-plugins on the command line:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="08b0c8c8-b540-4379-81a0-fe4ed1caf007.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Anonymous: The broker accepts connections using SASL Anonymous mode (no SASL authentication). The broker assigns these anonymous users a default user which can be defined in the configuration file
+         <em>
+          rabbitmq.conf
+         </em>
+         . As shown in the following figure:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="b4098b78-9944-4b55-b3b0-10cce75a21ef.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Plain: The broker accepts connections using SASL Plain mode (User/password authentication). The user will be authenticated against the database of users. The user can be created in design time using the JSON definitions file to load the users, or dynamically through the Management REST API. Below is a sample from the JSON definitions file that is loaded onto RabbitMQ.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="c2f0e1ab-c236-4400-9148-1eee87b70628.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        This covers the necessary configuration aspects from the broker point of view to satisfy the requirement. The configuration aspects from the point of view of the client are covered in section 2.
+       </p>
+       <h5>
+        SASL
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ accepts SASL client authentication as depicted in section 1.1.1.4.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP over TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ accepts AMQP over TLS (AMQPS) connections over the standard port assigned by IANA (5671).
+       </p>
+       <p>
+        This port can be nonetheless configured in the configuration file
+        <em>
+         rabbitmq.conf
+        </em>
+        with the following line.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2116" class="rounded img-fluid figure-img" src="0955f105-aa5b-414a-b29a-9549f81271e2.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ supports AMQP 1.0 protocol through a plugin. The plugin must be enabled as otherwise RabbitMQ defaults to AMQP 0.9.1. Enabling this plugging can be done with the following command on the command line before running the broker:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="539841b4-d64b-47aa-b848-9d7d140f40ad.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        RabbitMQ supports TLS and allows to specify and restrict the version of TLS to be used through the configuration file
+        <em>
+         rabbitmq.conf
+        </em>
+        . The following line specifies the allowed versions of TLS:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="5ba0b262-dc43-432d-bdc5-9bc9b833f213.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h3>
+        ActiveMQ Artemis
+       </h3>
+       <h4>
+        Service Interface Binding Requirements
+       </h4>
+       <p>
+        The following table summarizes the Service Binding requirements of the AMQP Messaging Service Binding.
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Requirement Title
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Requirement ID
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Conformance Level
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Data Compression
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0041
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Encoding Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0049
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Type Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0048
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory Conditional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Transport Security Authentication&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0037
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0051
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP over TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0052
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0036
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0008
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        Data Compression
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis acts as a pass-through for messages between producers and consumers, it respects the message body set by the producer, in particular for the case where the message body consists of binary string of the compressed message data.
+       </p>
+       <p>
+        No specific configuration is needed on the part of the broker.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.1 for more details on how this compressed data can be set up on the producer side.
+       </p>
+       <h5>
+        AMQP Content Encoding Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis acts as a pass-through for messages between producers and consumers, it respects the Content-Encoding property set by the producer of the message. No specific configuration is needed.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.2 for more details on how this property can be set up on the producer side.
+       </p>
+       <h5>
+        AMQP Content Type Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis acts as a pass-through for messages between producers and consumers, it respects the Content-Type property set by the producer of the message. No specific configuration is needed.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See section 2.1.1.3 for more details on how this property can be set up on the producer side.
+       </p>
+       <h5>
+        <a id="_Ref10447930">
+        </a>
+        AMQP Transport Security Authentication
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         TLS Server Authentication: To enable TLS server authentication the broker has to be configured with the private key and a trust store. This is done in the
+         <em>
+          acceptors
+         </em>
+         section of the
+         <em>
+          broker.xml
+         </em>
+         configuration file, the relevant parameters to pass in the definition of the
+         <em>
+          acceptor
+         </em>
+         URL are:
+         <ul>
+          <li>
+           <em>
+            sslEnabled=true
+           </em>
+          </li>
+          <li>
+           <em>
+            keyStorePath=/path/to/broker_keystore.jks
+           </em>
+          </li>
+          <li>
+           <em>
+            keyStorePassword=securepassword
+           </em>
+          </li>
+          <li>
+           <em>
+            trustStorePath=/path/to/broker_trust_store.jks
+           </em>
+          </li>
+          <li>
+           <em>
+            trustStorePassword=securepassword
+           </em>
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\acceptor.png" class="rounded img-fluid figure-img" src="d8e30532-6393-49ec-a7c2-1baa8e2f16c1.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         TLS Mutual Authentication: To use TLS mutual authentication we have to allow the clients to authenticate themselves by means of a X.509 certificate, on top of setting the TLS Server Authentication as in the previous bullet point. This requires multiple configuration files to be properly set up and aligned:
+         <ul>
+          <li>
+           login.config: Defines the JAAS plugins used by the broker to perform client authentication. In particular, we need to define the use of TextFileCertificateLoginModule as shown in the following configuration snippet:
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="1006eefc-2381-4d08-b672-f1dcca19958b.png">
+       </figure>
+       <p>
+        This configuration file refers to two other files “cert-users.properties” and “cert-roles.properties”.
+       </p>
+       <ul>
+        <li>
+         cert-users.properties: Defines the users that are recognized by the broker and must contain an entry for the client’s X.509 Distinguished Name, as shown in the following image:
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="8f068372-7579-4930-8a1d-06a18deba7c3.png">
+       </figure>
+       <p>
+        Alternatively, the broker can be integrated with an existing LDAP infrastructure using JAAS LDAPLoginModule (see,
+        <a href="https://activemq.apache.org/components/artemis/documentation/1.2.0/security.html">
+         https://activemq.apache.org/components/artemis/documentation/1.2.0/security.html
+        </a>
+        ).
+       </p>
+       <ul>
+        <li>
+         cert-roles.properties: Assigns each user to one or more roles with their associated permissions. The following example assigns the “
+         <em>
+          certconsumer”
+         </em>
+         user defined previously with a
+         <em>
+          “cert” role.
+         </em>
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="3048f3f9-7525-40e7-94f3-d1d5ec4fc02d.png">
+       </figure>
+       <ul>
+        <li>
+         <ul>
+          <li>
+           bootstrap.xml: Defines various configuration aspects of the broker, including the JAAS security configuration to be used (defined in the previous bullet point). We must point to the security configuration defined in
+           <em>
+            login.config
+           </em>
+           , the following snippet illustrates this by pointing to the “activemq” domain defined previously.
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\bootstrap.xml.png" class="rounded img-fluid figure-img" src="362e6cc0-62e3-4b00-98ae-fccb412b630f.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Anonymous: The broker accepts connections using SASL Anonymous mode. We have to enable the GuestLoginModule in the
+         <em>
+          login.config
+         </em>
+         configuration file, assigning a default user and role to unauthenticated users. As shown in the following snippet.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\login.config.png" class="rounded img-fluid figure-img" src="f27b384a-f416-4034-a805-b8b093bf3962.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Plain: The broker accepts connections using SASL Plain mode (User/password authentication). To do so we have to enable the PropertiesLoginModule in the
+         <em>
+          login.config
+         </em>
+         configuration file.
+        </li>
+       </ul>
+       <p>
+        In the example above the user will be authenticated against the database of users defined by
+        <em>
+         org.apache.activemq.jaas.properties.user
+        </em>
+        (i.e. “artemis-users.properties”). Which contains the credentials in the following format:
+       </p>
+       <p>
+        <em>
+         Username = password
+        </em>
+       </p>
+       <p>
+        The password itself can be stored in an unrecoverable manner using hashes.
+       </p>
+       <p>
+        Below is a sample from the “artemis-users.properties” file.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\artemis-useres.properties.png" class="rounded img-fluid figure-img" src="4aeb8e5d-4a08-480d-869d-086b6382fd20.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        Additional documentation on the configuration of the JAAS plugins can be found in Apache ActiveMQ Artemis documentation:
+        <a href="https://activemq.apache.org/components/artemis/documentation/1.2.0/security.html">
+         https://activemq.apache.org/components/artemis/documentation/1.2.0/security.html
+        </a>
+       </p>
+       <h5>
+        SASL
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis accepts SASL client authentication as depicted in section 1.2.1.4.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        <a id="_Ref10014156">
+        </a>
+        AMQP over TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis accepts AMQP over TLS (AMQPS) connections.
+       </p>
+       <p>
+        The use of AMQPS is configured in the
+        <em>
+         acceptors
+        </em>
+        section of the
+        <em>
+         broker.xml
+        </em>
+        configuration file. As shown in the following configuration snippet:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\acceptor.png" class="rounded img-fluid figure-img" src="4c62b870-b46b-46e4-875e-856a6a3c3e04.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        The relevant parameters of the configuration are:
+       </p>
+       <ul>
+        <li>
+         <em>
+          sslEnabled=true
+         </em>
+        </li>
+        <li>
+         <em>
+          protocols=AMQP
+         </em>
+        </li>
+       </ul>
+       <p>
+        Which establish the use of TLS and AMQP 1.0 for said acceptor. And:
+       </p>
+       <ul>
+        <li>
+         <em>
+          keyStorePath=/path/to/broker_private_key.jks
+         </em>
+        </li>
+        <li>
+         <em>
+          keyStorePassword=securepassword
+         </em>
+        </li>
+        <li>
+         <em>
+          trustStorePath=/path/to/broker_trust_store.jks
+         </em>
+        </li>
+        <li>
+         <em>
+          trustStorePassword=securepassword
+         </em>
+        </li>
+       </ul>
+       <p>
+        Which establish the private key, trust store of the broker and its passwords.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis natively supports AMQP 1.0 protocol. The use of the protocol is enabled in the
+        <em>
+         acceptors
+        </em>
+        section of the
+        <em>
+         broker.xml
+        </em>
+        configuration file, as shown in section 1.2.1.6.
+       </p>
+       <p>
+        The relevant parameter of the configuration is:
+       </p>
+       <ul>
+        <li>
+         <em>
+          protocols=AMQP
+         </em>
+        </li>
+       </ul>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        ActiveMQ Artemis supports TLS and allows to specify and restrict the version of TLS to be used. This is done with the
+        <em>
+         enabledProtocol
+        </em>
+        parameter in the
+        <em>
+         acceptors
+        </em>
+        section of the
+        <em>
+         broker.xml
+        </em>
+        configuration file. As shown in the following configuration snippet:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\acceptor.png" class="rounded img-fluid figure-img" src="4b4459cd-a1ae-4078-a538-4c9cbaf69a09.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        The relevant parameters of the configuration are:
+       </p>
+       <ul>
+        <li>
+         <em>
+          sslEnabled=true
+         </em>
+        </li>
+        <li>
+         <em>
+          enabledProtocol=TLS1.2
+         </em>
+        </li>
+       </ul>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h2>
+        <a id="_Ref8312651">
+        </a>
+        Clients
+       </h2>
+       <h3>
+        Apache Qpid Proton
+       </h3>
+       <p>
+        Apache Qpid Proton provides a low-level implementation of AMQP 1.0 in the C programming language and multiple higher-level reactive APIs on various mainstream programming languages (Java, C++ and Python). The following demonstrates the configuration of Qpid Proton using its Python API
+        <sup>
+         <a href="#footnote-1" id="footnote-ref-1">
+          [1]
+         </a>
+        </sup>
+        but Qpid Proton’s API is quite consistent across the different languages.
+       </p>
+       <h4>
+        Service Binding Requirements
+       </h4>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             Requirement Title
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Requirement ID
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Conformance Level
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Data Compression
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0041
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Encoding Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0049
+           </p>
+          </td>
+          <td>
+           <p>
+            Optional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Content Type Header&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0048
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory Conditional
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP Transport Security Authentication&nbsp;
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0037
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0051
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP over TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0052
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            AMQP
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0036
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            SWIM-TIYP-0008
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Ref8388993">
+        </a>
+        Data Compression
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        AMQP 1.0 and Qpid Proton are agnostic of the payload and do not require any special configuration to work with data compression. A compressed payload is treated as a binary string. The following example illustrates how a string of text is compressed into binary using Gzip, sent using Qpid Proton to the RabbitMQ broker which in turn delivers it to the subscribed consumers.
+       </p>
+       <ul>
+        <li>
+         Producer: On the producer side we build a small sample message whose body is a Gzip compressed string:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2111-producer" class="rounded img-fluid figure-img" src="493889a2-f0bb-4a92-87ae-68cddd0af4f6.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         Consumer: On the consumer side the message arrives compressed and can be decompressed using Gzip. The following snippet will leave a log trace of the arrival of the message and the message elements.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2111-consumer" class="rounded img-fluid figure-img" src="b5a417a1-ad6c-41c1-bd1c-e28f919f189d.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        Which produces the following log trace on the consumer side:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2111-consumer log" class="rounded img-fluid figure-img" src="df41fc3e-e2b9-4be1-85de-9f1aefb6c048.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        The documentation of the Message class can be found here:
+        <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html">
+         https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html
+        </a>
+       </p>
+       <h5>
+        <a id="_Ref8389073">
+        </a>
+        AMQP Content Encoding Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton allows to set the AMQP 1.0 properties of a message in a straightforward manner, the following example shows how to do so for the Content-Encoding and Content-type properties.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2112-2113" class="rounded img-fluid figure-img" src="9fe42bdd-400b-40ce-b049-e27b78dc0436.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See further details of the Message class API.
+       </p>
+       <p>
+        <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html">
+         https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html
+        </a>
+       </p>
+       <h5>
+        <a id="_Ref8389094">
+        </a>
+        AMQP Content Type Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton allows to set the AMQP 1.0 properties of a message in a straightforward manner, the following example shows how to do so for the Content-Encoding and Content-type properties.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2112-2113" class="rounded img-fluid figure-img" src="ea10ff97-74c5-40dc-ba14-4d39ca4a5c45.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        See further details of the Message class API.
+       </p>
+       <p>
+        <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html">
+         https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._message.Message-class.html
+        </a>
+       </p>
+       <h5>
+        <a id="_Ref8383443">
+        </a>
+        AMQP Transport Security Authentication
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         TLS Server Authentication: To enable TLS server authentication on Qpid Proton the client must configure the root CA certificate in order to verify the public certificate presented by the server. This can be done in the following manner:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2114-TLS server" class="rounded img-fluid figure-img" src="d83d4b1f-5321-4c99-ba5a-4e07156359ee.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         TLS Mutual Authentication: To use TLS mutual authentication we have to configure not only the root CA certificate to authenticate the server (see point above) but also configure the client’s certificate and private key that he will use to authenticate himself. The following snippet shows how this can be done in Qpid Proton.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\2114-TLS client.png" class="rounded img-fluid figure-img" src="626230a8-d69d-4423-8dc8-55097eaec3ce.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Anonymous: From the point of view of the client configuring a SASL Anonymous authentication amounts to not using SASL. The following snippet shows a connection configured without SASL.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2114-SASL Anonymous" class="rounded img-fluid figure-img" src="2ecadb20-85d6-46d7-93c5-65571ddd14ae.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Plain: Qpid Proton allows the use of SASL PLAIN authentication mechanism. Upon opening the connection the client simply has to provide its credentials in the following way:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="2114-SASL-plain" class="rounded img-fluid figure-img" src="d251a1ae-fa84-4e1f-aaa6-17415b254360.png">
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        The documentation of the SSLDomain class is available at:
+        <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._transport.SSLDomain-class.html">
+         https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._transport.SSLDomain-class.html
+        </a>
+       </p>
+       <p>
+        The documentation of the Container.connect method is available at:
+        <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._reactor.Container-class.html#connect">
+         https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/proton._reactor.Container-class.html#connect
+        </a>
+       </p>
+       <h5>
+        SASL
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton supports SASL authentication but a few dependencies are required, as explained in its documentation:
+       </p>
+       <p>
+        <a href="https://github.com/apache/qpid-proton/blob/master/INSTALL.md">
+         https://github.com/apache/qpid-proton/blob/master/INSTALL.md
+        </a>
+       </p>
+       <p>
+        Section 2.1.1.4 provides further details on the configuration of SASL credentials.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP over TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton allows to establish AMQP over TLS connections, section 2.1.1.4 provides the configuration details from the point of view of the client.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton is a library of AMQP 1.0. No specific configuration is needed.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Qpid Proton supports establishing TLS connections but a few dependencies are required, as explained in its documentation:
+       </p>
+       <p>
+        <a href="https://github.com/apache/qpid-proton/blob/master/INSTALL.md">
+         https://github.com/apache/qpid-proton/blob/master/INSTALL.md
+        </a>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h3>
+        Rhea
+       </h3>
+       <p>
+        Rhea provides a reactive AMQP 1.0 library for Javascript (Node.js). The following section matches its capabilities against the requirements of the AMQP Messaging Service Binding.
+       </p>
+       <p>
+        Additional documentation and working examples can be found on Rhea’s GitHub repository:
+        <a href="https://github.com/amqp/rhea">
+         https://github.com/amqp/rhea
+        </a>
+       </p>
+       <h4>
+        Service Binding Requirements
+       </h4>
+       <h5>
+        Data Compression
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        AMQP 1.0 and Rhea are agnostic of the payload and do not require any special configuration to work with data compression. A compressed payload is treated as a binary string. The following example illustrates how a string of text is compressed into binary using Gzip, sent using Rhea to the RabbitMQ broker which in turn delivers it to the subscribed consumers.
+       </p>
+       <ul>
+        <li>
+         Producer: On the producer side we build a small sample message whose body is a
+         <em>
+          deflate
+         </em>
+         compressed string:
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\3211-producer.png" class="rounded img-fluid figure-img" src="debd138f-d2c8-440a-b67d-26c4ed214b34.png">
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         Consumer: On the consumer side the message arrives compressed and can be decompressed using the reverse operation of deflate (
+         <em>
+          inflate
+         </em>
+         ). The following snippet will leave a log trace of the arrival of the message and the message elements.
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="c61b0208-664c-483a-8d33-5d50f38d29c1.png">
+       </figure>
+       <p>
+        Which produces the following log trace on the consumer side when a message arrives:
+       </p>
+       <p>
+        <strong>
+        </strong>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="c8cb8367-7a1c-4bbe-830e-e75d363d4329.png">
+       </figure>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <h5>
+        AMQP Content Encoding Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Rhea allows to define an AMQP 1.0 message using JavaScript Object Notation (JSON), the following example shows how to do so for a small sample message containing Content-Encoding and Content-type properties and some payload in the body.
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="46594907-516c-4771-9aa5-3e5a7a55c0ee.png">
+       </figure>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP Content Type Header
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Rhea allows to define an AMQP 1.0 message using JavaScript Object Notation (JSON), the following example shows how to do so for a small sample message containing Content-Encoding and Content-type properties and some payload in the body.
+       </p>
+       <p>
+        <strong>
+        </strong>
+       </p>
+       <figure class="figure">
+        <strong>
+         <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\3212-message.png" class="rounded img-fluid figure-img" src="0d81d3a4-f7a7-4dac-ad1f-a4e9af52aa1a.png">
+        </strong>
+       </figure>
+       <strong>
+       </strong>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        <a id="_Ref11417434">
+        </a>
+        AMQP Transport Security Authentication
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         TLS Server Authentication: To enable TLS server authentication using Rhea the client must configure the root CA certificate in order to verify the public certificate presented by the server. This can be done in the following manner:
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="6ff681ef-27cd-4512-96e6-698ee2c7679a.png">
+       </figure>
+       <ul>
+        <li>
+         TLS Mutual Authentication: To use TLS mutual authentication we have to configure not only the root CA certificate to authenticate the server (see point above) but also configure the client’s certificate and private key that he will use to authenticate himself. The following snippet illustrates this configuration.
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="d5238043-c6db-4ecb-be37-d243a75a267a.png">
+       </figure>
+       <ul>
+        <li>
+         SASL Anonymous: To configure a SASL Anonymous authentication with Rhea it suffices to not specify a password, the username can be any string as it will be mapped by the broker to its default anonymous user. The following snippet shows a connection configured with SASL Anonymous.
+        </li>
+       </ul>
+       <p>
+        <strong>
+        </strong>
+       </p>
+       <figure class="figure">
+        <strong>
+         <img alt="C:\Users\fjcrabif\AppData\Local\Microsoft\Windows\INetCache\Content.Word\3214-sasl-anonymous.png" class="rounded img-fluid figure-img" src="6be5fbf7-6ad1-44e4-b05e-7aa7e3a7fc67.png">
+        </strong>
+       </figure>
+       <strong>
+       </strong>
+       <p>
+       </p>
+       <ul>
+        <li>
+         SASL Plain: To configure a SASL Plain authentication with Rhea we simply provide the username and password of the client to authenticate. The following snippet shows a connection configured with SASL Plain.
+        </li>
+       </ul>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="2c8c912b-3b6d-45e8-bb13-46768aa6e51f.png">
+       </figure>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        SASL
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Rhea allows to perform SASL Anonymous and SASL PLAIN authentication, section 3.2.1.4 provides detailed configuration snippets for both cases.
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP over TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Rhea allows to establish AMQP over TLS connections, section 3.2.1.4 provides the configuration details from the point of view of the client.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        AMQP
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Complete
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Test
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        Rhea is a library of AMQP 1.0. No specific configuration is needed.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        N/A.
+       </p>
+       <h5>
+        TLS
+       </h5>
+       <p>
+        <strong>
+         Satisfaction:
+        </strong>
+       </p>
+       <p>
+        Complete
+       </p>
+       <p>
+        <strong>
+         Verification:
+        </strong>
+       </p>
+       <p>
+        Test
+       </p>
+       <p>
+        <strong>
+         Configuration:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Rhea supports establishing TLS sessions, section
+        </strong>
+        3.2.1.4 provides the configuration details from the point of view of the client.
+       </p>
+       <p>
+        <strong>
+         Comment:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         N/A.
+        </strong>
+       </p>
+       <h2>
+        References
+       </h2>
+       <a id="_Ref2152131">
+       </a>
+       <ol>
+        <li>
+         <a href="https://www.eurocontrol.int/sites/default/files/content/documents/single-sky/specifications/EUROCONTROL-SPEC-170%20SWIM%20TIYP%20Ed%201.0.pdf">
+          Eurocontrol Specification for SWIM Technical Infrastructure Yellow Profile
+         </a>
+         , EUROCONTROL
+        </li>
+        <li>
+         <a href="https://www.rabbitmq.com/documentation.html">
+          RabbitMQ Documentation
+         </a>
+         , Pivotal
+        </li>
+        <li>
+         <a href="https://activemq.apache.org/components/artemis/documentation/1.5.3/index.html">
+          ActiveMQ Artemis Documentation
+         </a>
+         , Apache
+        </li>
+        <li>
+         <a href="https://qpid.apache.org/proton/index.html">
+          Qpid Proton Documentation
+         </a>
+         , Apache
+        </li>
+        <li>
+         <a href="https://github.com/amqp/rhea">
+          Rhea Documentation
+         </a>
+        </li>
+       </ol>
+<H2>Notes</h2>       
+<ol>
+        <li id="footnote-1">
+         <p>
+          <a href="https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/index.html">
+           https://qpid.apache.org/releases/qpid-proton-0.27.1/proton/python/api/index.html
+          </a>
+          <a href="#footnote-ref-1">
+           ↑
+          </a>
+         </p>
+        </li>
+       </ol>
+      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+    <script src="../assets/js/list.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,2567 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Guidance for pub-sub-push Implementation - Technical Infrastructure - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../technical-infrastructure.html"><strong>Technical Infrastructure</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">Publish/Subscribe Push MEP: Implementation Guidance<br></h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;JULY 2nd, 2019<br></span></p>
+                        </div>
+                    </div>
+                    <h6 class="text-info"></h6>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-3 offset-md-1">
+                            <div class="toc">
+                                <h5>Contents</h5><ul class="toc_list list-unstyled">
+         <li>
+          <a href="#_Toc14766277">
+           1. 
+        
+        
+        Introduction
+          </a>
+         </li>
+         <li>
+          <a href="#_Toc2244802">
+           2. 
+        
+        
+        
+        
+        
+        
+        
+        
+        Technology Agnostic Service Design
+          </a>
+         </li>
+         <li>
+          <a href="#_Ref4576713">
+           3. 
+        
+        
+        
+        
+        
+        
+        Service Implementation
+          </a>
+         </li>
+         <li>
+          <a href="#_Toc14766290">
+           4. 
+        
+        
+        References
+          </a>
+         </li>
+        </ul>
+  
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                            <div class="text"><div class="text">
+<h2>
+        <a id="_Toc14766277">
+        </a>
+        Introduction
+       </h2><p>
+        This document intends to serve as implementation guidance of the Publish/Subscribe Push Message Exchange Pattern [7] using SWIM-TI Yellow Profile Service Bindings [6]. The document is structured as follows:
+       </p>
+       <ul>
+        <li>
+         In section 2, we provide a general overview of Publish/Subscribe services in a technology agnostic manner.
+        </li>
+        <li>
+         In section 3, the technology agnostic service design is realised in a concrete implementation using WS-Light and AMQP Messaging Service Bindings [3].
+        </li>
+       </ul>
+       <p>
+        The proposed service design and implementation is intended to provide a basic template for implementers that can be customised or complemented in multiple ways to suit specific needs.
+       </p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 21px;">
+                    <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+       <h2>
+      
+        Glossary of Terms
+       </h2>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             MEP:
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Exchange Pattern
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             UUID:
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            Universally Unique IDentifier
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             REST:
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            Representational State Transfer
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            <strong>
+             AMQP:
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            Advanced Message Queuing Protocol
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h2>
+        <a id="_Toc2244802">
+        </a>
+        <a id="_Toc2244817">
+        </a>
+        <a id="_Ref535414557">
+        </a>
+        <a id="_Toc14766279">
+        </a>
+        Technology Agnostic Service Design
+       </h2>
+       <h3>
+        <a id="_Ref489271194">
+        </a>
+        <a id="_Toc14766280">
+        </a>
+        Publish/Subscribe Service Design
+       </h3>
+       <p>
+        In its general form a Publish/Subscribe service can be understood as consisting of at least 2 interfaces:
+       </p>
+       <ul>
+        <li>
+         A subscription interface: Containing operations that relate to the management of the service subscription (e.g. subscribe, unsubscribe, pause…).
+        </li>
+        <li>
+         A publish interface: Dealing with the actual publication of data to its consumers.
+        </li>
+       </ul>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="ee0fad78-b7d9-4f34-bf14-a0f559164c82.png">
+        <figcaption>
+         Figure 1: Publish Subscribe Service: Interfaces
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        Specific details of the implementation of the service subscription interface may vary. For example;
+       </p>
+       <ul>
+        <li>
+         The
+         <em>
+          subscribe
+         </em>
+         ,
+         <em>
+          unsubscribe
+         </em>
+         and
+         <em>
+          pause
+         </em>
+         operations may be merged into a single overloaded operation that performs either depending on the request payload.
+        </li>
+        <li>
+         The
+         <em>
+          pause
+         </em>
+         subscription operation may altogether not exist if said functionality is not needed.
+        </li>
+        <li>
+         Additional operations can be added to support extended functionality, for instance:
+         <ul>
+          <li>
+           A
+           <em>
+            getSubscription/getSubscriptions
+           </em>
+           operation to obtain details of an existing subscription(s),
+          </li>
+          <li>
+           A
+           <em>
+            getTopics
+           </em>
+           operation that lists the possible topics a Consumer can subscribe to,
+          </li>
+          <li>
+           Etc…
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <p>
+        What is usually common across implementations is that the Subscribe interface is implemented using a Request/Response pattern
+        <sup>
+         <a href="#footnote-1" id="footnote-ref-1">
+          [1]
+         </a>
+        </sup>
+        as subscribing to the service typically entails some form of approval by the service provider which in turn provides back certain information detailing the means to use to obtain the publications. This interface is provided by the Service Provider and required by the Consumer.
+       </p>
+       <p>
+        On the other hand, the Publish interface is most commonly implemented using a Fire-and-Forget MEP [7] as it fully leverages the advantages of Publish/Subscribe, minimizing interactions between providers and consumers and preventing unnecessary workload on consumer side, which would otherwise need to perform periodic requests (polling) to get the latest updates. This interface is provided by the Consumer that needs to be able to accept reception of the
+        <em>
+         publish
+        </em>
+        operation and required by the Service Provider who will invoke it.
+       </p>
+       <p>
+        Particular technical implementations may rely on additional interfaces and operations to manage different aspects of the service like; connection establishment between Consumer and Service, delivery state of messages, heartbeats to communicate the status of each participant, etc... These interfaces are implementation specific and vary from technology to technology and thus are best documented as part of the technology specific service description (see section 3).
+       </p>
+       <h3>
+        <a id="_Toc14766281">
+        </a>
+        Subscription Model
+       </h3>
+       <p>
+        The Subscribe interface needs to provide a model that specifies what defines a subscription. There is no standardized way to do so and different services might have different needs that may justify variation in the subscription models. In this section we provide a simple and extensible subscription model and common alternative variations.
+       </p>
+       <p>
+        A subscription can be described as depicted in Figure 2.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="748c4b6f-a057-4581-adab-9fd65a075280.png">
+        <figcaption>
+         <a id="_Ref489278365">
+         </a>
+         <a id="_Toc489282822">
+         </a>
+         Figure 2: Subscription class (non-normative).
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         id: Unique identifier of a subscription, (e.g. a UUIDv4).
+        </li>
+        <li>
+         topic: A string that matches under certain predefined rules a topic or set of topics of the service. It may take values in an enumeration list or might be defined using a tree structure and allow the use of wildcard operators.
+        </li>
+        <li>
+         durable: Expresses the durability of the subscription, a subscription is durable if messages are preserved while subscribers are offline. Sometimes can be accompanied by a time-to-live attribute that indicates the expiration time of non-delivered messages.
+        </li>
+        <li>
+         qos: Expresses the reliability Quality of Service of the subscription.
+        </li>
+        <li>
+         status: A description of the state of a subscription, usually taking values in a predefined enumeration list. The possible states must be accompanied by a state diagram indicating the possible transitions and its triggers.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc14766282">
+        </a>
+        Subscription States and Lifecycle
+       </h4>
+       <p>
+        The subscription model defines the following subscription states:
+       </p>
+       <ul>
+        <li>
+         ACTIVE: The subscription has been created and messages are being queued in the subscriber´s queue.
+        </li>
+        <li>
+         PAUSED: The subscription has been created but messages are not being queued in the subscriber’s queue.
+        </li>
+        <li>
+         DELETED: The subscription and the queue have been deleted.
+        </li>
+       </ul>
+       <p>
+        The operations of the Subscribe interface allow the Consumer to manage the state of a subscription, the following state diagram depicts the lifecycle of a subscription and the different state transitions associated with its operations.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="7d789ac9-2fbd-4597-9821-13f50d610ae3.png">
+        <figcaption>
+         Figure 3: Subscription State Diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <h4>
+        <a id="_Toc14766283">
+        </a>
+        Subscription Filtering
+       </h4>
+       <p>
+        Filtering mechanisms provide a way for consumers to declare interest in a subset of publications, helping reduce unnecessary processing and bandwidth consumption for both provider and consumers.
+       </p>
+       <h5>
+        Subject-based Filtering
+       </h5>
+       <p>
+        In Publish/Subscribe services a topic is a descriptor of the subject of the information exchanged. Topics classify the publications in a number of different subjects, during subscription Consumers can declare interest in a number of topics which allows them to filter the publication received to that particular subset.
+       </p>
+       <p>
+        Topic Enumerations
+       </p>
+       <p>
+        An enumeration provides the simplest mechanism to define the list of subjects to which a consumer can subscribe.
+       </p>
+       <p>
+        The following figure illustrates an example topic enumeration with three possible topics that classify the publications of a service according to their subject.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="3698dc5e-e2b5-44b4-ba51-5d97a37f6964.png">
+        <figcaption>
+         Figure 4: Example Topic Enumeration
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        Topic Trees
+       </p>
+       <p>
+        Topic trees provide a rich mechanism to classify the publications of a service in a structured way.
+       </p>
+       <p>
+        A topic tree can be defined as follows:
+       </p>
+       <ul>
+        <li>
+         Define a reserved character that acts as word separator. E.g.
+         <ul>
+          <li>
+           Use the character “/” as a word separator.
+          </li>
+         </ul>
+        </li>
+        <li>
+         Define a tree structure of topics using the word separator character. E.g.:
+        </li>
+        <li>
+         /weather/precipitation/LEMD
+        </li>
+        <li>
+         /weather/precipitation/LFPG
+        </li>
+        <li>
+         /weather/wind/LEMD
+        </li>
+        <li>
+         /weather/wind/LFPG
+        </li>
+        <li>
+         Define a number of wildcard characters that can be used to match sub-branches of tree structure. E.g.:
+         <ul>
+          <li>
+           “*” as a wildcard that matches any single word of a topic
+          </li>
+          <li>
+           “#” as a wildcard that matches any number of consecutive words of a topic.
+          </li>
+         </ul>
+        </li>
+       </ul>
+       <p>
+        With this topic structure the consumers can declare interest to specific data by subscribing to topics using the semantics defined. E.g.:
+       </p>
+       <ul>
+        <li>
+         Subscribing to “
+         <em>
+          /weather/#”
+         </em>
+         declares interest to precipitation and wind data for all airports.
+        </li>
+        <li>
+         Subscribing to
+         <em>
+          “/weather/wind/*”
+         </em>
+         declares interested to wind data for all airports.
+        </li>
+        <li>
+         Subscribing to
+         <em>
+          “/weather/precipitation/LFPG”
+         </em>
+         declares interest to precipitation data for the Paris Charles de Gaulle Airport.
+        </li>
+       </ul>
+       <h5>
+        Content-based Filtering
+       </h5>
+       <p>
+        Content-based filtering allows consumers to specify their interest into specific publications based on the runtime evaluation of certain predicates against the content of the publication message. They provide the most flexible and general filtering mechanism but the most difficult to implement and with expensive runtime costs.
+       </p>
+       <p>
+        For example, a consumer may declare interest in every publication that contains a particular keyword or publications where a particular attribute of the payload is bigger than a concrete value.
+       </p>
+       <h3>
+        <a id="_Toc14766284">
+        </a>
+        Dynamic Behaviour
+       </h3>
+       <p>
+        The following sequence diagram shows the nominal flow of a subscription, subsequent publications and final unsubscription from the service:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="4f7b31bc-dadb-4ffb-99d7-093fee01fb58.png">
+        <figcaption>
+         Figure 5: Publish/Subscribe sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <ol>
+        <li>
+         The Consumer performs a subscription request, filling the appropriate request message.
+        </li>
+        <li>
+         The Service Provider processes the request (payload validation, authentication and authorization processing occur at this moment) and provides the appropriate response message.
+        </li>
+        <li>
+         When a new message is available it is published to the Service Consumer.
+        </li>
+        <li>
+         Finally, the Service Consumer unsubscribes from the service which stops further publications.
+        </li>
+       </ol>
+       <p>
+        This nominal flow represents the basic Publish/Subscribe interaction that can be extended in a straight-forward manner to include additional operations like pause and resume subscription. This nominal flow can also be extended to a Brokered Publish/Subscribe Push Message Exchange Pattern, in which case the broker or brokers would appear as intermediaries between Service and Consumer.
+       </p>
+       <h2>
+        <a id="_Ref4576713">
+        </a>
+        <a id="_Ref4596837">
+        </a>
+        <a id="_Toc14766285">
+        </a>
+        Service Implementation
+       </h2>
+       <h3>
+        <a id="_Toc14766286">
+        </a>
+        Topic Publish/Subscribe Service Implementation
+       </h3>
+       <p>
+        A Topic-based Publish/Subscribe service can be implemented in the following manner:
+       </p>
+       <ul>
+        <li>
+         Using WS-Light Service Binding for the implementation of the Subscribe interface,
+        </li>
+        <li>
+         Using AMQP Messaging Service Binding for the implementation of the Publish interface.
+        </li>
+       </ul>
+       <p>
+        In this section we will provide detailed implementation guidance to realize the generic service design outlined in section 2.1 using the proposed Service Bindings.
+       </p>
+       <h4>
+        <a id="_Ref13046687">
+        </a>
+        <a id="_Toc14766287">
+        </a>
+        Subscription
+       </h4>
+       <p>
+        The Subscribe interface can be implemented using a REST design. The REST resources represent:
+       </p>
+       <ul>
+        <li>
+         A collection of topics: /topics/
+        </li>
+        <li>
+         A specific topic: /topics/&lt;topic&gt;
+        </li>
+        <li>
+         The collection of all subscriptions: /subscriptions/
+        </li>
+        <li>
+         A specific subscription: /subscriptions/&lt;subscription_id&gt;
+        </li>
+       </ul>
+       <p>
+        The following table summarizes a mapping between the technology agnostic interface design (to the left) and the REST resource endpoint (to the right) with the corresponding HTTP method.
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Design
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Implementation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Operation
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Resource endpoint
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             HTTP method
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            subscribe
+           </p>
+          </td>
+          <td>
+           <p>
+            /subscriptions/
+           </p>
+          </td>
+          <td>
+           <p>
+            POST
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            pause
+           </p>
+          </td>
+          <td>
+           <p>
+            /subscriptions/&lt;subscription_id&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            PUT
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            resume
+           </p>
+          </td>
+          <td>
+           <p>
+            /subscriptions/&lt;subscription_id&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            PUT
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            unsubscribe
+           </p>
+          </td>
+          <td>
+           <p>
+            /subscriptions/&lt;subscription_id&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            DELETE
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        Additional operations to retrieve the list of available topics and the current state of a particular subscription can be included in a simple manner:
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Design
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Implementation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Operation
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Resource endpoint
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             HTTP method
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            getTopics
+           </p>
+          </td>
+          <td>
+           <p>
+            /topics/
+           </p>
+          </td>
+          <td>
+           <p>
+            GET
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            getTopic
+           </p>
+          </td>
+          <td>
+           <p>
+            /topics/&lt;topic&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            GET
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            getSubscription
+           </p>
+          </td>
+          <td>
+           <p>
+            /subscriptions/&lt;subscription_id&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            GET
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        subscribe
+       </h5>
+       <p>
+        This operation allows a Consumer to request the subscription to a particular Topic of the Service.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="51d2ee3d-fab0-4cb3-a600-7d6610121f25.png">
+        <figcaption>
+         Figure 6: subscribe sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes a “POST” on the /subscriptions/ endpoint.
+        </li>
+        <li>
+         The Service Provider applies Authentication, Authorization and Data Validation controls and determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the result of the request including (if successful) the appropriate queue where the messages will be published.
+        </li>
+       </ol>
+       <p>
+        Post-Conditions: If successful, the /&lt;queue&gt; and /subscriptions/&lt;subscription_id&gt; endpoints are created.
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Content-Type&nbsp;: application/json
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        <em>
+         {“topic”: &lt;topic&gt;,
+        </em>
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”: true}
+       </p>
+       <h6>
+        Example Response Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 201
+       </p>
+       <p>
+        Reason-Phrase: Created
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_id": &lt;subscription_id&gt;,
+       </p>
+       <p>
+        "queue": &lt;queue&gt;,
+       </p>
+       <p>
+        "subscription_status": "PAUSED",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”: true}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        pause
+        <sup>
+         <a href="#footnote-2" id="footnote-ref-2">
+          [2]
+         </a>
+        </sup>
+       </h5>
+       <p>
+        This operation allows a Consumer to pause the publishing of messages for a particular topic subscription.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="63e6863a-24cd-45bd-8f9e-61cde5c52c1a.png">
+        <figcaption>
+         Figure 7: pause sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Pre-Conditions: The Consumer has successfully subscribed to a particular &lt;topic&gt;.
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “PUT” method on the /subscriptions/&lt;subscription_id&gt; endpoint. The body of the message includes a change to the
+         <em>
+          subscription_status
+         </em>
+         to “PAUSED”.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the result of the request including (if successful) the new
+         <em>
+          subscription_status
+         </em>
+         .
+        </li>
+       </ol>
+       <p>
+        Post-Conditions: If successful, the subscription is paused.
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_status": "PAUSED",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”:true}
+       </p>
+       <h6>
+        Example Response Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 200
+       </p>
+       <p>
+        Reason-Phrase: Accepted
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_id": &lt;subscription_id&gt;,
+       </p>
+       <p>
+        "queue": &lt;queue&gt;,
+       </p>
+       <p>
+        "subscription_status": "PAUSED",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”:true}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         404 Not Found:
+        </strong>
+        The requested resource cannot be found (e.g. the &lt;subscription_id&gt; does not exist).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        resume
+       </h5>
+       <p>
+        Due to the stateless implementation of the API, this operation is performed in exactly the same way as the pause changing the
+        <em>
+         subscription_status
+        </em>
+        in the body of the message to “ACTIVE”.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="8c07040d-549b-4644-b057-4ce6da39eb01.png">
+        <figcaption>
+         Figure 8: resume sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Pre-Conditions: The Consumer has successfully subscribed to a particular &lt;topic&gt;.
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “PUT” method on the /subscriptions/&lt;subscription_id&gt; endpoint. The body of the message includes a change to the
+         <em>
+          subscription_status
+         </em>
+         to “ACTIVE”.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the result of the request including (if successful) the new
+         <em>
+          subscription_status
+         </em>
+         .
+        </li>
+       </ol>
+       <p>
+        Post-Conditions: If successful, the subscription is paused.
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_status": "ACTIVE",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”:true}
+       </p>
+       <h6>
+        Example Response Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 200
+       </p>
+       <p>
+        Reason-Phrase: Accepted
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_id": &lt;subscription_id&gt;,
+       </p>
+       <p>
+        "queue": &lt;queue&gt;,
+       </p>
+       <p>
+        "subscription_status": "ACTIVE",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”:true}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         404 Not Found:
+        </strong>
+        The requested resource cannot be found (e.g. the &lt;subscription_id&gt; does not exist).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        unsubscribe
+       </h5>
+       <p>
+        This operation allows a Consumer to unsubscribe from a particular Topic of the Service.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="8b4f8f33-3ad2-4cd5-ab7d-7c6a1a3c33ca.png">
+        <figcaption>
+         Figure 9: unsubscribe sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Pre-conditions: The Consumer has successfully subscribed to a particular &lt;topic&gt;.
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “DELETE” method on the /subscriptions/&lt;subscription_id&gt; endpoint.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the result of the request.
+        </li>
+       </ol>
+       <p>
+        Post-Conditions: If successful, the &lt;queue&gt; and /subscriptions/&lt;subscription_id&gt; endpoints are removed and the Consumer is unsubscribed.
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        None
+       </p>
+       <h6>
+        Example Response Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 204
+       </p>
+       <p>
+        Reason-Phrase: No Content
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        <em>
+        </em>
+        None
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         404 Not Found:
+        </strong>
+        The requested resource cannot be found (e.g. the &lt;subscription_id&gt; does not exist).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        getSubscription
+       </h5>
+       <p>
+        This operation allows a Consumer to obtain information on a specific subscription.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="8de30a40-d4f6-42aa-91c8-41c87e8a12f5.png">
+        <figcaption>
+         Figure 10: getSubscription sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Pre-Conditions: The Consumer has successfully subscribed to a particular &lt;topic&gt;.
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “GET” method on the /subscriptions/&lt;subscription_id&gt; endpoint.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the information associated to a particular subscription.
+        </li>
+       </ol>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        None
+       </p>
+       <h6>
+        Example Response Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 200
+       </p>
+       <p>
+        Reason-Phrase: OK
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        "subscription_id": &lt;subscription_id&gt;,
+       </p>
+       <p>
+        "queue": &lt;queue&gt;,
+       </p>
+       <p>
+        "subscription_status": "ACTIVE",
+       </p>
+       <p>
+        <em>
+         “qos”: “EXACTLY_ONCE”,
+        </em>
+       </p>
+       <p>
+        “durable”:true}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         404 Not Found:
+        </strong>
+        The requested resource cannot be found (e.g. the &lt;subscription_id&gt; does not exist).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        getTopics
+       </h5>
+       <p>
+        This operation allows a Consumer to request the list of topics available for subscription.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="c715061a-b56d-447b-b89d-7645c1aca96d.png">
+        <figcaption>
+         Figure 11: getTopics sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “GET” method on the /topics/ endpoint.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with the information of all the topics available for subscription.
+        </li>
+       </ol>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        None
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 200
+       </p>
+       <p>
+        Reason-Phrase: OK
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Example 1: Topic Enumeration
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“type”: “Enumeration”,
+       </p>
+       <p>
+        “topics”: [“FLIGHT”, “WEATHER”, “AERONAUTICAL_INFORMATION”] }
+       </p>
+       <p>
+        <strong>
+         Example 2: Topic Tree
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“type”: “Tree”,
+       </p>
+       <p>
+        “patternMatching”: 	{“wordSeparator”: “/”,
+       </p>
+       <p>
+        “singleWordWildcard”: “*”,
+       </p>
+       <p>
+        “multiWordWildcard”: “#”},
+       </p>
+       <p>
+        “topics”: [“/weather/precipitation/LEMD”,
+       </p>
+       <p>
+        “/weather/precipitation/LFPG”,
+       </p>
+       <p>
+        “/weather/wind/LEMD”,
+       </p>
+       <p>
+        “/weather/wind/LFPG”]}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h5>
+        getTopic
+       </h5>
+       <p>
+        This operation allows a Consumer to obtain information on a specific topic.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="6d491e94-f944-43ca-904f-900aa97138a2.png">
+        <figcaption>
+         Figure 12: getTopic sequence diagram
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Consumer invokes the “GET” method on the /topics/&lt;topic&gt; endpoint.
+        </li>
+        <li>
+         The Service Provider may apply Authentication and Authorization controls to determine the result of the subscription request.
+        </li>
+        <li>
+         The Service Provider provides a Response with information on the specific &lt;topic&gt;.
+        </li>
+       </ol>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Accept: application/json, application/xml
+       </p>
+       <p>
+        Accept-Encoding: gzip
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        None
+       </p>
+       <h6>
+        Example Request Message
+       </h6>
+       <p>
+        <strong>
+         Headers
+        </strong>
+       </p>
+       <p>
+        Status-Code: 200
+       </p>
+       <p>
+        Reason-Phrase: OK
+       </p>
+       <p>
+        Content-Type: application/json
+       </p>
+       <p>
+        <strong>
+         Body
+        </strong>
+       </p>
+       <p>
+        {“topic”: “WEATHER”,
+       </p>
+       <p>
+        “updateInterval”: “PT4H”,
+       </p>
+       <p>
+        “timeToLive”: “PT4H”,
+       </p>
+       <p>
+        “contentType”: “application/xml+iwxxm3.0”,
+       </p>
+       <p>
+        “contentEncoding”: “gzip”}
+       </p>
+       <h6>
+        Error Codes
+       </h6>
+       <p>
+        The following error codes may be of interest to implementers, covering common failures applicable to this resource invocation. Implementers are free to use a suitable subset of the ones proposed or complement it with additional ones to cover particular implementation needs.
+       </p>
+       <p>
+        <strong>
+         400 Bad Request:
+        </strong>
+        Indicated for malformed requests on the part of the client.
+       </p>
+       <p>
+        <strong>
+         401 Unauthorized:
+        </strong>
+        Indicated for authentication errors (e.g. the authentication is not provided, the credentials used do not exists, the authentication mechanism used is not valid…).
+       </p>
+       <p>
+        <strong>
+         403 Forbidden:
+        </strong>
+        Indicated for authorization errors (e.g. the authenticated credentials are not allowed to perform this operation on the resource).
+       </p>
+       <p>
+        <strong>
+         404 Not Found:
+        </strong>
+        The requested resource cannot be found (e.g. the &lt;topic_id&gt; does not exist).
+       </p>
+       <p>
+        <strong>
+         405 Method Not Allowed:
+        </strong>
+        The HTTP method used is not supported by the resource.
+       </p>
+       <p>
+        <strong>
+         406 Not Acceptable:
+        </strong>
+        None of the Content-Types provided in the request Accept header are supported.
+       </p>
+       <p>
+        <strong>
+         415 Unsupported Media Type:
+        </strong>
+        The Content-Type of the request is not valid for this operation.
+       </p>
+       <p>
+        <strong>
+         500 Internal Server Error:
+        </strong>
+        Catch-all error for unexpected internal errors during the processing of the request.
+       </p>
+       <h4>
+        <a id="_Toc14766288">
+        </a>
+        Publication
+       </h4>
+       <p>
+        This section defines an implementation of the Publish interface of the agnostic service design using AMQP 1.0. Reference [5] provides an overview of the most important aspects of AMQP 1.0 which are used in the implementation.
+       </p>
+       <h5>
+        Technical Interfaces
+       </h5>
+       <p>
+        The following interfaces provide technical operations to perform connection establishment, control flow of messages and settle their delivery state. From the technology agnostic service design described in section 2 these are technical details of implementation specific to the technology that are abstracted from the high-level service description.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="59fa9f4e-5135-420b-b26d-fe6b919f8d93.png">
+        <figcaption>
+         Figure 13: AMQP 1.0 Technical Interfaces
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <h5>
+        Publish Interface
+       </h5>
+       <p>
+        The publish operation of the agnostic service design corresponds with the transfer performative as depicted below:
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Design
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Implementation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Operation
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             Resource endpoint
+            </strong>
+           </p>
+          </td>
+          <td>
+           <p>
+            <strong>
+             AMQP 1.0 method
+            </strong>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            publish
+           </p>
+          </td>
+          <td>
+           <p>
+            /&lt;queue&gt;
+           </p>
+          </td>
+          <td>
+           <p>
+            transfer
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        The following figure depicts this interface and highlights the close correspondence with the technology agnostic Publish interface of section 2.1.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="a4567bd5-2152-449e-9502-240ebffbf33c.png">
+        <figcaption>
+         Figure 14: AMQP 1.0 Publish Interface
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <h6>
+        publish
+       </h6>
+       <p>
+        This operation allows the Service Provider to push publications to a Consumer.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="7ba9717e-94ab-4c58-bd0f-360926f9469e.png">
+        <figcaption>
+         Figure 15: AMQP 1.0 publish operation
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        <strong>
+         Description:
+        </strong>
+       </p>
+       <p>
+        <strong>
+         Pre-conditions: The Consumer has subscribed to a &lt;topic&gt; and connected to the &lt;queue&gt; provided in the subscribe response message. There is sufficient link-credit in the consumer���s link endpoint.
+        </strong>
+       </p>
+       <ol>
+        <li>
+         The Provider sends a message with the appropriate payload using the “transfer” performative of AMQP 1.0.
+        </li>
+       </ol>
+       <p>
+        Post-Conditions: If successful, the message is received.
+       </p>
+       <h7>
+        Example Message
+       </h7>
+       <p>
+        Message(
+       </p>
+       <p>
+        properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        "message‐id": &lt;message_id: e.g. int&gt;,
+       </p>
+       <p>
+        "to": "&lt;consumer_address&gt;",
+       </p>
+       <p>
+        "content-type": &lt;content-type of payload e.g. application/xml&gt;
+       </p>
+       <p>
+        "content-encoding": &lt;content-encoding of payload e.g. deflate&gt;
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        // Relevant application properties, service dependent. E.g.:
+       </p>
+       <p>
+        "message-type": "ARRIVAL",
+       </p>
+       <p>
+        "gufi": "d6fc238a-0bdd-4854-9010-d9c1ca4edc48"
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-data:
+       </p>
+       <p>
+        (
+       </p>
+       <p>
+        // Body of the payload. Service dependent
+       </p>
+       <p>
+        )
+       </p>
+       <p>
+        )
+       </p>
+       <h4>
+        <a id="_Toc14766289">
+        </a>
+        Dynamic Behaviour
+       </h4>
+       <p>
+        The following diagram shows the nominal flow followed by a Consumer that connects to a queue to receive message publications.
+       </p>
+       <p>
+        <strong>
+        </strong>
+       </p>
+       <figure class="figure">
+        <strong>
+         <img class="rounded img-fluid figure-img" src="3f04254f-c297-4871-aeae-699e9d7d9578.png">
+         <figcaption>
+          Figure 16: AMQP 1.0 Sequence Diagram
+         </figcaption>
+        </strong>
+       </figure>
+       <strong>
+       </strong>
+       <p>
+       </p>
+       <ol>
+        <li>
+         The Consumer sends an
+         <em>
+          open
+         </em>
+         performative to create a connection with the Service. The open performative passes as one of its parameters the hostname of the Service.
+        </li>
+        <li>
+         The Consumer sends a
+         <em>
+          begin
+         </em>
+         performative to start a session with the Service.
+        </li>
+        <li>
+         The Consumer sends an
+         <em>
+          attach
+         </em>
+         performative to create a directional link from the queue to the Consumer’s endpoint to enable the transfer of messages.
+        </li>
+        <li>
+         The Consumer sets some available link-credit using the
+         <em>
+          flow
+         </em>
+         performative.
+        </li>
+        <li>
+         When a new message is available in the queue and while credit is available, the message is pushed from the queue to Consumer’s endpoint using the
+         <em>
+          transfer
+         </em>
+         performative.
+        </li>
+       </ol>
+       <p>
+        Finally, the Consumer may decide to disconnect from the queue.
+       </p>
+       <ol>
+        <li>
+         The Consumer sends a
+         <em>
+          detach
+         </em>
+         with the identifier of the link he attached to queue.
+        </li>
+        <li>
+         The Consumer sends an
+         <em>
+          end
+         </em>
+         performative to finish the session established.
+        </li>
+        <li>
+         The Consumer send a
+         <em>
+          close
+         </em>
+         performative to terminate the connection with the Service.
+        </li>
+       </ol>
+       <p>
+        Note: Steps 1 to 3 and 6 to 8 provide a low-level description of the connection and disconnection process at protocol level. AMQP 1.0 clients and libraries may simplify these processes by providing a higher level API that abstracts the different protocol invocations. From the point of view of the Consumer the most important aspect is that he has the initiative to connect to the queue and that the network address of the service and the queue endpoint are used during these steps to establish a connection.
+       </p>
+       <h2>
+        <a id="_Toc14766290">
+        </a>
+        References
+       </h2>
+       <ol>
+        <li>
+         <a id="_Ref488936133">
+         </a>
+         AMQP Essentials, Paolo Patierno
+        </li>
+        <li>
+         <a id="_Ref488936135">
+         </a>
+         OASIS Advanced Message Queuing Protocol Version 1.0, OASIS
+        </li>
+        <li>
+         <a id="_Ref2152131">
+         </a>
+         Eurocontrol SWIM Technical Infrastructure Yellow Profile Specification, EUROCONTROL
+        </li>
+        <li>
+         Eurocontrol SWIM Technical Infrastructure Foundation Material, EUROCONTROL
+        </li>
+        <li>
+         <a id="_Ref2244605">
+         </a>
+         AMQP Messaging Service Binding: Technology Overview, EUROCONTROL
+        </li>
+        <li>
+         <a id="_Ref5089562">
+         </a>
+         SWIM TI Binding Selection Guidelines, EUROCONTROL
+        </li>
+        <li>
+         <a id="_Ref5089548">
+         </a>
+         SWIM TI Message Exchange Pattern Identification Guidelines, EUROCONTROL
+        </li>
+        <li>
+         <a id="_Toc14766291">
+         </a>
+         Authentication and Authorization
+        </li>
+       </ol>
+       <h3>
+        <a id="_Toc14766292">
+        </a>
+        Authentication
+       </h3>
+       <p>
+        The Interface Service Bindings used for the implementation proposed in section 3, WS Light and AMQP Messaging, offer equivalent authentication mechanisms:
+       </p>
+       <ol>
+        <li>
+         <a id="_Ref4597079">
+         </a>
+         Mutual authentication with X.509 certificates
+        </li>
+        <li>
+         <a id="_Ref4597086">
+         </a>
+         Server authentication with X.509 and Client authentication with Username/Password
+        </li>
+        <li>
+         Server authentication with X.509 and anonymous Client authentication
+        </li>
+       </ol>
+       <p>
+        Of the available authentication mechanism only 1 and 2 are applicable to a Publish/Subscribe service design, as there needs to be a way to authenticate a consumer to perform a subscription.
+       </p>
+       <p>
+        Option 1 (Mutual authentication with X.509 certificates) utilizes the same technical solution to perform authentication across both Service Bindings, relying on TLS authentication and X.509 certificates. On the other hand it requires an existing Public Key Infrastructure with the overhead associated to its management and the deployment of X.509 certificates on the consumers.
+       </p>
+       <p>
+        Option 2 (Server authentication with X.509 and Client authentication with Username/Password) relies on HTTP Basic Authorization for the subscription interface and SASL PLAIN for the publication interface to authenticate the user with its username and password. The advantage of a Username/Password authentication of the client is its simplicity and low management burden but it provides a lower security protection against brute-force attacks in comparison to public key certificates.
+       </p>
+       <p>
+        The choice of one authentication mechanism over the other is a design decision of the service provider who can take into consideration the trade-offs associated with both solutions.
+       </p>
+       <h3>
+        <a id="_Toc14766293">
+        </a>
+        Authorization
+       </h3>
+       <p>
+        Authorization controls should be implemented in the resources exposed by the service. The following are one possible set of authorization controls:
+       </p>
+       <ul>
+        <li>
+         Resource “/subscriptions/”: If a pre-existing community of interest exists for the Publish/Subscribe service, the service can verify that the credentials of the authenticated user correspond to an authorized member. Otherwise, the resource can be accessible to every authenticated user.
+        </li>
+        <li>
+         Resource “/subscriptions/&lt;subscription_id&gt;”: The credentials of the authenticated user must correspond with the user that invoked the subscribe operation that resulted in the creation of the endpoint.
+        </li>
+        <li>
+         Resource “/topics/”: If a pre-existing community of interest exists for the Publish/Subscribe service, the service can verify that the credentials of the authenticated user correspond to an authorized member. Otherwise, the resource can be accessible to every authenticated user.
+        </li>
+        <li>
+         Resource “/topics/&lt;topic_id&gt;”: If a pre-existing community of interest exists for the Publish/Subscribe service, the service can verify that the credentials of the authenticated user correspond to an authorized member. Otherwise, the resource can be accessible to every authenticated user.
+        </li>
+        <li>
+         Resource “/&lt;queue&gt;”: The credentials of the user attempting to connect must match the credentials associated to the &lt;subscription_id&gt; that owns the queue.
+        </li>
+       </ul>
+       <ol>
+        <li>
+         <a id="_Toc14766294">
+         </a>
+         Technical Messages
+        </li>
+       </ol>
+       <p>
+        The publish interface can be used not only for the exchange of business messages for which the subscriber has declared interest during the subscription but also for technical messages that are related to the status of the subscribe or publish interfaces themselves. In this appendix we propose various technical messages that provide the consumer with a means to obtain updates on the status of the service interfaces.
+       </p>
+       <h3>
+        <a id="_Toc14766295">
+        </a>
+        Heartbeats
+       </h3>
+       <p>
+        Heartbeat messages are periodic messages that allow its recipient to determine that the sender is still alive. The use of heartbeat messages can aid mitigate the intrinsic uncertainty of asynchronous MEPs where a consumer has no way to tell if the producer is still alive and operational.
+       </p>
+       <p>
+        A heartbeat message typically contains a very minimal amount of information as the reception of the message itself is sufficient to acknowledge that the sender is still able to produce and send the message.
+       </p>
+       <h4>
+        <a id="_Toc14766296">
+        </a>
+        Layers
+       </h4>
+       <p>
+        Heartbeat messages can be implemented at multiple layers of the protocol stack. A heartbeat at a particular layer of the protocol stack informs that the stack is alive up to that layer but doesn’t tell anything of the upper layers of the stack that may have failed but were not involved in the production and delivery of the message.
+       </p>
+       <h5>
+        TCP
+       </h5>
+       <p>
+        At the TCP layer the participants can send TCP keep-alives to ensure the connection remains open and implicitly inform they are still alive.
+       </p>
+       <h5>
+        AMQP 1.0
+       </h5>
+       <p>
+        The AMQP 1.0 Specification proposes the use of empty frames (section 2.4.5 of [2]) to serve the purpose of a heartbeat or keep-alive. AMQP 1.0 clients that support this (e.g. Apache Qpid Proton) allow setting the periodicity of the heartbeat upon connection establishment.
+       </p>
+       <p>
+        Heartbeats at this layer inform us the AMQP 1.0 connection and link are still operational and that at least the messaging infrastructure of the sending peer is working.
+       </p>
+       <h5>
+        Application
+       </h5>
+       <p>
+        To verify that the application is still alive we can define a simple AMQP 1.0 message that contains some data in its application sections. One option is to use the application-properties section of the AMQP 1.0 message to provide some minimal information that communicates the sending application is alive.
+       </p>
+       <p>
+        The following example provides such a message, consisting of the following application-properties:
+       </p>
+       <ul>
+        <li>
+         “message-type” set to “HEARTBEAT” and
+        </li>
+        <li>
+         “timestamp” set to the UNIX-time of the message delivery.
+        </li>
+       </ul>
+       <p>
+        Because this message contains payload produced by the application it communicates to the receiving peer that the application is still alive.
+       </p>
+       <p>
+        <strong>
+         Heartbeat Message:
+        </strong>
+       </p>
+       <p>
+        Message(
+       </p>
+       <p>
+        properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        "message-type": "HEARTBEAT",
+       </p>
+       <p>
+        "timestamp": "1562075995"
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-data:
+       </p>
+       <p>
+        (
+       </p>
+       <p>
+        )
+       </p>
+       <p>
+        )
+       </p>
+       <p>
+        This message is sent with some pre-defined periodicity, defined on service design. When a subscriber fails to receive the heartbeat message for a number of periods (e.g. more than 3 consecutive messages) he may assume that a problem exists at the application layer of the sending peer.
+       </p>
+       <h3>
+        <a id="_Toc14766297">
+        </a>
+        Subscription State
+       </h3>
+       <p>
+        The subscriber can control the state of his subscriptions through the subscribe interface as described in section 2.1. The Service Provider itself may also want to control the state of a subscription, for example to “PAUSE” it if the queue of the consumer is getting filled.
+       </p>
+       <p>
+        When doing so the Service Provider may want to use a technical message to communicate the new state of the subscription and let the subscriber know that a state change has occurred.
+       </p>
+       <p>
+        The following example uses the same JSON structure used in the response messages of the subscribe interface (section 3.1.1).
+       </p>
+       <p>
+        <strong>
+         Subscription State Message:
+        </strong>
+       </p>
+       <p>
+        Message(
+       </p>
+       <p>
+        properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        "message‐id": &lt;message_id: e.g. int or uuid&gt;,
+       </p>
+       <p>
+        "to": "&lt;consumer_address&gt;",
+       </p>
+       <p>
+        "content-type": “application/json”
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-properties:
+       </p>
+       <p>
+        {
+       </p>
+       <p>
+        "message-type": "SUBSCRIPTION",
+       </p>
+       <p>
+        },
+       </p>
+       <p>
+        application-data:
+       </p>
+       <p>
+        (
+       </p>
+       <p>
+        {“topic”: &lt;topic&gt;,
+       </p>
+       <p>
+        <em>
+         "subscription_id": &lt;subscription_id&gt;,
+        </em>
+       </p>
+       <p>
+        <em>
+         "queue": &lt;queue&gt;,
+        </em>
+       </p>
+       <p>
+        <em>
+         "subscription_status": "PAUSED",
+        </em>
+       </p>
+       <p>
+        “qos”: “EXACTLY_ONCE”,
+       </p>
+       <p>
+        <em>
+         “durable”:true
+        </em>
+        }
+       </p>
+       <p>
+        )
+       </p>
+       <p>
+        )
+       </p>
+<h2>Notes</h2>
+       <ol>
+        <li id="footnote-1">
+         <p>
+          For some services the subscription process may not be a dynamic process and can be completely set during design time. In this case there would not be an endpoint that can be dynamically accessed to subscribe or unsubscribe, any change to the subscribers would require a new deployment of the service.
+          <a href="#footnote-ref-1">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-2">
+         <p>
+          To be noted that although the example operation is stateful, the technical implementation is stateless thus fulfilling the REST constraint of service design.
+          <a href="#footnote-ref-2">
+           ↑
+          </a>
+         </p>
+        </li>
+       </ol>
+      </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+    <script src="../assets/js/list.min.js"></script>
+</body>
+
+</html>

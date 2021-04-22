@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Interoperability Architecture - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html" style="color: rgb(245,216,116);">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page shopping-cart-page">
+        <section class="clean-block clean-cart dark" style="background-color: rgb(31,31,31);">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info" style="color: rgb(241,215,122)!important;">Interoperability Architecture</h2>
+                    <p style="color: rgb(242,242,242);">This article introduces the interoperability architecture.&nbsp;It is provided as an example on how to organise the building blocks used in SWIM.<br></p>
+                </div>
+                <div class="content" style="background-color: #2e2e2e;">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="items">
+                                <div class="product">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col text-justify">
+                                            <div>
+                                                <div>
+                                                    <div class="row">
+                                                        <div class="col-2">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;border-top-left-radius: 10px;border-top-right-radius: 10px;"><a href="#org">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><strong>organisational</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;border-top-left-radius: 10px;border-top-right-radius: 10px;"><a href="#inf">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><strong>information</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;border-top-left-radius: 10px;border-top-right-radius: 10px;margin-right: 30px;"><a href="#tech">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><strong>technical</strong><br></p>
+                                                            </a></div>
+                                                    </div>
+                                                    <div class="row" style="background: linear-gradient(90deg, rgb(188,188,184) 0%, rgb(188,156,124));border-radius: 10px;">
+                                                        <div class="col-2" style="height: 80px;"><a href="#levels">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 28px;font-family: 'Open Sans', sans-serif;"><strong>Contextual</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col grid grid11" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="font-family: 'Open Sans', sans-serif;margin-bottom: 0px;margin-top: 6px;"><span><br>Business activities</span></p>
+                                                        </div>
+                                                        <div class="col grid grid12" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Business terms</span></p>
+                                                        </div>
+                                                        <div class="col grid grid13" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;margin-right: 30px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Technology standards</span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="height: 20px;">
+                                                        <div class="col-2">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;height: 20px;margin-right: 30px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="background: linear-gradient(90deg, rgb(188,188,184) 0%, rgb(188,156,124));border-radius: 10px;">
+                                                        <div class="col-2" style="height: 80px;"><a href="#levels">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 28px;font-family: 'Open Sans', sans-serif;"><strong>Conceptual</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col grid grid21" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Business processes<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid22" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Operational language<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid23" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;margin-right: 30px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Service eco-system<br></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="height: 20px;">
+                                                        <div class="col-2">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;height: 20px;margin-right: 30px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="background: linear-gradient(90deg, rgb(188,188,184) 0%, rgb(188,156,124));border-radius: 10px;">
+                                                        <div class="col-2" style="height: 80px;"><a href="#levels">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 28px;font-family: 'Open Sans', sans-serif;"><strong>Logical</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col grid grid31" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>IER, NFR and Use Cases<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid32" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Exchanged information<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid33" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;margin-right: 30px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Service behaviour and Service payload<br></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="height: 20px;">
+                                                        <div class="col-2">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;height: 20px;margin-right: 30px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="background: linear-gradient(90deg, rgb(188,188,184) 0%, rgb(188,156,124));border-radius: 10px;">
+                                                        <div class="col-2" style="height: 80px;"><a href="#levels">
+                                                                <p class="text-uppercase text-center text-dark" style="margin-bottom: 0px;margin-top: 28px;font-family: 'Open Sans', sans-serif;"><strong>Physical</strong><br></p>
+                                                            </a></div>
+                                                        <div class="col grid grid41" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Actors<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid42" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Implementable representation of information<br></span></p>
+                                                        </div>
+                                                        <div class="col grid grid43" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;margin-right: 30px;">
+                                                            <p class="text-center text-dark" style="margin-bottom: 0px;margin-top: 6px;font-family: 'Open Sans', sans-serif;"><span><br>Implementable representation of service<br></span></p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="height: 20px;">
+                                                        <div class="col-2">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-right: 10px;margin-left: 10px;height: 20px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                        <div class="col" style="background-color: rgba(149,183,127,0.64);margin-left: 10px;height: 20px;border-bottom-right-radius: 10px;border-bottom-left-radius: 10px;margin-right: 30px;">
+                                                            <p>&nbsp;</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <figure class="figure d-block" style="text-align: center;margin-top: 7px;">
+                                                    <figcaption class="figure-caption text-right">Interoperability Architecture Grid</figcaption>
+                                                </figure>
+                                                <p style="color: rgb(242,242,242);">The interoperability architecture is provided as an example on how to organise the building blocks used in SWIM.<br></p>
+                                                <p style="color: rgb(242,242,242);">It is not intended to replace specific architectures that organisations may already have in place. Instead, it is a utility to be used, when nothing else exists, by experts to work together in a structured way when developing SWIM and working towards agreements on interoperability.<br></p>
+                                                <p style="color: rgb(242,242,242);">The interoperability architecture does not rely on any particular service development process (such as the&nbsp;<a href="service-orientation-process.html">Service Orientation Process</a>). Furthermore, it is not tied to any one enterprise architecture framework. By adopting the gridded approach, detailed later, different frameworks can be mapped to the cells.<br></p>
+                                                <h5 style="color: rgb(241,215,122)!important;">When to use the interoperability architecture<br></h5>
+                                                <p style="color: rgb(242,242,242);">Typical usages include using the architecture as a way to ensure that different organisations can have a shared view of the building blocks when working together.<br></p>
+                                                <h5 style="color: rgb(241,215,122)!important;">More Information<br></h5>
+                                                <p style="color: rgb(242,242,242);">The&nbsp;<a href="get-into-swim-presentations.html">Get into SWIM presentations</a>&nbsp;show how the interoperability architecture is used when developing a service. It is presented in conjunction with the&nbsp;<a href="service-orientation-process.html">Service Orientation Process</a>.<br></p>
+                                            </div>
+                                            <h4 id="deploy" style="color: rgb(241,215,122)!important;"></h4>
+                                            <h5 id="org" style="color: rgb(241,215,122)!important;">Organisational View<br></h5>
+                                            <p style="color: rgb(242,242,242);">The Organisational View captures the organisational interoperability related building blocks necessary to drive the development of the needed information services.<br></p>
+                                            <p style="color: rgb(242,242,242);">The architecture building blocks (ABB) within the Organisational View enable the identification of loosely coupled services as a sequence of steps aligned with business goals.<br></p>
+                                            <p style="color: rgb(242,242,242);">The Organisational View support the following SOA needs:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Ability to visualise information exchange flows between participants.<br></li>
+                                                <li>Ability to visualise processes where the exchanged information is suitable for service development.<br></li>
+                                                <li>Ability to agree the needs for services based on business rules, policies, information exchange requirements and other business requirements.<br></li>
+                                            </ul>
+                                            <h5 id="inf" style="color: rgb(241,215,122)!important;">Information View<br></h5>
+                                            <p style="color: rgb(242,242,242);">The Information View captures the information interoperability related building blocks necessary to perform meaningful information exchange using information services. The architecture building blocks within the Information View enable the development of a unified representation of the information assets of ATM.<br></p>
+                                            <p style="color: rgb(242,242,242);">The Information View supports the following SOA needs:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Ability to support information services with a shared, common and consistent expression of information/data.<br></li>
+                                                <li>Ability to integrate information across diverse actors and organisations to communicate effectively across the different organisational domains.<br></li>
+                                                <li>Ability to define the metadata used across the ATM network.<br></li>
+                                                <li>Ability to support business process modelling.<br></li>
+                                            </ul>
+                                            <h5 id="tech" style="color: rgb(241,215,122)!important;">Technical View<br></h5>
+                                            <p style="color: rgb(242,242,242);">The Technical View captures the technical interoperability related building blocks necessary to drive the implementation of compatible solutions. The architecture building blocks within the Technical View enable the development of the infrastructure needed to support the SOA solution throughout the SOA lifecycle.<br></p>
+                                            <p style="color: rgb(242,242,242);">The Technical View support the following SOA needs:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Ability to restrict the technologies used in a solution in order to facilitate a greater degree of interoperability.<br></li>
+                                                <li>Ability to agree a set of common components of the infrastructure to run the SOA e.g. PKI<br></li>
+                                            </ul>
+                                            <h4 id="levels" style="color: rgb(241,215,122)!important;">Levels<br></h4>
+                                            <p style="color: rgb(242,242,242);">The Views are divided into levels. This is done to highlight the fact that the building blocks can be at different levels of abstraction.<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li><strong>Contextual.</strong>&nbsp;The Contextual Level contains general elements such as terms and lists of standards which provide the scope for the view.<br></li>
+                                                <li><strong>Conceptual.</strong>&nbsp;The Conceptual Level contains descriptions on a level that are generally understandable to a business expert e.g. it adds the relationships between the elements within the context.<br></li>
+                                                <li><strong>Logical.</strong>&nbsp;The Logical Level contains detailed and highly structured elements needed to develop technical building blocks. For example, this level adds more details such as adding typing information.<br></li>
+                                                <li><strong>Physical.</strong>&nbsp;The Physical Level usually contains the same level of detail as the logical layer but adds information to facilitate the actual use of the elements in the view.<br></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="summary" style="background-color: rgb(181,210,234);">
+                                <h3 style="color: rgb(31,31,31);">RESOURCES</h3>
+                                <div role="tablist" id="accordion-2">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-2 .item-1" href="#accordion-2 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Get into SWIM workshop presentations<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-2">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Presentations about the workshop that took place on 22nd May 2019.&nbsp;<br></p>
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Please find below the presentations of this workshop on SWIM using a simplified service development process on example services, focusing on service identification and service design, bringing education on AIRM, XMs, and TI.<br></p>
+                                                <ul>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/0.Welcome.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; Welcome</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/1.Session-approach.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;1. Session Approach<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2.Identify-A-CDM-services.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2. Identify Services for A-CDM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2a.Identify_IER_AIRM.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.a Define IER wih AIRM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2b.Determine_NFR.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.b Define NFR</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3.Design-TOBT-Setting-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3. Design TOBT Setting Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3a.Design-MEP.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3.a Design MEP<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3b.Design_Payload.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3b Design Payload<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3c.Interface-Binding.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3c Interface Binding<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3d.Registration.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3d Registration<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4.Design-Flight-Publication-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;4. Design Flight Publication Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4a.Service-Design.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 4a Service Design<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/5.Conclusion.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;5. Session Conclusion<br></a></li>
+                                                </ul>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style="color: rgb(31,31,31);margin-top: 54px;">RElated knowledge</h3>
+                                <div role="tablist" id="accordion-1">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Service Orientation Process<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-1">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">This article introduces a service orientation process. It is an&nbsp;<strong>indicative reference</strong>&nbsp;for an architectural approach starting from requirements and ending in a running service instance available for operational use.<br></p>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<a class="text-right" href="service-orientation-process.html" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;Access</a><br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-heading" style="padding-top: 23px;margin-bottom: -18px;"><span class="text-center"><br>Last revision: June 26, 2019</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../../glossary.html">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation" target="_blank">Standardisation</a></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../../privacy-and-website-terms-use.html">Privacy and Terms of Use</a></li>
+                        <li><a href="https://www.cookiesandyou.com/" target="_blank">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p><img src="../assets/img/eurocontrol-logo.png" style="height: 124px;"></p>
+            <p>© 2021 EUROCONTROL</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+</body>
+
+</html>

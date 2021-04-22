@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Service Orientation Process - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html" style="color: rgb(245,216,116);">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main class="page shopping-cart-page">
+        <section class="clean-block clean-cart dark" style="background-color: rgb(31,31,31);">
+            <div class="container">
+                <div class="block-heading">
+                    <h2 class="text-info" style="color: rgb(241,215,122)!important;">Service Orientation Process</h2>
+                    <p style="color: rgb(242,242,242);">This article introduces a service orientation process. It is an&nbsp;<strong>indicative reference</strong>&nbsp;for an architectural approach starting from requirements and ending in a running service instance available for operational use.<br></p>
+                </div>
+                <div class="content" style="background-color: #2e2e2e;">
+                    <div class="row no-gutters">
+                        <div class="col-md-12 col-lg-12">
+                            <div class="items">
+                                <div class="product">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col text-justify">
+                                            <div>
+                                                <h4 style="color: rgb(241,215,122)!important;">Introduction</h4>
+                                                <h5 style="color: rgb(241,215,122)!important;">Process overview<br></h5>
+                                                <p style="color: rgb(242,242,242);">Service orientation activities are grouped in four generalized process steps:<br></p>
+                                                <ul style="color: rgb(242,242,242);">
+                                                    <li><a href="#identify">Identify</a>&nbsp;<br></li>
+                                                    <li><a href="#design">Design</a><br></li>
+                                                    <li><a href="#implement">Implement</a><br></li>
+                                                    <li><a href="#deploy">Deploy</a><br></li>
+                                                </ul>
+                                                <p style="color: rgb(242,242,242);">These steps cover the wide range of activities that service orientation may involve when performed "top-down", starting from requirements and ending up in a running service instance available for operational use.&nbsp;<br></p>
+                                                <p style="color: rgb(242,242,242);">It&nbsp;is important to realize that there is no singular standardized overall service orientation process. The right method to follow to achieve service orientation depends on context. In&nbsp;reality approaches may be top-down (architecture driven) or bottom-up (productivity driven).<br></p>
+                                                <p style="color: rgb(242,242,242);">Furthermore, service orientation may be more or less complex. A collaborative engineering approach may define the specific documents used (e.g. Operational Services &amp; Environment Description (OSED),&nbsp;Service Identification Document, etc...).&nbsp;<br></p>
+                                                <p style="color: rgb(242,242,242);">Ultimately service orientation process steps lead to a good member of the services ecosystem.&nbsp;It is good service orientation practice to involve SWIM stakeholders since they constitute an integral part of the buy-in between service providers and consumers when fostering re-use (e.g. service consumer contributing to service design).<br></p>
+                                                <h4 id="id-2-steps" style="color: rgb(241,215,122)!important;">The (ID)² Steps<br></h4>
+                                                <h5 id="identify" style="color: rgb(241,215,122)!important;">Identify<br></h5>
+                                                <div role="tablist" id="accordion-1"></div>
+                                                <p style="color: rgb(242,242,242);"><strong>S</strong>ervice identification is the set of activities involved in documenting the operational context of the service in relation to the business need, information exchange requirements (IER), non-functional requirements (NFR), and operational scope.<br></p>
+                                                <p style="color: rgb(242,242,242);">Examples of activities:<br></p>
+                                                <ul style="color: rgb(242,242,242);">
+                                                    <li>Description of an operational environment in which service orientation is envisaged.<br></li>
+                                                    <li>Determination of operational process (e.g. business process analysis using business process models (BPM)) leading to the identification of information exchanges assigned to information service(s) (e.g. in response to a new business opportunity).<br></li>
+                                                    <li>Determination of information exchange requirements (IER) and non-functional requirements (NFR) related to information service(s).<br></li>
+                                                    <li>Investigation of existing information service(s) for possible re-use, as-is or with some modification.<br></li>
+                                                    <li>Characterization of the identified information service in terms of functionality.<br></li>
+                                                </ul>
+                                                <p style="color: rgb(242,242,242);">Outcomes:<br></p>
+                                                <ul style="color: rgb(242,242,242);">
+                                                    <li>Documentation of operational processes and information flows.<br></li>
+                                                    <li>Identification of one or more information service(s), with determination of operational context (scope), requirements, and functionality.<br></li>
+                                                    <li>Service identification information (name, abstract, operational context, IERs, NFRs and functionality).<br></li>
+                                                </ul>
+                                                <p style="color: rgb(242,242,242);">Experts involved: operational expert, service architect, data/information architect.<br></p>
+                                                <p style="color: rgb(242,242,242);">Building blocks:&nbsp;Operational Services &amp; Environment Description (OSED),&nbsp;Business Process Modelling and Notation (BPMN), list of existing services<br></p>
+                                                <h5 id="design" style="color: rgb(241,215,122)!important;">Design<br></h5>
+                                                <p style="color: rgb(242,242,242);">Service design is the set of activities involved in expressing what the service does and how it works. Service design practitioners typically use a modelling language notation (e.g. UML) to represent the blueprint of the information service&nbsp;as a service model (e.g. including service interfaces, service operations, and service payload). Service design is typically used when multiple service providers run the same service and collaboratively define it (i.e. service blueprints are are the same but instances are different).&nbsp;Making service design information available before implementing a service instance (e.g. as a standard) is a good SWIM practice that can lead to harmonization of implementation.<br></p>
+                                                <p style="color: rgb(242,242,242);">Examples of activities:<br></p>
+                                                <ul style="color: rgb(242,242,242);">
+                                                    <li>Selection of the message exchange pattern (MEP).<br></li>
+                                                    <li>Definition of the service (interface, service operations and information service payload).<br></li>
+                                                    <li>Sharing of service description information (e.g. using a SWIM Service Registry).<br></li>
+                                                </ul>
+                                                <p style="color: rgb(242,242,242);">Outcomes:<br></p>
+                                                <ul style="color: rgb(242,242,242);">
+                                                    <li>Chosen MEP.<br></li>
+                                                    <li>Service model (service interface(s), service operation(s), service behaviour).<br></li>
+                                                    <li>Service payload (the logical representation of the information exchanged by the service interface operations).<br></li>
+                                                    <li>Service design information expressing what the service does and how it works (i.e. the blueprint of the service).<br></li>
+                                                    <li>Service Overview with "prospective status", to announce future availability of a service.<br></li>
+                                                </ul>
+                                                <p style="color: rgb(242,242,242);">Experts involved: service architect, data/information architect, technical infrastructure expert.<br></p>
+                                                <p style="color: rgb(242,242,242);">Building blocks: list of MEPs, list of service designs, UML, AIRM, …<br></p>
+                                            </div>
+                                            <h5 id="implement" style="color: rgb(241,215,122)!important;">Implement<br></h5>
+                                            <p style="color: rgb(242,242,242);">Service implementation is the set of activities where the information service is implemented in a target environment and technology context. Service implementation involves testing and validation. The data format used to implement the information is based on an information exchange model (XM), or a profile thereof, or a new data format is defined.&nbsp;A service interface protocol is chosen from the list of technical infrastructure protocol standards. These protocols are grouped into interface bindings.&nbsp;Both the choice for an XM and&nbsp;technology details&nbsp;may already be available from the design step.<br></p>
+                                            <p style="color: rgb(242,242,242);">Examples of activities:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Selection or definition of the data format.<br></li>
+                                                <li>Definition of the message(s) used to interact with the service interface.<br></li>
+                                                <li>Selection of the service interface protocols.<br></li>
+                                                <li>Implementation of service(s) using technology and based on implementation choices made.<br></li>
+                                                <li>Integration of the service(s) into the target environment.<br></li>
+                                                <li>Verification and testing of the service(s).<br></li>
+                                                <li>Validation of the service(s).<br></li>
+                                            </ul>
+                                            <p style="color: rgb(242,242,242);">Outcomes:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Chosen XM or other data format.<br></li>
+                                                <li>Chosen service interface protocol.<br></li>
+                                                <li>Message definition.<br></li>
+                                                <li>Implemented service(s) (interfaces and operations).<br></li>
+                                                <li>Machine readable service definition.<br></li>
+                                                <li>Verification report, validation report.<br></li>
+                                                <li>Service Overview (update).<br></li>
+                                                <li>Verification report.<br></li>
+                                                <li>Validation report.<br></li>
+                                                <li>Service implementation information (e.g. service interface protocols and QoS characteristics).<br></li>
+                                            </ul>
+                                            <p style="color: rgb(242,242,242);">Experts involved: solution expert, technical infrastructure expert, service architect, data/information architect, operational expert.<br></p>
+                                            <p style="color: rgb(242,242,242);">Building blocks: lists of standards (e.g., formats, technical infrastructure&nbsp;protocols/bindings),...<br></p>
+                                            <h5 id="deploy" style="color: rgb(241,215,122)!important;">Deploy<br></h5>
+                                            <p style="color: rgb(242,242,242);">Service deployment is the set of activities where the information service instance is made available for use in operation.<br></p>
+                                            <p style="color: rgb(242,242,242);">Examples of activities:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>Deployment of the information service instance with an addressable end-point used in operations.<br></li>
+                                                <li>Completion of the description of the service for service consumers.<br></li>
+                                                <li>Registration of the information service instance to enable discovery of the service (e.g. using a SWIM Service Registry to publicize the service overview).<br></li>
+                                            </ul>
+                                            <p style="color: rgb(242,242,242);">Outcomes:<br></p>
+                                            <ul style="color: rgb(242,242,242);">
+                                                <li>A configured information service running and available for operational use by service consumers.<br></li>
+                                                <li>Completed Service Overview, publicized with "operational status", to announce operational availability of the service.<br></li>
+                                            </ul>
+                                            <p style="color: rgb(242,242,242);">Experts involved: solution expert, service architect.<br></p>
+                                            <p style="color: rgb(242,242,242);">Building blocks: no examples provided since the building assumed completed at this stage.<br></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div class="summary" style="background-color: rgb(181,210,234);">
+                                <h3 style="color: rgb(31,31,31);">RESOURCES</h3>
+                                <div role="tablist" id="accordion-2">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-2 .item-1" href="#accordion-2 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Get into SWIM workshop presentations<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-2">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Presentations about the workshop that took place on 22nd May 2019.&nbsp;<br></p>
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">Please find below the presentations of this workshop on SWIM using a simplified service development process on example services, focusing on service identification and service design, bringing education on AIRM, XMs, and TI.<br></p>
+                                                <ul>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/0.Welcome.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; Welcome</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/1.Session-approach.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;1. Session Approach<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2.Identify-A-CDM-services.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2. Identify Services for A-CDM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2a.Identify_IER_AIRM.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.a Define IER wih AIRM<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/2b.Determine_NFR.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;2.b Define NFR</a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3.Design-TOBT-Setting-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3. Design TOBT Setting Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3a.Design-MEP.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3.a Design MEP<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3b.Design_Payload.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;3b Design Payload<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3c.Interface-Binding.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3c Interface Binding<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/3d.Registration.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 3d Registration<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4.Design-Flight-Publication-service.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;4. Design Flight Publication Service<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/4a.Service-Design.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp; 4a Service Design<br></a></li>
+                                                    <li><a class="text-right" href="http://reference.swim.aero/resources/get-into-swim/5.Conclusion.pdf" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;&nbsp;5. Session Conclusion<br></a></li>
+                                                </ul>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3 style="color: rgb(31,31,31);margin-top: 54px;">RElated knowledge</h3>
+                                <div role="tablist" id="accordion-1">
+                                    <div class="card border rounded-0 border-dark" style="background-color: #2e2e2e;">
+                                        <div class="card-header" role="tab">
+                                            <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-1" href="#accordion-1 .item-1" style="/*font-size: 15.6px;*/font-size: .65em;font-weight: 600;">Interoperability Architecture<br></a></h5>
+                                        </div>
+                                        <div class="collapse item-1" role="tabpanel" data-parent="#accordion-1">
+                                            <div class="card-body">
+                                                <p class="card-text text-justify" style="color: rgb(242,242,242);font-size: 13px;">This article introduces the interoperability architecture.&nbsp;It is provided as an example on how to organise the building blocks used in SWIM.<br></p>
+                                                <p class="text-right" style="color: rgb(242,242,242);margin-bottom: 15px;">&nbsp;<a class="text-right" href="interoperability-architecture.html" style="font-size: 14px;" target="_blank"><i class="icon ion-document-text"></i>&nbsp;Access</a><br></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-heading" style="padding-top: 23px;margin-bottom: -18px;"><span class="text-center"><br>Last revision: June 26, 2019</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../../glossary.html">Glossary</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation" target="_blank">Standardisation</a></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../../faq.html">FAQ</a></li>
+                        <li><a href="../../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../../privacy-and-website-terms-use.html">Privacy and Terms of Use</a></li>
+                        <li><a href="https://www.cookiesandyou.com/" target="_blank">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p><img src="../assets/img/eurocontrol-logo.png" style="height: 124px;"></p>
+            <p>© 2021 EUROCONTROL</p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+</body>
+
+</html>

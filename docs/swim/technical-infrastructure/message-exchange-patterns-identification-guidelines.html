@@ -1,0 +1,1379 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Message Exchange Patterns: Identification Guidelines - Technical Infrastructure - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../technical-infrastructure.html"><strong>Technical Infrastructure</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">Message Exchange Patterns: Identification Guidelines<br></h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;&nbsp;JULY 2nd, 2019<br></span></p>
+                        </div>
+                    </div>
+                    <h6 class="text-info"></h6>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-3 offset-md-1">
+                            <div class="toc">
+                                <h5>Contents</h5><ul class="toc_list list-unstyled">
+   
+         <li>
+          <a href="#_Ref527712427">
+           1. 
+        
+        
+        
+        
+        
+        
+        Message Exchange Patterns
+          </a>
+         </li>
+         <li>
+          <a href="#">
+           2. 
+        References
+          </a>
+         </li>
+        </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                            <div class="text"><div class="text">
+<h2>
+        <a id="_Ref527712427">
+        </a>
+        <a id="_Toc530740191">
+        </a>
+        <a id="_Toc535573235">
+        </a>
+        Message Exchange Patterns
+       </h2>
+       <h3>
+        <a id="_Toc530740192">
+        </a>
+        <a id="_Toc535573236">
+        </a>
+        MEP Introduction
+       </h3>
+       <p>
+        A message exchange pattern (MEP) identifies a repeatable sequence of messages exchanged between two systems, specifying the order, direction and cardinality of these messages (e.g. Request/Reply, Publish/Subscribe)
+       </p>
+       <p>
+        MEPs can only be understood in relation to a particular level of abstraction. Concretely, at TI protocol level the MEPs are rather basic, however, more sophisticated MEPs can be constructed based on these to enable the exchange needs required at application level.
+       </p>
+       <ul>
+        <li>
+         Primitive MEPs are those that are directly related to the capability of the lower level protocols of the SWIM TI. These protocols integrate the SWIM TI Service Interface Bindings. (i.e. HTTP, AMQP). The primitive MEPs provided by the SWIM TI are:
+         <ul>
+          <li>
+           Fire and Forget
+          </li>
+          <li>
+           Synchronous Request/Reply
+          </li>
+         </ul>
+        </li>
+        <li>
+         Application MEPs. These are the MEPs that describe the information interactions at application level and that are implemented using SWIM TI primitive MEPS. They include
+         <sup>
+          <a href="#footnote-1" id="footnote-ref-1">
+           [1]
+          </a>
+         </sup>
+         :
+         <ul>
+          <li>
+           Fire and Forget
+          </li>
+          <li>
+           Synchronous Request/Reply
+          </li>
+          <li>
+           Asynchronous Request/Reply
+          </li>
+          <li>
+           Fan-out
+          </li>
+          <li>
+           Publish/Subscribe Push
+          </li>
+          <li>
+           Publish/Subscribe Pull
+          </li>
+          <li>
+           Brokered Publish/Subscribe Push
+          </li>
+          <li>
+           …
+          </li>
+         </ul>
+        </li>
+       </ul></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 21px;">
+                    <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">      
+       <h3>
+        <a id="_Toc530740193">
+        </a>
+        <a id="_Toc535573237">
+        </a>
+        MEP Definition
+       </h3>
+       <p>
+        As defined by the W3C [2], a message exchange pattern (MEP) is a template, devoid of application semantics, that describes a generic pattern for the exchange of messages between agents. It describes relationships (e.g. temporal, causal, sequential, etc.) of multiple messages exchanged in conformance with the pattern, as well as the normal and abnormal termination of any message exchange conforming to the pattern.
+       </p>
+       <h3>
+        <a id="_Toc530740194">
+        </a>
+        <a id="_Toc535573238">
+        </a>
+        MEP Characteristics
+       </h3>
+       <p>
+        Message Exchange Patterns can be classified
+        <sup>
+         <a href="#footnote-2" id="footnote-ref-2">
+          [2]
+         </a>
+        </sup>
+        according to certain characteristics of the message exchanges and the interaction between the systems involved.
+       </p>
+       <h4>
+        <a id="_Toc530740195">
+        </a>
+        <a id="_Toc535573239">
+        </a>
+        Cardinality
+       </h4>
+       <p>
+        Cardinality describes the number of systems participating in the exchange of messages. We distinguish three classes of MEPs according to their cardinality:
+       </p>
+       <ul>
+        <li>
+         1-1: The Message Exchange Pattern involves the exchange of messages between two systems.
+        </li>
+        <li>
+         1-many: The Message Exchange Pattern involves the exchange of messages of one system with one or more systems.
+        </li>
+        <li>
+         Many-many: The Message Exchange Pattern involves the exchange of messages of multiple systems with multiple systems.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740196">
+        </a>
+        <a id="_Toc535573240">
+        </a>
+        Decoupling
+       </h4>
+       <h5>
+        <a id="_Toc535573241">
+        </a>
+        Space
+       </h5>
+       <p>
+        Space decoupling describes the characteristic of a MEP where the systems participating in the message exchange do not need knowledge of the network address of the other systems [1].
+       </p>
+       <h5>
+        <a id="_Toc535573242">
+        </a>
+        Time
+       </h5>
+       <p>
+        Time decoupling characteristic describes a MEP where the systems participating in a message exchange do not have to be simultaneously active for the message exchange to proceed [1].
+       </p>
+       <h5>
+        <a id="_Toc535573243">
+        </a>
+        Process
+       </h5>
+       <p>
+        Process decoupling characteristic describes the degree of decoupling of the system processes involved in the MEP. According to this characteristic MEPs are classified in two classes [1]:
+       </p>
+       <ul>
+        <li>
+         Synchronous: The processes of the systems participating in the exchange of messages stay blocked while the exchange occurs.
+        </li>
+        <li>
+         Asynchronous: The processes of the systems participating in the exchange of messages do not stay blocked while the exchange occurs.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740197">
+        </a>
+        <a id="_Toc535573244">
+        </a>
+        Symmetry
+       </h4>
+       <p>
+        Symmetry characteristic classifies MEPs taking into account the separation of roles placed into the systems and the reversibility of the MEP:
+       </p>
+       <ul>
+        <li>
+         Asymmetric: In asymmetric MEPs the systems participating in the message exchange have differentiated roles which cannot be exchanged. Asymmetric MEPs are most often used in Client-Server architectures.
+        </li>
+        <li>
+         Symmetric: Symmetric MEPs do not enforce a strict separation of roles on the systems participating in the message exchange. Symmetric MEPs are most often used in peer-to-peer architectures.
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc530740198">
+        </a>
+        <a id="_Toc535573245">
+        </a>
+        MEP Catalogue
+       </h3>
+       <p>
+        This section provides a detailed view to the most common MEPs in the scope of the SWIM-TI; either as primitive MEPs directly supported by the SWIM TI protocols, or compositions on top of these in the form of application MEPs.
+       </p>
+       <h4>
+        <a id="_Toc530740199">
+        </a>
+        <a id="_Toc535573246">
+        </a>
+        Primitive MEPs (SWIM TI MEPs)
+       </h4>
+       <p>
+        Primitive Message Exchange Patterns are the Message Exchange Patterns provided by the lowest level protocol that compose the service interface bindings. Primitive MEPs are used as basic building blocks to build more sophisticated application MEPs. These MEPs are also referred in the document as “SWIM TI MEPs” for correlating directly to the protocols that are part of the SWIM TI.
+       </p>
+       <h5>
+        <a id="_Toc535573247">
+        </a>
+        SWIM-TI Fire-and-Forget
+       </h5>
+       <p>
+        Other names: “1-way”.
+       </p>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="b6f5a19d-24e0-467c-b5ed-36040cf70603.png">
+        <figcaption>
+         <a id="_Toc535568470">
+         </a>
+         Figure 5: Fire-and-Forget
+        </figcaption>
+       </figure>
+       <p>
+        <br>
+       </p>
+       <ol>
+        <li>
+         A message is sent from SWIM-TI A to SWIM-TI B.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-1
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Symmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573248">
+        </a>
+        SWIM-TI Synchronous Request/Reply
+       </h5>
+       <p>
+        Other names: “Synchronous Request/Response”, “Request/Reply”, “Request/Response”.
+       </p>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="2d591578-e663-4a3b-9ad1-c3c0fb23e912.png">
+        <figcaption>
+         <a id="_Toc535568471">
+         </a>
+         Figure 6: Request/Reply
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A message (request) is sent from SWIM-TI B (Client) to SWIM-TI A (Server).
+        </li>
+        <li>
+         SWIM-TI B remains blocked awaiting for a response, SWIM-TI A remains blocked processing the response.
+        </li>
+        <li>
+         A message (reply) is sent from SWIM-TI A to SWIM-TI B.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-1
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Synchronicity
+           </p>
+          </td>
+          <td>
+           <p>
+            Synchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h4>
+        <a id="_Toc530740200">
+        </a>
+        <a id="_Ref535484373">
+        </a>
+        <a id="_Toc535573249">
+        </a>
+        Application MEPs
+       </h4>
+       <p>
+        Application message exchange patterns are defined in relation to the information exchange behaviour perceived at application level. These patterns relate to the message exchanges between an application and an information service and are built using the SWIM-TI MEPs as building blocks.
+       </p>
+       <p>
+        The following is a list of some of the most common application MEPs, service designers may customize or create their own application MEPs to satisfy their specific message exchange needs.
+       </p>
+       <p>
+        In order to simplify the description of the MEPs, the concept of SWIM Enabled Application is used to represent an entity that exchanges information in conformance with SWIM specifications (e.g. YP Spec).
+       </p>
+       <p>
+        To avoid cluttering the diagrams and improve readability we will use when beneficial the implicit return notation for the Request/Reply MEPs. In this convention the Reply message is annotated implicitly in the Request with the use of “: Reply”. The following diagram shows the two notations, no distinction is implied between them:
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="70ab0325-0f4a-403b-afdb-650865394141.png">
+        <figcaption>
+         Figure 7: Synchronous Request/Reply
+        </figcaption>
+       </figure>
+       <h5>
+        <a id="_Toc535573250">
+        </a>
+        Fire-and-Forget
+       </h5>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="86722e74-1bed-47d0-880c-80a5e0b1c08a.png">
+        <figcaption>
+         <a id="_Toc535568473">
+         </a>
+         Figure 8: Asynchronous Request/Reply
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A SWIM-TI Fire-and-Forget is sent from SWIM Enabled Application A to SWIM Enabled Application B.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-1
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Synchronicity
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Symmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573251">
+        </a>
+        Synchronous Request/Reply
+       </h5>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <p>
+        <a id="_Toc535568472">
+        </a>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="f562c9bd-e3f7-4012-b8de-ab00c8530578.png">
+        <figcaption>
+         <a id="_Toc535568474">
+         </a>
+         Figure 9: Fan-Out
+        </figcaption>
+       </figure>
+       <p>
+        A SWIM Enabled Application Synchronous Request/Reply can be implemented in two ways using different SWIM-TI Primitive MEPs.
+       </p>
+       <p>
+        Alternative 1 (using SWIM-TI Synchronous Request/Reply):
+       </p>
+       <ol>
+        <li>
+         A SWIM-TI Request is sent from SWIM Enabled Application B (Client) to SWIM-TI Enabled Application A (Server).
+        </li>
+        <li>
+         SWIM-TI Enabled Application B remains blocked waiting for a response, SWIM-TI Enabled Application A remains blocked processing the response.
+        </li>
+        <li>
+         A SWIM-TI Reply is sent from SWIM-TI Enabled Application A to SWIM-TI Enabled Application B.
+        </li>
+       </ol>
+       <p>
+        Alternative 2 (using SWIM-TI Fire-and-Forget):
+       </p>
+       <ol>
+        <li>
+         A SWIM-TI Fire-and-Forget is sent from SWIM Enabled Application B (Client) to SWIM-TI Enabled Application A (Server).
+        </li>
+        <li>
+         SWIM-TI Enabled Application B remains blocked waiting for a response, SWIM-TI Enabled Application A remains blocked processing the response.
+        </li>
+        <li>
+         A SWIM-TI Fire-and-Forget is sent from SWIM-TI Enabled Application A to SWIM-TI Enabled Application B.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-1
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Synchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573252">
+        </a>
+        Asynchronous Request/Reply
+       </h5>
+       <p>
+        Other names: “Asynchronous Request/Response”.
+       </p>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="48128529-83f7-4215-ad61-f0013cc27f69.png">
+        <figcaption>
+         Definition:
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A Fire-and-Forget (request) is sent from SWIM Enabled Application B (Client) to SWIM Enabled Application A (Server).
+        </li>
+        <li>
+         A Fire-and-Forget (reply) is sent from SWIM Enabled Application A to SWIM Enabled Application B.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-1
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573253">
+        </a>
+        Fan-Out
+       </h5>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="c2261b16-2e13-4f0e-ba11-5a15232f1fd8.png">
+        <figcaption>
+         <a id="_Toc535568475">
+         </a>
+         Figure 10: Publish/Subscribe Push
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A Fire-and-Forget is delivered sequentially to multiple SWIM Enabled Applications.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-many
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573254">
+        </a>
+        Publish/Subscribe Push
+       </h5>
+       <p>
+       </p>
+       <figure class="figure">
+        <img alt="I:\CORPORATE\SESAR\Units Corner\SWIM-EA\SWIM\Support\TI\SWIM-TEC Documents\02 - MEP Identification Guidelines\PublishSubscribe Push.png" class="rounded img-fluid figure-img" src="55d0280b-1ccc-4898-8c9e-2699ea39a262.png">
+        <figcaption>
+         <a id="_Toc535568476">
+         </a>
+         Figure 11: Publish/Subscribe Pull
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <ol>
+        <li>
+         A SWIM-TI Request/Reply is performed by one or more systems to declare interest in the publications (subscribe) of System A. The SWIM-TI Request/Reply can be either Synchronous or Asynchronous.
+        </li>
+        <li>
+         A SWIM-TI Fire-and-Forget
+         <sup>
+          <a href="#footnote-3" id="footnote-ref-3">
+           [3]
+          </a>
+         </sup>
+         is sent to each subscribed system when a new publication is available containing the publication.
+        </li>
+        <li>
+         Step 2 is repeated whenever there are new publications available.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-many
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573255">
+        </a>
+        Publish/Subscribe Pull
+       </h5>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="3a0a0099-8f1b-4420-92e6-29064f83de22.png">
+        <figcaption>
+         <a id="_Ref530645497">
+         </a>
+         <a id="_Ref530645488">
+         </a>
+         <a id="_Toc535568477">
+         </a>
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A SWIM-TI Request/Reply is performed by one or more systems to declare interest in the publications of System A. The Request/Reply can be either Synchronous or Asynchronous.
+        </li>
+        <li>
+         A SWIM-TI Fire-and-Forget
+         <sup>
+          <a href="#footnote-4" id="footnote-ref-4">
+           [4]
+          </a>
+         </sup>
+         is sent to each subscribed system when a new publication is available to notify the subscribers of the existence of new publications.
+        </li>
+        <li>
+         Subscribed systems can perform a Request/Reply at their convenience to retrieve the publication.
+        </li>
+        <li>
+         Steps 2 and 3 are repeated whenever new publications are available.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            1-many
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            NO
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Synchronous/Asynchronous
+            <sup>
+             <a href="#footnote-5" id="footnote-ref-5">
+              [5]
+             </a>
+            </sup>
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h5>
+        <a id="_Toc535573256">
+        </a>
+        Brokered Publish/Subscribe Push
+       </h5>
+       <p>
+        <strong>
+         Definition:
+        </strong>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="ca9abfcb-789c-4546-bfa9-709abfbdbe1e.png">
+        <figcaption>
+         Figure 12: Brokered Publish/Subscribe Push
+        </figcaption>
+       </figure>
+       <ol>
+        <li>
+         A SWIM-TI Request/Reply is performed by one or more systems to declare interest in the publications received by the Broker from one or more publishing systems. The Request/Reply can be either Synchronous or Asynchronous.
+        </li>
+        <li>
+         A SWIM-TI Fire-and-Forget is sent to each subscribed system when a new publication is available containing the publication.
+        </li>
+        <li>
+         Step 2 is repeated whenever new publications are available.
+        </li>
+       </ol>
+       <p>
+        <strong>
+         Notes:
+        </strong>
+       </p>
+       <ul>
+        <li>
+         The Brokered Publish/Subscribe MEP introduces a layer of decoupling between publisher and subscriber systems by means of a broker.
+         <ul>
+          <li>
+           Space decoupling: Publishers and subscribers do not need to know each other’s physical network addresses or even how many of them are.
+          </li>
+          <li>
+           Time decoupling: Publishers and providers do not need to be available at the same time for the exchange to proceed as the broker can relay the messages when they are available.
+          </li>
+         </ul>
+        </li>
+        <li>
+         Figure 12 shows that the subscription process may occur at any point and the broker will adapt the publication process to forward the publication to all subscribers.
+        </li>
+        <li>
+         A Brokered Publish/Subscribe Pull variant can be defined in an analogous manner.
+        </li>
+       </ul>
+       <p>
+        <strong>
+         Classification:
+        </strong>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            Cardinality
+           </p>
+          </td>
+          <td>
+           <p>
+            Many-many
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Space Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Time Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            YES
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Process Decoupling
+           </p>
+          </td>
+          <td>
+           <p>
+            Asynchronous
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            Symmetry
+           </p>
+          </td>
+          <td>
+           <p>
+            Asymmetric
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <h2>
+        References
+       </h2>
+       <ol>
+        <li>
+         <a id="_Ref4590997">
+         </a>
+         The Many Faces of Publish/Subscribe, Eugster et al.
+        </li>
+        <li>
+         <a id="_Ref4671877">
+         </a>
+         SOAP Version 1.2 Part 1: Messaging Framework (Second Edition), W3C
+        </li>
+       </ol>
+       <ol>
+        <li id="footnote-1">
+         <p>
+          The list of application MEPs is not exhaustive. Due to the compositional nature of application MEPs new ones can be created or existing ones may be altered to satisfy specific application needs.
+          <a href="#footnote-ref-1">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-2">
+         <p>
+          This classification and the resulting taxonomy are not unique and additional or different criteria can be used to create a different taxonomy of MEPs.
+          <a href="#footnote-ref-2">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-3">
+         <p>
+          The Publication can also be implemented with a SWIM-TI Request/Reply MEP.
+          <a href="#footnote-ref-3">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-4">
+         <p>
+          The notification can also be implemented using a Request/Reply MEP.
+          <a href="#footnote-ref-4">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-5">
+         <p>
+          Both implementations are possible.
+          <a href="#footnote-ref-5">
+           ↑
+          </a>
+         </p>
+        </li>
+       </ol>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+    <script src="../assets/js/list.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,3220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Foundation - Technical Infrastructure - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../technical-infrastructure.html"><strong>Technical Infrastructure</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">SWIM Technical Infrastructure Foundation Material<br></h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;JULY 2nd, 2019</span></p>
+                        </div>
+                    </div>
+                    <h6 class="text-info"></h6>
+                    <div class="row">
+                        <div class="col-md-10 col-lg-3 offset-md-1">
+                            <div class="toc">
+                                <h5>Contents</h5><ul class="toc_list list-unstyled">
+         
+<li>
+          
+<a href="#">
+           1. 
+        EXECUTIVE SUMMARY
+          
+</a>
+         
+</li>
+         
+<li>
+          
+<a href="#_Toc530740172">
+           2. 
+        
+        
+        
+        
+        SWIM TI Introduction
+          
+</a>
+         
+</li>
+         <li>
+          
+<a href="#_Toc530740173">
+           3. 
+        
+        
+        
+        
+        SWIM TI Context
+          
+</a>
+         </li>
+         
+<li>
+          <a href="#_Toc530664457">
+           4. 
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        SWIM TI Decomposition
+          </a>
+         </li>
+         <li>
+          <a href="#_Toc530740188">
+           5. 
+        
+        
+        
+        
+        
+        
+        
+        
+        SWIM TI Principles
+          </a>
+         </li>
+         <li>
+          <a href="#_Toc530740204">
+           6. 
+        
+        SWIM TI YP Spec Traceability to Functional Capabilities
+        
+          </a>
+         </li>
+         <li>
+          <a href="#_Toc12607673">
+           7. 
+        
+        
+        
+        References
+        
+          </a>
+         </li>
+        
+</ul>
+  
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-lg-7 offset-md-1 offset-lg-0">
+                            <div class="text">
+                                <h2 id="Introduction"><strong>EXECUTIVE SUMMARY</strong><br></h2><div class="text">
+<p>This document provides additional clarifications to EUROCONTROL specification for SWIM Technical Infrastructure Yellow Profile [1].</p>
+
+<p>It aims at providing a better understanding of the SWIM Technical Infrastructure (TI), explaining the specification context in Europe, the principles that influence the specification, as well as the functional and non-functional scope covered by the SWIM TI.</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 21px;">
+                    <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
+       <h2>
+        <a id="_Toc530740172">
+        </a>
+        <a id="_Toc12607657">
+        </a>
+        SWIM TI Introduction
+       </h2>
+       <p>
+        The SWIM technical infrastructure (TI) enables the implementation of interfaces between systems, providing technical capabilities for the secure, high-performing and reliable exchange of information.
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="2d293fc2-e9c2-4c83-ace3-6a16bb51b880.png">
+        <figcaption>
+         <a id="_Toc12607676">
+         </a>
+         Figure 1: SWIM TI Overview
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <table class="table">
+        <tbody>
+         <tr>
+          <td>
+          </td>
+          <td>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+       <p>
+        The SWIM TI is a collection of software and hardware used to enable the provision of information services. Applications consume information services via a SWIM TI that enables the exchange of information over an IP network. Both the service provider (responsible for the information service), and the service consumer (responsible for the consuming application) are responsible for the implementation of their own infrastructure
+        <sup>
+         <a href="#footnote-2" id="footnote-ref-2">
+          [1]
+         </a>
+        </sup>
+        .
+       </p>
+       <p>
+        The SWIM TI enables technical interoperability based on interfaces that use industry standards, the SWIM TI interface bindings, which specify the protocols used for the exchange of information between systems. The SWIM TI provides technical capabilities that are adapted to support various information exchange needs, including different communication needs (Ground/Ground or Air/Ground), different types of Message Exchange Patterns (Publish/Subscribe or Request/Reply cf. [2]) and different service levels with different availability requirements.
+       </p>
+       <h2>
+        <a id="_Toc530740173">
+        </a>
+        <a id="_Toc12607658">
+        </a>
+        SWIM TI Context
+       </h2>
+       <p>
+        From a conformance point of view, a SWIM TI is a technical infrastructure that satisfies the requirements of a standardised SWIM TI Specification. At the time of this writing:
+       </p>
+       <ul>
+        <li>
+         The EUROCONTROL SWIM TI YP Specification is the only available SWIM standard for TI in Europe.
+        </li>
+        <li>
+         Additional TI specifications and standardization activities have been identified for 1) specific common infrastructure components such as the PKI, as well as for 2) specific information exchange use cases such as ATC to ATC flight information exchange (known as the blue profile).
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc530740174">
+        </a>
+        <a id="_Toc12607659">
+        </a>
+        EUROCONTROL SWIM TI Yellow Profile Specification
+       </h3>
+       <p>
+        The EUROCONTROL SWIM TI Yellow Profile Specification (YP Spec) is a standard that provides requirements for general purpose SWIM TI capabilities based on mainstream technologies. It addresses a wide spectrum of information exchange needs in all the various ATM information domains (i.e. Aeronautical, Meteorological, Flight and Flow)
+       </p>
+       <h3>
+        <a id="_Toc530740175">
+        </a>
+        <a id="_Toc12607660">
+        </a>
+        SWIM Common Infrastructure Components
+       </h3>
+       <p>
+        SWIM Common Infrastructure Components provide specialised TI capabilities that require a common or coordinated deployment by all stakeholders. These include:
+       </p>
+       <ul>
+        <li>
+         Public Key Infrastructure. It enables the secure exchange of information by enabling the implementation of public-key encryption and digital signature.
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc530740176">
+        </a>
+        <a id="_Toc12607661">
+        </a>
+        Additional TI Profiles
+       </h3>
+       <p>
+        The YP Spec a general-purpose exchange specification and it is acknowledged
+        <sup>
+         <a href="#footnote-3" id="footnote-ref-3">
+          [2]
+         </a>
+        </sup>
+        that more specialised use cases will need to be addressed by dedicated specification and standardization activities which will be documented in, for example:
+       </p>
+       <ul>
+        <li>
+         Blue TI profile, specifies all TI requirements that are specific to the exchange of flight information between ATCs.
+        </li>
+       </ul>
+       <h2>
+        <a id="_Toc530664457">
+        </a>
+        <a id="_Toc530740177">
+        </a>
+        <a id="_Ref519761354">
+        </a>
+        <a id="_Toc530740178">
+        </a>
+        <a id="_Toc12607662">
+        </a>
+        SWIM TI Decomposition
+       </h2>
+       <p>
+        The SWIM TI is characterized by a set of technical capabilities and interface bindings that together enable the actual exchange of information between systems.
+       </p>
+       <ul>
+        <li>
+         SWIM TI capabilities. These are divided in functional and non-functional capabilities.
+         <ul>
+          <li>
+           SWIM TI functional capabilities are infrastructure functions (e.g. protocol transformation, encryption), not specific to a particular business area or information domain, that enable information to be exchanged between systems.
+          </li>
+          <li>
+           SWIM TI non-functional capabilities are characteristics of the SWIM TI that contribute to the quality of services. (E.g. the availability of the SWIM TI has direct impact on the availability of the service it supports). While the TI functional capabilities are executable (e.g. encryption), the non-functional capabilities are a consequence of functional capabilities (e.g. confidentiality) or other contributing elements such as the deployment architecture (e.g. a redundant deployment contributes to availability).
+          </li>
+         </ul>
+        </li>
+        <li>
+         SWIM TI interface bindings. An interface binding is a set of protocols and their configuration that defines how to interoperate technically with a system. In relation with the SWIM TI functional capabilities, an interface binding is a type of connectivity used by the messaging capabilities of the TI to interoperate with another system. Interface bindings play a critical role in enabling technical interoperability in SWIM, and as such, are highlighted as specific components of the TI.
+        </li>
+       </ul>
+       <h3>
+        <a id="_Ref520363626">
+        </a>
+        <a id="_Toc530740179">
+        </a>
+        <a id="_Toc12607663">
+        </a>
+        SWIM TI Functional Capabilities
+       </h3>
+       <p>
+        The functional capabilities of the SWIM TI can be grouped in three categories:
+       </p>
+       <ul>
+        <li>
+         Messaging Capabilities: Enable the actual exchange of information using various access methods (e.g., publish/subscribe, request/reply).
+        </li>
+        <li>
+         Security Capabilities: Enable the secured exchange of information, including, but not limited to identity access management, digital certificates, encryption, etc.
+        </li>
+        <li>
+         TI Management Capabilities: Enable monitoring of the technical infrastructure for fault and performance, ensuring reliable and high-performing execution of the information exchanges.
+        </li>
+       </ul>
+       <p>
+        The functional capabilities (i.e. functions) described in this section are common features widely supported by mainstream commercial of the shelf (COTS) systems and services.
+       </p>
+       <h4>
+        <a id="_Toc530740180">
+        </a>
+        <a id="_Toc12607664">
+        </a>
+        Messaging Functionality
+       </h4>
+       <p>
+        A ‘message’
+        <sup>
+         <a href="#footnote-4" id="footnote-ref-4">
+          [3]
+         </a>
+        </sup>
+        is the unit of exchange between providers and consumers. Messaging is therefore the most important capability of the SWIM TI, as it enables the actual exchange of information between systems. It includes:
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Connectivity:
+         </strong>
+         Enabling the exchange of messages over the network according to well-defined protocols. This function instantiates interface binding specifications (set of protocols) into what is commonly known as adaptors or connectors, in order to exchange information with other systems. Connectivity to a system is performed via a system endpoint that is an addressable system resource.
+        </li>
+        <li>
+         <strong>
+          Message Distribution:
+         </strong>
+         Enabling the processing and distribution of messages. This function uses information exchange resources (i.e. queues, topics) to decouple the various TI functions involved in the processing of messages (connectivity, validation...) based on configurable distribution rules (e.g. content/context based routing). The components that provide this kind of functionality are commonly referred to as message brokers.
+        </li>
+        <li>
+         <strong>
+          Validation:
+         </strong>
+         Enabling the validation of messages to ensure they are syntactically well formed, and according to predefined schemas.
+        </li>
+        <li>
+         <strong>
+          Policy Enforcement:
+         </strong>
+         Enforcing the application of messaging policies (e.g. routing and filtering policies, reliability policy)
+        </li>
+        <li>
+         <strong>
+          Data Transformation:
+         </strong>
+         Enabling the transformation from one data format to another.
+        </li>
+        <li>
+         <strong>
+          Orchestration
+         </strong>
+         : Enabling the coordination or integration of several services, and exposing them as a single service.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740181">
+        </a>
+        <a id="_Toc12607665">
+        </a>
+        Security Functionality
+       </h4>
+       <p>
+        As supporting functions to messaging, the security capabilities of the SWIM TI are of high importance as they enable a trusted exchange of information. These capabilities are:
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Identity Management:
+         </strong>
+         Enabling the management of identities (e.g. identity creation, identity validation, federated identity retrieval). It can rely on SWIM Common Infrastructure Components to perform its functionality.
+        </li>
+        <li>
+         <strong>
+          Authentication:
+         </strong>
+         Enabling the verification of the validity of credentials and their correspondence with an identity.
+        </li>
+        <li>
+         <strong>
+          Authorization:
+         </strong>
+         Enabling the management of permissions associated to identities and based on these the enforcement of access control to the TI services and resources.
+        </li>
+        <li>
+         <strong>
+          Cryptography:
+         </strong>
+         Providing secure functions for encryption, decryption and hashing.
+        </li>
+        <li>
+         <strong>
+          Key Management:
+         </strong>
+         Enabling the secure management of cryptographic keys.
+        </li>
+        <li>
+         <strong>
+          Audit:
+         </strong>
+         Recording contextual information related to security events.
+        </li>
+        <li>
+         <strong>
+          Security Monitoring
+         </strong>
+         : Enabling monitoring, event handling and reporting of security related events.
+        </li>
+        <li>
+         <strong>
+          Policy Enforcement:
+         </strong>
+         Enforcing the application of security policies.
+        </li>
+        <li>
+         <strong>
+          Boundary Protection:
+         </strong>
+         Providing capabilities to ensure the protection of the infrastructure against external threats (e.g. firewall, rate limit management).
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740182">
+        </a>
+        <a id="_Toc12607666">
+        </a>
+        TI Management Functionality
+       </h4>
+       <p>
+        As supporting functions to messaging, the TI management capabilities ensure the reliable and performant exchange of information. These capabilities are:
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Resource Monitoring:
+         </strong>
+         Enabling the monitoring of the TI resources (e.g. processors, memory).
+        </li>
+        <li>
+         <strong>
+          Service Monitoring:
+         </strong>
+         Enabling the monitoring of the TI services provided (e.g. status, uptime, and response times).
+        </li>
+        <li>
+         <strong>
+          Alerting:
+         </strong>
+         Enabling management alerts related to the monitoring of infrastructure related events (e.g. threshold management).
+        </li>
+        <li>
+         <strong>
+          Logging:
+         </strong>
+         Enabling the recording of system events with the relevant contextual information.
+        </li>
+        <li>
+         <strong>
+          Replication:
+         </strong>
+         Enabling the management of system and data replication, enabling different degrees of fault tolerance and failover.
+        </li>
+        <li>
+         <strong>
+          Persistence:
+         </strong>
+         Enabling the management of data persistence in the TI.
+        </li>
+        <li>
+         <strong>
+          Load Balancing:
+         </strong>
+         Enabling the management of load distribution across the TI resources, enabling horizontal scaling and high availability.
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc530740183">
+        </a>
+        <a id="_Toc12607667">
+        </a>
+        <a id="_Ref519762018">
+        </a>
+        SWIM TI Non-Functional Capabilities
+       </h3>
+       <p>
+        These are qualities of the SWIM TI that directly contribute to the quality of SWIM Services that use the SWIM TI. While the TI functional capabilities are executable (e.g. encryption), the SWIM TI non-functional capabilities addressed in this section are a consequence of using functional capabilities (e.g. confidentiality is the result of using encryption). The non-functional capabilities of the SWIM TI are based on ISO 25010 and include:
+       </p>
+       <h4>
+        <a id="_Toc530740184">
+        </a>
+        <a id="_Toc12607668">
+        </a>
+        Performance efficiency Qualities
+       </h4>
+       <p>
+        These are characteristics of the SWIM TI related to its performance. They include:
+       </p>
+       <ul>
+        <li>
+         Time behaviour, including response time and latency can be directly correlated to the execution time of any of the functional capabilities of the TI. The deployment architecture can also influence time behaviour as well as the SWIM TI replication and load balancing functionalities.
+        </li>
+        <li>
+         Capacity (e.g. messages per second) is also directly correlated to the execution time of any of the functional capabilities of the TI. The deployment architecture can also influence capacity as well as the SWIM TI replication and load balancing functionalities.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740185">
+        </a>
+        <a id="_Toc12607669">
+        </a>
+        Security Non-Functional Qualities
+       </h4>
+       <p>
+        These are characteristics of the SWIM TI related to security. They include:
+       </p>
+       <ul>
+        <li>
+         Confidentiality ensures that data is accessible only to those authorized to have access, and it can be achieved as a combination of functional capabilities such as authentication, authorization, or cryptography.
+        </li>
+        <li>
+         Integrity prevents unauthorized access to, or modification of data, and it can be achieved as a combination of functional capabilities such as authentication, authorization, or cryptography.
+        </li>
+        <li>
+         Non-repudiation ensures actions or events can be proven to have taken place, so that the events or actions cannot be repudiated later. It is supported by a combination of functional capabilities such as authentication and authorization, auditing, cryptographic digital signatures…
+        </li>
+        <li>
+         Accountability ensures actions of an entity can be traced uniquely to the entity and it can be achieved as a combination of functional capabilities such as logging, authentication, and cryptography.
+        </li>
+        <li>
+         Authenticity ensures the identity of a subject or resource can be proved to be the one claimed and it can be achieved as a combination of functional capabilities such as authentication, cryptography.
+        </li>
+       </ul>
+       <h4>
+        <a id="_Toc530740186">
+        </a>
+        <a id="_Toc12607670">
+        </a>
+        Reliability Qualities
+       </h4>
+       <p>
+        These are characteristics of the SWIM TI related to reliability. They include:
+       </p>
+       <ul>
+        <li>
+         Availability enables the SWIM TI to remain operational and accessible when required for use. The deployment architecture is of high importance to ensure availability as well as the SWIM TI replication and load balancing functionalities.
+        </li>
+        <li>
+         Recoverability enables the SWIM TI to recover the data directly affected by an interruption or a failure and re-establish the desired state of the system. The deployment architecture is of high importance to ensure availability as well as the SWIM TI persistence and replication functionalities.
+        </li>
+        <li>
+         Fault tolerance enables the SWIM TI to operate as intended despite the presence of hardware or software faults. The deployment architecture is of high importance to ensure fault tolerance as well as the SWIM TI persistence, load balancing and replication functionalities.
+        </li>
+       </ul>
+       <h3>
+        <a id="_Toc530740187">
+        </a>
+        <a id="_Toc12607671">
+        </a>
+        SWIM TI Interface Bindings
+       </h3>
+       <p>
+        Technical interoperability in SWIM is enabled by the TI and more specifically by the SWIM TI interface bindings. A binding is a consistent, self-contained grouping of interface requirements that specify the protocols and configuration options to be used for the exchange of information between systems.
+       </p>
+       <p>
+        Three types of interface bindings are distinguished based on the interface they specify with different systems:
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="34bb3c51-7c34-436e-8af8-92ca54a32d37.png">
+        <figcaption>
+         <a id="_Toc12607677">
+         </a>
+         Figure 2: Infrastructure and Network Bindings
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <ul>
+        <li>
+         Service Bindings. Specifying the technical infrastructure protocols that are used by the application to interoperate with information services.
+        </li>
+        <li>
+         Infrastructure Bindings. Specifying the technical infrastructure protocols used to interoperate with SWIM Common Infrastructure Components.
+        </li>
+        <li>
+         Network Bindings. Specifying the protocols used to interoperate with the network infrastructure. SWIM relies on an IP network that is considered outside the scope of SWIM. However, there are multiple protocols that can be used to interface with an IP network, and those have a dependency with the service binding protocols.
+        </li>
+       </ul>
+       <p>
+        The Service and Infrastructure Bindings correspond to the Application Layer of the TCP/IP Stack while the Network Bindings correspond to the Transport and Internet Layers. Figure 3 relates the different Bindings with the TCP/IP stack, the OSI layer model and the protocol scope covered by ICAO Doc 9896 and Doc 9880 (P3-4).
+       </p>
+       <p>
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="e4b0189b-045e-4b10-b00d-f4fb164842cf.png">
+        <figcaption>
+         <a id="_Ref530736979">
+         </a>
+         <a id="_Toc12607678">
+         </a>
+         Figure 3: Relation of SWIM TI Interface Bindings with TCP/IP, OSI layers and ICAO documents.
+        </figcaption>
+       </figure>
+       <p>
+       </p>
+       <p>
+        The number of potential technologies used for interface bindings and the number of information flows to be realized create a risk of lacking uniformity which may negatively impact the cost of SWIM. Furthermore, consuming from SWIM based on interface bindings selected by service providers, may also trigger costs related to the implementation of consuming clients. For these reasons it is good practice to consolidate the interface bindings around mainstream standards. This will then enable cost benefits and other synergies among the SWIM stakeholders.
+       </p>
+       <figure class="figure">
+        <img class="rounded img-fluid figure-img" src="ad45cfe8-4193-4e94-be93-6d38f62fbecb.png">
+        <figcaption>
+         <a id="_Toc12607679">
+         </a>
+         Figure 4: SWIM TI Interface Bindings Consolidation
+        </figcaption>
+       </figure>
+       <h2>
+        <a id="_Toc530740188">
+        </a>
+        <a id="_Toc530740189">
+        </a>
+        <a id="_Toc530740190">
+        </a>
+        <a id="_Toc12607672">
+        </a>
+        SWIM TI Principles
+       </h2>
+       <p>
+        The SWIM TI contributes to achieving the benefits of SWIM as described in ICAO Doc 10039 Vol I. To do so, the SWIM TI respects certain principles:
+       </p>
+       <ul>
+        <li>
+         <strong>
+          Managed technical diversity.
+         </strong>
+         Technological diversity is managed to minimize significant costs related to the maintenance, expertise and integration between several different processing environments, while allowing flexibility to accommodate new technologies and to select the technologies that best meet the needs of the intended ATM businesses. This is the primary focus of the SWIM TI Bindings.
+        </li>
+        <li>
+         <strong>
+          Standards Based Technical Interoperability.
+         </strong>
+         The SWIM TI is based on open standards that promote technical interoperability.
+        </li>
+        <li>
+         <strong>
+          Established technology standards.
+         </strong>
+         The SWIM TI is based on widely deployed and widely supported technology standards that enable economical and efficient implementation and operation of information services.
+        </li>
+        <li>
+         <strong>
+          Modularity.
+         </strong>
+         The SWIM TI is modular, enabling the progressive deployment of different SWIM TI functional capabilities and bindings, which will allow a fit for purpose, flexible and agile implementation and evolution.
+        </li>
+        <li>
+         <strong>
+          Platform Independent interfaces.
+         </strong>
+         Interfaces between systems do not create dependencies imposed by implementation platforms, such as operating system or programming language.
+        </li>
+        <li>
+         <strong>
+          SWIM TI Functional Capabilities supported by COTS.
+         </strong>
+         The SWIM TI functional capabilities are common features of established COTS.
+        </li>
+       </ul>
+       
+       
+       <h2>
+        <a id="_Toc530740204">
+        </a>
+        <a id="_Toc12607674">
+        </a>
+        SWIM TI YP Spec Traceability to Functional Capabilities
+       </h2>
+       <table class="table">
+        <thead>
+         <tr>
+          <th>
+           <p>
+            <strong>
+             Identifier
+            </strong>
+           </p>
+          </th>
+          <th>
+           <p>
+            <strong>
+             Title
+            </strong>
+           </p>
+          </th>
+          <th>
+           <p>
+            <strong>
+             Functional Capability
+            </strong>
+           </p>
+          </th>
+          <th>
+           <p>
+            <strong>
+             Function
+            </strong>
+           </p>
+          </th>
+         </tr>
+        </thead>
+        <tbody>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0004
+           </p>
+          </td>
+          <td>
+           <p>
+            TCP
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0005
+           </p>
+          </td>
+          <td>
+           <p>
+            IPSec
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0006
+           </p>
+          </td>
+          <td>
+           <p>
+            IPv4
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0007
+           </p>
+          </td>
+          <td>
+           <p>
+            IPv6
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0008
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0009
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0010
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP over TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0011
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP 1.1
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0012
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP 1.2
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0013
+           </p>
+          </td>
+          <td>
+           <p>
+            MTOM
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0014
+           </p>
+          </td>
+          <td>
+           <p>
+            WSDL 1.1
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0015
+           </p>
+          </td>
+          <td>
+           <p>
+            WSDL 2.0
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0016
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-I
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0017
+           </p>
+          </td>
+          <td>
+           <p>
+            WS-I Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0018
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Notification
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0019
+           </p>
+          </td>
+          <td>
+           <p>
+            IPv6 Node Requirements
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0020
+           </p>
+          </td>
+          <td>
+           <p>
+            RFC 1122
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0021
+           </p>
+          </td>
+          <td>
+           <p>
+            ICMP
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0022
+           </p>
+          </td>
+          <td>
+           <p>
+            RFC950
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0023
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Policy
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Policy Enforcement
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0024
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Secure Conversation
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0025
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Trust
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0026
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Addressing
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Routing
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0027
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP Message Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0028
+           </p>
+          </td>
+          <td>
+           <p>
+            XML Message Encryption
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0029
+           </p>
+          </td>
+          <td>
+           <p>
+            XML
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0030
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Security Username Token
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0031
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Security X509
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0032
+           </p>
+          </td>
+          <td>
+           <p>
+            XML Schema Validation
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0033
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP Content Type Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0034
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Federation
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0035
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Reliable Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0036
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0037
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP Transport Security Authentication
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0038
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP Compression and Content Encoding Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0039
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP Header Transfer Encoding
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0040
+           </p>
+          </td>
+          <td>
+           <p>
+            XML Digital Signature
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0041
+           </p>
+          </td>
+          <td>
+           <p>
+            Data Compression
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0042
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS Authentication
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0043
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP Status Code Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0044
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP Reason Phrase Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0045
+           </p>
+          </td>
+          <td>
+           <p>
+            HTTP POST
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0046
+           </p>
+          </td>
+          <td>
+           <p>
+            SOAP Message Encryption
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0047
+           </p>
+          </td>
+          <td>
+           <p>
+            WS Security Token Profiles
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0048
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP Content Type Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0049
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP Content Encoding Header
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0050
+           </p>
+          </td>
+          <td>
+           <p>
+            TLS Authentication Mechanisms
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0051
+           </p>
+          </td>
+          <td>
+           <p>
+            SASL
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0052
+           </p>
+          </td>
+          <td>
+           <p>
+            AMQP over TLS
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Connectivity
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0053
+           </p>
+          </td>
+          <td>
+           <p>
+            Common Time Reference
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0054
+           </p>
+          </td>
+          <td>
+           <p>
+            Overload Protection
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0055
+           </p>
+          </td>
+          <td>
+           <p>
+            Encrypted Connections for Remote Administrative Access
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0056
+           </p>
+          </td>
+          <td>
+           <p>
+            Obscure Password Typing
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0057
+           </p>
+          </td>
+          <td>
+           <p>
+            Least Privileged Principle Access
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authorization
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0058
+           </p>
+          </td>
+          <td>
+           <p>
+            Automatic Sessions termination
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0059
+           </p>
+          </td>
+          <td>
+           <p>
+            Trusted Software
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Operation Procedure
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0060
+           </p>
+          </td>
+          <td>
+           <p>
+            Verification of Signed Messages Integrity
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0061
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Protocol Validation
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0062
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Payload Validation
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0063
+           </p>
+          </td>
+          <td>
+           <p>
+            Retrieval of X.509 Certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0064
+           </p>
+          </td>
+          <td>
+           <p>
+            Validation of X.509 Certificates
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0065
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptographic Algorithms
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Key Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0066
+           </p>
+          </td>
+          <td>
+           <p>
+            Strong Passwords
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Key Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0067
+           </p>
+          </td>
+          <td>
+           <p>
+            Mandatory Access Control
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authorization
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0068
+           </p>
+          </td>
+          <td>
+           <p>
+            Detection of Failed Authentication Requests
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0069
+           </p>
+          </td>
+          <td>
+           <p>
+            Access Control Restriction
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0070
+           </p>
+          </td>
+          <td>
+           <p>
+            Satisfactory Authorization
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authorization
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0071
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptographic Key Life-cycle Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Key Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0072
+           </p>
+          </td>
+          <td>
+           <p>
+            Inactive Session Termination
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0073
+           </p>
+          </td>
+          <td>
+           <p>
+            Non-recoverable Password Storage
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Key Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0074
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Patching
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Operation Procedure
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0075
+           </p>
+          </td>
+          <td>
+           <p>
+            Vulnerability Assessment
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Operation Procedure
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0076
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit Data Reporting
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0077
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of identity validity events
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0078
+           </p>
+          </td>
+          <td>
+           <p>
+            Protection of information at rest
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0079
+           </p>
+          </td>
+          <td>
+           <p>
+            Protection of Audit Information
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0080
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit Data Remote Storage
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0081
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit Data Management Reporting
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0082
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of Access Requests
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0083
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of Authentication Requests
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0084
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of Authorization Requests
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0085
+           </p>
+          </td>
+          <td>
+           <p>
+            Safe Mode Operation
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0086
+           </p>
+          </td>
+          <td>
+           <p>
+            Safe Mode Description
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Policy Enforcement
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0087
+           </p>
+          </td>
+          <td>
+           <p>
+            CAVP approved Cryptographic Modules
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Cryptography
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0088
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of Cryptographic Events
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0089
+           </p>
+          </td>
+          <td>
+           <p>
+            Configurable Authentication
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0090
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit of federated identity events
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Audit
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0091
+           </p>
+          </td>
+          <td>
+           <p>
+            Security Assessment
+           </p>
+          </td>
+          <td colspan="2">
+           <p>
+            Operation Procedure
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0092
+           </p>
+          </td>
+          <td>
+           <p>
+            Denial of Service Protection
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0093
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Validity Information Exchange
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Identity Management
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0094
+           </p>
+          </td>
+          <td>
+           <p>
+            Role Based Access Control
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authorization
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0095
+           </p>
+          </td>
+          <td>
+           <p>
+            Attribute Based Access Control
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authorization
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0096
+           </p>
+          </td>
+          <td>
+           <p>
+            Hardware Tokens
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Authentication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0097
+           </p>
+          </td>
+          <td>
+           <p>
+            Content Based Routing
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Distribution
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0098
+           </p>
+          </td>
+          <td>
+           <p>
+            Subject Based Routing
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Distribution
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0099
+           </p>
+          </td>
+          <td>
+           <p>
+            Context Based Routing
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Distribution
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0100
+           </p>
+          </td>
+          <td>
+           <p>
+            Automatic Retries
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Distribution
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0101
+           </p>
+          </td>
+          <td>
+           <p>
+            Configurable Routing
+           </p>
+          </td>
+          <td>
+           <p>
+            Messaging
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Distribution
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0102
+           </p>
+          </td>
+          <td>
+           <p>
+            Traffic Prioritisation
+           </p>
+          </td>
+          <td>
+           <p>
+            Security
+           </p>
+          </td>
+          <td>
+           <p>
+            Boundary Protection
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0103
+           </p>
+          </td>
+          <td>
+           <p>
+            Hardware Monitoring
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Resource Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0104
+           </p>
+          </td>
+          <td>
+           <p>
+            Monitoring Alerts
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Alerting
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0105
+           </p>
+          </td>
+          <td>
+           <p>
+            Service Monitoring
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Service Monitoring
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0106
+           </p>
+          </td>
+          <td>
+           <p>
+            Persistent Storage Recording
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Persistence
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0107
+           </p>
+          </td>
+          <td>
+           <p>
+            Log Retention
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Persistence
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0108
+           </p>
+          </td>
+          <td>
+           <p>
+            Replication Transparency
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Replication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0109
+           </p>
+          </td>
+          <td>
+           <p>
+            Failure Transparency
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Replication
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0110
+           </p>
+          </td>
+          <td>
+           <p>
+            Subscription Persistency
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Persistence
+           </p>
+          </td>
+         </tr>
+         <tr>
+          <td>
+           <p>
+            SWIM-TIYP-0111
+           </p>
+          </td>
+          <td>
+           <p>
+            Message Persistency
+           </p>
+          </td>
+          <td>
+           <p>
+            TI Management
+           </p>
+          </td>
+          <td>
+           <p>
+            Persistence
+           </p>
+          </td>
+         </tr>
+        </tbody>
+       </table>
+<h2>
+        <a id="_Toc12607673">
+        </a>
+            References
+       </h2>
+       <ol>
+        <li>
+         <a id="_Ref12607481">
+         </a>
+         <strong>
+          <em>
+           EUROCONTROL Specification for SWIM TI Yellow Profile
+          </em>
+         </strong>
+         , EUROCONTROL
+        </li>
+        <li>
+         <a id="_Ref12607457">
+         </a>
+         <strong>
+          <em>
+           SWIM TI Message Exchange Patterns Identification Guidelines,
+          </em>
+         </strong>
+         EUROCONTROL
+        </li>
+       </ol>
+<h2> Notes</h2>
+       <ol>
+        <li id="footnote-2">
+         <p>
+          An information service enables provision of information to consumers (e.g. Weather Service) as well as access to a capability (e.g. Flight Plan Filing Service).
+          <a href="#footnote-ref-2">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-3">
+         <p>
+          As stated in the rolling development plan of the European ATM Standards Coordination Group, and the deployment program managed by the SESAR Deployment Manager.
+          <a href="#footnote-ref-3">
+           ↑
+          </a>
+         </p>
+        </li>
+        <li id="footnote-4">
+         <p>
+          The term message is used in this document in relation to a unit of exchange between systems that communicate via information services. Although there are similarities, no direct comparison should be made with the term message used in other ICAO documents (e.g. CPDLC message, AMHS Message).
+          <a href="#footnote-ref-4">
+           ↑
+          </a>
+         </p>
+        </li>
+       </ol>
+      </div>
+     </div>
+    </div>
+  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+    <script src="../assets/js/list.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>SWIM Information Definition Handbook - Information - SWIM Reference</title>
+    <meta property="og:type" content="website">
+    <meta name="description" content="The purpose of this website is to help you understand the basics of SWIM. Go ahead and explore! ">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="icon" type="image/png" sizes="1127x1125" href="../assets/img/favicon-new.png">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,700,700i,600,600i">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aldrich">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alegreya+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.css">
+    <link rel="stylesheet" href="../assets/css/Navigation-with-Search.css">
+    <link rel="stylesheet" href="../assets/css/smoothproducts.css">
+</head>
+
+<body style="background-color: rgb(31,31,31);">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean" style="background-color: rgba(241,215,122,0.8)!important;padding-bottom: 0px;margin-top: 79px;height: 35px;">
+        <div class="container"><a class="navbar-brand" style="color: #E1E1E1;" href="http://airm.aero"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" style="margin-bottom: 21px;">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" style="padding-bottom: 4px;color: rgb(31,31,31);" href="../information.html"><strong>Information</strong></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <nav class="navbar navbar-dark navbar-expand-lg fixed-top clean-navbar" style="background-color: rgba(31,31,31,0.74);color: rgba(0,0,0,0);">
+        <div class="container"><a class="navbar-brand logo" href="../index.html" style="color: rgb(255,164,48);padding-top: 0px;padding-bottom: 0px;">&nbsp;<img src="../assets/img/reference.swim-logo.png" style="height: 41px;"></a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1" style="/*color: rgb(242,242,242);*/border-color: rgb(242,242,242);"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../what-is-swim.html">What Is SWIM</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../essentials.html">ESSENTIALS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../knowledge.html">KNOWLEDGE</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../resources.html">Resources</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../faq.html">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="clean-block clean-post dark document" style="background-color: rgb(31,31,31);margin-top: 42px;">
+        <div class="container">
+            <div class="block-content">
+                <div id="top" class="post-body">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="SWIM-Information-Definition-Handbook_65640.html"><span>SWIM Information Definition Handbook</span></a></li>
+                        <li class="breadcrumb-item"><a href="Resources-for-information-definitions_1179830.html"><span>Resources for information definitions</span></a></li>
+                        <li class="breadcrumb-item"><a href="Further-guidance-on-fulfilling-the-requirements_65654.html"><span>Further guidance on fulfilling the requirements</span></a></li>
+                    </ol>
+                    <div>
+                        <div class="intro">
+                            <h1 class="text-center">Detailing the concepts using XSD</h1>
+                            <p class="text-center" style="font-size: 12px;margin-bottom: 91px;"><span class="by">Last updated:</span> <span class="date">&nbsp;JANUARY 14th, 2020</span></p>
+                        </div>
+                    </div>          <div id="main-content" class="wiki-content group">
+                    <div class="contentLayout2">
+<div class="columnLayout two-equal" data-layout="two-equal">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<h1 id="DetailingtheconceptsusingXSD-Purpose">Purpose</h1><p>This guidance shows how requirements concerning <strong>the concepts</strong> found in an information definition can be satisfied using the structures found in the XML Schema Definition language.The guidance applies to:</p><ul><li><a href="SWIM-INFO-006-Information-definition-namespace_65668.html">SWIM-INFO-006 Information definition namespace</a></li><li><a href="SWIM-INFO-007-Information-definition-concepts_65670.html">SWIM-INFO-007 Information definition concepts</a></li><li><a href="SWIM-INFO-008-Unique-identifiers-for-concepts_65672.html">SWIM-INFO-008 Unique identifiers for concepts</a></li><li><a href="https://ext.eurocontrol.int/swim_confluence/display/SWIM/SWIM-SERV-022+Information+definition">SWIM-SERV-022 Information definition</a></li></ul><p><br/></p></div>
+</div>
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p><style type='text/css'>/*<![CDATA[*/
+div.rbtoc1580367717482 {padding: 0px;}
+div.rbtoc1580367717482 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1580367717482 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class='toc-macro rbtoc1580367717482'>
+<ul class='toc-indentation'>
+<li><a href='#DetailingtheconceptsusingXSD-Purpose'>Purpose</a></li>
+<li><a href='#DetailingtheconceptsusingXSD-MappingofrequirementtoXMLSchemadefinitionlanguage'>Mapping of requirement to XML Schema definition language</a></li>
+<li><a href='#DetailingtheconceptsusingXSD-RequirementscomingfromSWIM-SERV-022'>Requirements coming from SWIM-SERV-022</a></li>
+</ul>
+</div></p></div>
+</div>
+</div>
+<div class="columnLayout single" data-layout="single">
+<div class="cell normal" data-type="normal">
+<div class="innerCell">
+<p class="MsoNormal"><br/></p><h1 class="MsoNormal" id="DetailingtheconceptsusingXSD-MappingofrequirementtoXMLSchemadefinitionlanguage"><span>Mapping of requirement to XML Schema definition language<br/></span></h1><div class="table-wrap"><table class="TableGrid2 wrapped relative-table confluenceTable" style="border-collapse: collapse;width: 91.1436%;" cellspacing="0" cellpadding="0" border="1"><colgroup><col style="width: 18.446%;"/><col style="width: 18.0183%;"/><col style="width: 63.5686%;"/></colgroup><thead><tr style="page-break-inside: avoid;"><td style="width: 76.8pt;border: solid windowtext 1.0pt;background: black;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="102" valign="top" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span style="color: rgb(255,255,255);"><strong>Requirement</strong></span></p></td><td style="width: 71.8pt;border: solid windowtext 1.0pt;border-left: none;background: black;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="96" valign="top" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span style="color: rgb(255,255,255);"><strong>Corresponding structure in XSD</strong></span></p></td><td style="width: 257.7pt;border: solid windowtext 1.0pt;border-left: none;background: black;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="344" valign="top" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span style="color: rgb(255,255,255);"><strong>Example</strong></span></p></td></tr></thead><tbody><tr><td style="width: 494.45pt;border: solid windowtext 1.0pt;border-top: none;background: rgb(191,191,191);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" colspan="3" width="659" valign="top" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span>General Requirements for Information Definitions</span></p></td></tr><tr><td colspan="1" width="102" class="confluenceTd"><span><a href="SWIM-INFO-006-Information-definition-namespace_65668.html">SWIM-INFO-006 Information definition namespace</a><br/></span></td><td colspan="1" width="96" class="confluenceTd"><span>XSD namespaces </span></td><td colspan="1" width="344" class="confluenceTd"><pre class="MsoNormal">xmlns:don=&quot;http://www.swim.donlon-airport.com/swim-ops/gateway&quot; <br/>targetNamespace=&quot;http://www.swim.donlon-airport.com/swim-ops/gateway&quot;</pre></td></tr><tr><td style="width: 76.8pt;border: solid windowtext 1.0pt;border-top: none;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" colspan="3" width="102" valign="top" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span><a href="SWIM-INFO-007-Information-definition-concepts_65670.html">SWIM-INFO-007 Information definition concepts</a></span></p><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span> </span></p></td></tr><tr><td colspan="1" width="102" class="confluenceTd"><span>name</span></td><td colspan="1" width="96" class="confluenceTd"><span>xs:element name</span></td><td colspan="1" width="344" class="confluenceTd"><pre class="MsoNormal">&lt;xs:element name=&quot;SimpleMessage&quot;&gt;</pre></td></tr><tr><td colspan="1" width="102" class="confluenceTd"><span>definition</span></td><td colspan="1" width="96" class="confluenceTd"><span>xs:annotation</span></td><td colspan="1" width="344" class="confluenceTd"><pre class="MsoNormal">&lt;xs:element name=&quot;SimpleMessage&quot;&gt;<br/> &lt;xs:annotation&gt;<br/>  &lt;xs:documentation&gt;<br/>   &lt;definition&gt;Definition of the element/concept&lt;/definition&gt;<br/>  &lt;/xs:documentation&gt;<br/> &lt;/xs:annotation&gt;<br/>&lt;/xs:element&gt;</pre></td></tr><tr><td colspan="1" width="102" class="confluenceTd"><em><span>data type</span></em></td><td colspan="1" width="96" class="confluenceTd"><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span>xs:element type or </span></p><p class="MsoNormal" style="margin-bottom: 10.0pt;text-align: left;line-height: 115.0%;" align="left"><span>xs:restriction base</span></p></td><td colspan="1" width="344" class="confluenceTd"><pre class="MsoNormal">&lt;xs:element name=&quot;name&quot; type=&quot;xs:string&quot;&gt;</pre><p class="MsoNormal" align="left">or</p><pre class="MsoNormal">&lt;xs:restriction base=&quot;xs:double&quot;/&gt;</pre></td></tr><tr><td colspan="1" width="102" class="confluenceTd"><span title=""><a href="SWIM-INFO-008-Unique-identifiers-for-concepts_65672.html">SWIM-INFO-008 Unique identifiers for concepts</a><br/></span></td><td colspan="1" width="96" class="confluenceTd"><span title="">xs:element id</span></td><td colspan="1" width="344" class="confluenceTd"><pre class="MsoNormal" title="">&lt;xs:element name=&quot;status&quot; id=&quot;abcd&quot;/&gt;</pre></td></tr></tbody></table></div><h1 id="DetailingtheconceptsusingXSD-RequirementscomingfromSWIM-SERV-022">Requirements coming from SWIM-SERV-022</h1><div class="table-wrap"><table class="MsoTableGrid wrapped confluenceTable" style="border-collapse: collapse;border: none;" cellspacing="0" cellpadding="0" border="1"><colgroup><col style="width: 175.0px;"/><col style="width: 210.0px;"/><col style="width: 575.0px;"/></colgroup><tbody><tr><td style="width: 708.7pt;border: solid windowtext 1.0pt;background: rgb(191,191,191);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" colspan="3" width="945" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>Additional Requirement on Exchanged Information</span></p></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>cardinality (optional, conditional, mandatory)</span></p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>xs:element minOccurs and maxOccurs</span></p></td><td width="376" valign="top" class="confluenceTd"><pre class="MsoNormal">&lt;xs:element ref=&quot;sid:status&quot; minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;/&gt;</pre></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>data type constraint<br/></span></p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span> </span></p></td><td width="376" valign="top" class="confluenceTd"><pre class="MsoNormal"> </pre></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>value range constraint<br/></span></p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>xs:restriction</span></p></td><td width="376" valign="top" class="confluenceTd"><pre class="MsoNormal">&lt;xs:simpleType name=&quot;messageSequenceType&quot;&gt;<br/>&lt;xs:restriction base=&quot;xs:int&quot;&gt;<br/>&lt;xs:minExclusive value=&quot;1&quot;/&gt;<br/>&lt;xs:maxExclusive value=&quot;100&quot;/&gt;<br/>&lt;/xs:restriction&gt;<br/>&lt;/xs:simpleType&gt;</pre></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>special value constraint<br/></span></p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>xs:restriction</span></p></td><td width="376" valign="top" class="confluenceTd"><pre class="MsoNormal">&lt;xs:simpleType name=&quot;statusType&quot;&gt;<br/>&lt;xs:restriction base=&quot;xs:string&quot;&gt;<br/>&lt;xs:enumeration value=&quot;open&quot;/&gt;<br/>&lt;xs:enumeration value=&quot;closed&quot;/&gt;<br/>&lt;/xs:restriction&gt;<br/>&lt;/xs:simpleType&gt;</pre></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>character set restrictions</span></p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>xml encoding</span></p></td><td width="376" valign="top" class="confluenceTd"><pre class="MsoNormal">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</pre></td></tr><tr><td style="width: 147.65pt;border: solid windowtext 1.0pt;border-top: none;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="197" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;">structure and relevant relationships</p></td><td style="width: 145.9pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="195" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>combination of sequence, choice, base, etc.</span></p></td><td style="width: 281.8pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: rgb(242,242,242);padding: 0.0cm 5.4pt 0.0cm 5.4pt;" width="376" valign="top" class="confluenceTd"><p class="MsoNormal" style="line-height: normal;"><span>Too many to show!</span></p></td></tr></tbody></table></div></div>
+</div>
+</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="page-footer dark" style="filter: grayscale(100%);">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-3">
+                    <h5>Get started</h5>
+                    <ul>
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="../what-is-swim.html">What is SWIM</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>About us</h5>
+                    <ul>
+                        <li><a href="https://www.eurocontrol.int/standardisation">Standardisation</a></li>
+                        <li></li>
+                        <li></li>
+                        <li><a href="http://eurocontrol.int">EUROCONTROL</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Support</h5>
+                    <ul>
+                        <li><a href="../faq.html">FAQ</a></li>
+                        <li></li>
+                        <li><a href="../contact-us.html">Contact us</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-3">
+                    <h5>Legal</h5>
+                    <ul>
+                        <li><a href="../privacy-and-website-terms-use.html">Privacy and Terms of Use<br></a></li>
+                        <li><a href="https://www.cookiesandyou.com/">Cookies<br></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© 2021&nbsp;<a href="https://www.eurocontrol.int">EUROCONTROL</a></p>
+        </div>
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/smart-forms.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.11.1/baguetteBox.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js"></script>
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-159208985-1" integrity="sha512-Dwh+Tek50eDrBtDrKhYBuAtMJYd00uEBaqQWe4kNDt3xFYXUCSWfAOQkgvlUtxVY3T49ufHYOYGDNwFC42qACA==" crossorigin="anonymous"></script>
+    <script src="../assets/js/smoothproducts.min.js"></script>
+    <script src="../assets/js/google-analytics.js"></script>
+</body>
+
+</html>
