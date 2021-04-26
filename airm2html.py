@@ -1,4 +1,5 @@
 def create_contextual_model_abbreviations_index_page():
+  """Create the index html page for contextual model abbreviations i.e. https://airm.aero/viewer/1.0.0/contextual-model-abbreviations.html"""
   import airm
   airm = airm.Airm()
   airm_abbreviations = airm.contextual_abbreviations.to_dict('records')
@@ -17,6 +18,7 @@ def create_contextual_model_abbreviations_index_page():
   f.close() 
 
 def create_contextual_model_abbreviations_with_supplements_index_page():
+  """Create the index html page for contextual model abbreviations with supplements i.e. https://airm.aero/viewer/1.0.0/contextual-model-abbreviations-with-supplements.html"""
   import airm
   airm = airm.Airm()
   airm_abbreviations = airm.contextual_abbreviations.to_dict('records')
@@ -38,6 +40,7 @@ def create_contextual_model_abbreviations_with_supplements_index_page():
   f.close() 
 
 def create_contextual_model_abbreviations_item_pages():
+  """Create an html page for each abbreviation in the contextual model e.g. https://airm.aero/viewer/1.0.0/contextual-model/WGS84.html"""
   import airm
   airm = airm.Airm()
   airm_abbs = airm.contextual_abbreviations.to_dict('records')
@@ -87,6 +90,7 @@ def create_contextual_model_abbreviations_item_pages():
     f.close()
 
 def create_contextual_model_terms_index_page():
+  """Create the index html page for contextual model terms i.e. https://airm.aero/viewer/1.0.0/contextual-model-terms.html"""
   import airm
   airm = airm.Airm()
   airm_terms = airm.contextual_terms.to_dict('records')
@@ -105,6 +109,7 @@ def create_contextual_model_terms_index_page():
   f.close() 
   
 def create_contextual_model_terms_with_supplements_index_page():
+  """Create the index html page for contextual model terms with supplements i.e. https://airm.aero/viewer/1.0.0/contextual-model-terms-with-supplements.html"""
   import airm
   airm = airm.Airm()
   airm_terms = airm.contextual_terms.to_dict('records')
@@ -126,6 +131,7 @@ def create_contextual_model_terms_with_supplements_index_page():
   f.close()
 
 def create_contextual_model_terms_item_pages():
+  """Create an html page for each term in the contextual model e.g. https://airm.aero/viewer/1.0.0/contextual-model/4Dtrajectory.html"""
   import airm
   airm = airm.Airm()
   airm_terms = airm.contextual_terms.to_dict('records')
@@ -218,6 +224,7 @@ def create_contextual_model_terms_item_pages():
     f.close()
 
 def create_conceptual_model_index_page():
+  """Create the index html page for conceptual model concepts i.e. https://airm.aero/viewer/1.0.0/conceptual-model.html"""
   import airm
   airm = airm.Airm()
   airm_concepts = airm.conceptual_concepts.to_dict('records')
@@ -236,6 +243,7 @@ def create_conceptual_model_index_page():
   f.close() 
 
 def create_conceptual_model_with_supplements_index_page():
+  """Create the index html page for conceptual model concepts with supplements i.e. https://airm.aero/viewer/1.0.0/conceptual-model-with-supplements.html"""
   import airm
   airm = airm.Airm()
   airm_concepts = airm.conceptual_concepts.to_dict('records')
@@ -260,6 +268,7 @@ def create_conceptual_model_with_supplements_index_page():
   f.close() 
 
 def create_conceptual_model_item_pages():
+  """Create an html page for each concept in the conceptual model e.g. https://airm.aero/viewer/1.0.0/conceptual-model/WorldGeodeticSystem1984.html"""
   import airm
   airm = airm.Airm()
   airm_concepts = airm.conceptual_concepts.to_dict('records')
@@ -276,6 +285,13 @@ def create_conceptual_model_item_pages():
     create_conceptual_model_item_page(record, template, scope)
 
 def create_conceptual_model_item_page(record, template, scope):
+  """Create an html page for a given concept (record) in the conceptual model e.g. https://airm.aero/viewer/1.0.0/conceptual-model/WorldGeodeticSystem1984.html
+  
+  Keyword arguments:
+    record -- a dictionary record containing AIRM data for a given conceptual model concept.
+    template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/conceptual-model/conceptual-model-concept-template.html
+    scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
+  """
     if record["stereotype"] != "missing data":
       print(record['class name'])
       from bs4 import BeautifulSoup
@@ -397,6 +413,7 @@ def create_conceptual_model_item_page(record, template, scope):
       f.close()
 
 def create_logical_model_index_page():  
+  """Create the index html page for logical model concepts i.e. https://airm.aero/viewer/1.0.0/logical-model.html"""
   import airm
   airm = airm.Airm()
   airm_logical_concepts = airm.logical_concepts.to_dict('records')
@@ -414,6 +431,7 @@ def create_logical_model_index_page():
   f.close() 
 
 def create_logical_model_with_supplements_index_page():  
+  """Create the index html page for logical model concepts with supplements i.e. https://airm.aero/viewer/1.0.0/logical-model-with-supplements.html"""
   import airm
   airm = airm.Airm()
   airm_logical_concepts = airm.logical_concepts.to_dict('records')
@@ -436,6 +454,7 @@ def create_logical_model_with_supplements_index_page():
   f.close() 
 
 def create_logical_model_item_pages():
+  """Create an html page for each concept in the logical model e.g. https://airm.aero/viewer/1.0.0/logical-model/AerialRefuelling.html"""
   import airm
   airm = airm.Airm()
   airm_logical_concepts = airm.logical_concepts.to_dict('records')
@@ -455,7 +474,15 @@ def create_logical_model_item_pages():
     create_logical_model_item_page(record, template, scope, children, supplements)
 
 def create_logical_model_item_page(record, template, scope, children, supplements=None):
-
+  """Create an html page for a given concept (record) in the logical model e.g. https://airm.aero/viewer/1.0.0/logical-model/AerialRefuelling.html
+  
+  Keyword arguments:
+    record -- a dictionary record containing AIRM data for a given logical model concept.
+    template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/logical-model/logical-model-concept-template.html
+    scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
+    children -- a dictionary containing the list of children elements for the concept provided as record.
+    supplements -- a dictionary containing the list of children elements (in a supplement) for the concept provided as record. None by default.
+  """
     if record["stereotype"] != "missing data":
       print(record['class name'])
       from bs4 import BeautifulSoup
@@ -785,6 +812,13 @@ def create_logical_model_item_page(record, template, scope, children, supplement
       f.close()
 
 def create_url_for_supplements(class_name, class_urn, scope):
+  """Return a url to the viewer page for the AIRM concept provided in class_urn
+
+  Keyword arguments:
+    class_name -- string containing the name of the concept.
+    class_urn -- string containing the urn of the concept.
+    scope -- string defining the scope (european supplement OR global) of the airm concept provided.
+  """
   filename = classname_to_filename(class_name)
   if "ses:eurocontrol" in class_urn:#target is in eur supp
     if scope == "european-supplement/":#current page in eur supp
@@ -800,6 +834,11 @@ def create_url_for_supplements(class_name, class_urn, scope):
   return url
 
 def classname_to_filename(class_name):
+  """Return a valid html filename for the class name provided as a paramenter.
+
+  Keyword arguments:
+    class_name -- string containing the name of a concept.
+  """
   filename = class_name+".html"
   filename = filename.replace("/", "-")
   filename = filename.replace("*", "-")
@@ -809,6 +848,12 @@ def classname_to_filename(class_name):
   return filename
 
 def create_index_row(record, directory):
+  """Return an html table row for a contextual or conceptual model entry (information concept).
+
+  Keyword arguments:
+    record -- dictionary containing the AIRM concept entry.
+    directory -- string containing the directory for the linked concepts.
+  """
   from bs4 import BeautifulSoup
   soup = BeautifulSoup("<b></b>", 'lxml')
   if record["supplement"] == "\t\t\t":
@@ -835,6 +880,12 @@ def create_index_row(record, directory):
     return None
 
 def create_index_row_with_supplements(record, directory):
+  """Return an html table row for a contextual or conceptual model entry (information concept) both for global and supplement.
+
+  Keyword arguments:
+    record -- dictionary containing the AIRM concept entry.
+    directory -- string containing the directory for the linked concepts.
+  """
   from bs4 import BeautifulSoup
   soup = BeautifulSoup("<b></b>", 'lxml')
   if record["supplement"] == "\t\t\t":
@@ -893,6 +944,12 @@ def create_index_row_with_supplements(record, directory):
     return None
 
 def create_index_row_logical_model(record, directory):
+  """Return an html table row for a logical model entry (information or data concept).
+
+  Keyword arguments:
+    record -- dictionary containing the AIRM concept entry.
+    directory -- string containing the directory for the linked concepts.
+  """
   from bs4 import BeautifulSoup
   soup = BeautifulSoup("<b></b>", 'lxml')
   if record["supplement"] == "\t\t\t" or record["supplement"] == "\t":
@@ -953,7 +1010,13 @@ def create_index_row_logical_model(record, directory):
   else:
     return None
 
-def create_index_row_logical_model_with_supplements(record, directory):
+def create_index_row_logical_model_with_supplements(record, directory):  
+  """Return an html table row for a logical model entry (information or data concept) including supplements.
+
+  Keyword arguments:
+    record -- dictionary containing the AIRM concept entry.
+    directory -- string containing the directory for the linked concepts.
+  """
   from bs4 import BeautifulSoup
   soup = BeautifulSoup("<b></b>", 'lxml')
   tr = soup.new_tag("tr")
