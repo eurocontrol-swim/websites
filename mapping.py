@@ -11,7 +11,12 @@ class Mapping:
   dictionary = None
   dataframe = None
      
-  def __init__(self, mapping_file_pathname):
+  def __init__(self, mapping_file_pathname):  
+    """Initialise a Mapping object. Load the xlsx document (mapping_file_pathname) to dataframe and dictionary. Load metadata.
+
+    Keyword arguments:
+      mapping_file_pathname -- string containing the path and filename for a mapping xlsx document.
+    """
     self.dataframe = pd.read_excel(r''+mapping_file_pathname, sheet_name='semantic correspondences', engine='openpyxl')
     self.dataframe.fillna("missing data", inplace = True)
     self.dataframe = self.dataframe.applymap(str)
@@ -19,6 +24,11 @@ class Mapping:
     self.load_metadata(mapping_file_pathname)
 
   def load_metadata(self, mapping_file_pathname):
+    """Load metadata from the 'report' sheet of the xlsx document (mapping_file_pathname) to the metadata attribute.
+
+    Keyword arguments:
+      mapping_file_pathname -- string containing the path and filename for a mapping xlsx document.
+    """
     from openpyxl import load_workbook
     wb = load_workbook(filename = mapping_file_pathname)
     sheet = wb['report']
@@ -33,6 +43,7 @@ class Mapping:
     print("notes: "+self.metadata["notes"])
 
   def get_information_concepts(self):
+    """Return a dictionary with the list of information concepts present in the mapping."""
     dataframe = self.dataframe.copy()
     #dataframe = dataframe.drop_duplicates(subset='Information Concept', keep="last")
     #TO DO Update list of tags dataframe = dataframe.drop(["Data Concept", "Definition", "Type", "Semantic Correspondence", "Additional Traces", "Rationale", "Notes"], axis=1)
@@ -47,6 +58,11 @@ class Mapping:
       return results.to_dict('records')
 
   def get_data_concepts(self, info_concept):
+    """Return a dictionary containing the data concept for a given information concept from the mapping.
+
+    Keyword arguments:
+      info_concept -- dictionary entry with the information concept to be used as a filter to retrieve the associated data concepts.
+    """
       dataframe = self.dataframe.copy()
       #dataframe = dataframe.drop_duplicates(subset='Information Concept', keep="last")
       #TO DO Update list of tags dataframe = dataframe.drop(["Data Concept", "Definition", "Type", "Semantic Correspondence", "Additional Traces", "Rationale", "Notes"], axis=1)
