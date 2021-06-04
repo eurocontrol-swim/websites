@@ -285,17 +285,17 @@ def create_conceptual_model_item_pages():
     create_conceptual_model_item_page(record, template, scope)
 
 def create_conceptual_model_item_page(record, template, scope):
-  """Create an html page for a given concept (record) in the conceptual model e.g. https://airm.aero/viewer/1.0.0/conceptual-model/WorldGeodeticSystem1984.html
-  
-  Keyword arguments:
-    record -- a dictionary record containing AIRM data for a given conceptual model concept.
-    template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/conceptual-model/conceptual-model-concept-template.html
-    scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
-  """
+    """Create an html page for a given concept (record) in the conceptual model e.g. https://airm.aero/viewer/1.0.0/conceptual-model/WorldGeodeticSystem1984.html
+
+    Keyword arguments:
+      record -- a dictionary record containing AIRM data for a given conceptual model concept.
+      template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/conceptual-model/conceptual-model-concept-template.html
+      scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
+    """
     if record["stereotype"] != "missing data":
       print(record['class name'])
       from bs4 import BeautifulSoup
-      soup = BeautifulSoup(template, "lxml") 
+      soup = BeautifulSoup(template, "lxml")
 
       soup.title.string = str(record['class name'])+" - Conceptual Model | AIRM.aero"
       soup.find(text="CONCEPT_NAME_BC").replace_with(str(record['class name']))
@@ -315,7 +315,7 @@ def create_conceptual_model_item_page(record, template, scope):
       code["class"] = "text-secondary"
       soup.find(id="INFO_CONCEPT_NAME").insert(1,code)
       soup.find(text="CONCEPT_DEFINITION").replace_with(str(record['definition']))
-      
+
       p = soup.new_tag("p")
       insert_index = 1
       if record["source"] != "missing data":
@@ -424,7 +424,9 @@ def create_logical_model_index_page():
   directory = "logical-model/"
 
   for record in airm_logical_concepts:
-    soup.find('tbody').insert(1,create_index_row_logical_model(record,directory))
+    tmp = create_index_row_logical_model(record,directory)
+    if tmp != None:
+      soup.find('tbody').insert(1,tmp)
   
   f= open("docs/airm/viewer/1.0.0/logical-model.html","w+")
   f.write(soup.prettify())
@@ -474,22 +476,22 @@ def create_logical_model_item_pages():
     create_logical_model_item_page(record, template, scope, children, supplements)
 
 def create_logical_model_item_page(record, template, scope, children, supplements=None):
-  """Create an html page for a given concept (record) in the logical model e.g. https://airm.aero/viewer/1.0.0/logical-model/AerialRefuelling.html
-  
-  Keyword arguments:
-    record -- a dictionary record containing AIRM data for a given logical model concept.
-    template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/logical-model/logical-model-concept-template.html
-    scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
-    children -- a dictionary containing the list of children elements for the concept provided as record.
-    supplements -- a dictionary containing the list of children elements (in a supplement) for the concept provided as record. None by default.
-  """
+    """Create an html page for a given concept (record) in the logical model e.g. https://airm.aero/viewer/1.0.0/logical-model/AerialRefuelling.html
+
+    Keyword arguments:
+      record -- a dictionary record containing AIRM data for a given logical model concept.
+      template -- string defining the location and name of the html template e.g. docs/airm/templates/viewer/logical-model/logical-model-concept-template.html
+      scope -- string defining the scope (european supplement OR global) of the airm concept provided as record.
+      children -- a dictionary containing the list of children elements for the concept provided as record.
+      supplements -- a dictionary containing the list of children elements (in a supplement) for the concept provided as record. None by default.
+    """
     if record["stereotype"] != "missing data":
       print(record['class name'])
       from bs4 import BeautifulSoup
-      soup = BeautifulSoup(template, "lxml") 
+      soup = BeautifulSoup(template, "lxml")
 
       soup.title.string = str(record['class name'])+" - Logical Model | AIRM.aero"
-      
+
       soup.find(text="FIXM_CLASS_NAME_BC").replace_with(str(record['class name']))
 
       h2 = soup.new_tag("h2")
@@ -507,7 +509,7 @@ def create_logical_model_item_page(record, template, scope, children, supplement
       soup.find(id="INFO_CONCEPT_NAME").insert(1,code)
 
       soup.find(text="FIXM_CLASS_DEFINITION").replace_with(str(record['definition']))
-      
+
       p = soup.new_tag("p")
       insert_index = 1
       if record["source"] != "missing data":
@@ -952,7 +954,7 @@ def create_index_row_logical_model(record, directory):
   """
   from bs4 import BeautifulSoup
   soup = BeautifulSoup("<b></b>", 'lxml')
-  if record["supplement"] == "\t\t\t" or record["supplement"] == "\t":
+  if record["supplement"] == "\t\t\t" or record["supplement"] == "\t" or record["supplement"] == "missing data":
       tr = soup.new_tag("tr")
       td_ic_name = soup.new_tag("td")
       td_ic_name["data-order"] = record["class name"]
@@ -1010,7 +1012,7 @@ def create_index_row_logical_model(record, directory):
   else:
     return None
 
-def create_index_row_logical_model_with_supplements(record, directory):  
+def create_index_row_logical_model_with_supplements(record, directory):
   """Return an html table row for a logical model entry (information or data concept) including supplements.
 
   Keyword arguments:
@@ -1045,7 +1047,7 @@ def create_index_row_logical_model_with_supplements(record, directory):
   else: #The record is a property
     td_ic_name.string = record["class name"]
     tr.insert(2,td_ic_name)
-  
+
   td_dc_name = soup.new_tag("td")
   td_dc_name["data-order"] = str(record["property name"])
   if record["stereotype"] == "missing data": #The record is a property
@@ -1072,7 +1074,7 @@ def create_index_row_logical_model_with_supplements(record, directory):
     td_def = soup.new_tag("td")
     td_def.string = str(record["definition"])
     tr.insert(4,td_def)
-  
+
   if record["type"] != "missing data":
     td_def = soup.new_tag("td")
     td_def.string = str(record["type"])
@@ -1081,5 +1083,5 @@ def create_index_row_logical_model_with_supplements(record, directory):
     td_def = soup.new_tag("td")
     td_def.string = "-"
     tr.insert(5,td_def)
-  
+
   return tr

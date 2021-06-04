@@ -164,9 +164,9 @@ def semantic_correspondences_menu():
     print('')
     print("6: create_mapping_item_pages aixm_5.1.1")
     print('')
-    print("7: create_mapping_index_page adr_23.5.0")
+    print("7: DISABLED: create_mapping_index_page adr_23.5.0")
     print('')
-    print("8: create_mapping_item_pages adr_23.5.0")
+    print("8: DISABLED: create_mapping_item_pages adr_23.5.0")
     print('')
     print("9: create_mapping_index_page fixm_4.2.0")
     print('')
@@ -215,16 +215,18 @@ def semantic_correspondences_menu():
         semantic_correspondences_menu()   
     elif choice == "7":
         print('\n')
-        import mapping2html
-        mapping2html.create_mapping_index_page("xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx","docs/airm/templates/concept-list-template.html")
+        print('WARNING: This option is disabled')
+        """import mapping2html
+        mapping2html.create_mapping_index_page("xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx","docs/airm/templates/concept-list-template.html")"""
         print("Done.")
         semantic_correspondences_menu()    
     elif choice == "8":
         print('\n')
-        import mapping2html
-        mapping2html.create_mapping_item_pages("xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx","docs/airm/templates/concepts/concept-template.html")
+        print('WARNING: This option is disabled')
+        """import mapping2html
+        mapping2html.create_mapping_item_pages("xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx","docs/airm/templates/concepts/concept-template.html")"""
         print("Done.")
-        semantic_correspondences_menu()   
+        semantic_correspondences_menu()
     elif choice == "9":
         print('\n')
         import mapping2html
@@ -250,6 +252,8 @@ def test_menu():
     print('')
     print("2: Test airm.get_concept(urn)")
     print('')
+    print("3: Test airm.get_connections_by_urn(urn)")
+    print('')
     print("99: main menu")
     print('')
     choice = input ("Please make a choice: ")
@@ -267,6 +271,13 @@ def test_menu():
         import airm
         airm = airm.Airm()
         print(airm.get_concept(urn))
-        test_menu()  
+        test_menu()
+    elif choice == "3":
+        print('\n')
+        urn = input ("Paste a urn: ")
+        import airm
+        airm = airm.Airm()
+        print(airm.get_connections_by_urn(urn))
+        test_menu()
     elif choice == "99":
-        main_menu()  
+        main_menu()

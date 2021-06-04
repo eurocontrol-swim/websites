@@ -11,7 +11,7 @@ class Airm:
 
   not_found_counter = 0
   
-  def __init__(self):  
+  def __init__(self):
     """Initialise Airm object. Replace empty cells with 'missing data' string. Harmonise column names."""
     self.contextual_abbreviations.fillna("missing data", inplace = True)
     self.contextual_terms.fillna("missing data", inplace = True)
@@ -30,6 +30,11 @@ class Airm:
     self.logical_concepts.columns =         ["supplement","stereotype","class name","property name", "type","type urn", "definition", "synonyms", "abbreviation", "urn",  "parent", "parent urn", "source"]
     self.logical_supp_concepts.columns =    ["supplement","stereotype","class name","property name", "type","type urn", "definition", "synonyms", "abbreviation", "urn",  "parent", "parent urn", "source"]
 
+  def safe_compare(s1, s2):
+    import string
+    remove = string.whitespace
+    return s1.translate(None, remove) == s2.translate(None, remove)
+
   def get_connections_by_urn(self,urn):
     """Return a dictionary containing the connection index entries matching the provided urn
 
@@ -37,10 +42,9 @@ class Airm:
       urn -- AIRM urn used as filter.
     """
     connections_df = self.df_connected_index.copy()
-    
-    filter = connections_df["airm_urn"]==urn
+    filter = connections_df["airm_urn"].str.strip() == "".join(urn.split())
     connections_df.sort_values("airm_urn", inplace = True)
-    connections_df.where(filter, inplace = True) 
+    connections_df.where(filter, inplace = True)
     df_results = connections_df.dropna(how='all')      
 
     if df_results.empty:
@@ -132,7 +136,7 @@ class Airm:
 
   def get_concept_properties_by_parent(self, parent, scope):
     """Return a dictionary with the AIRM conceptual model concept matching the provided parent(class) name.
-    
+
     Keyword arguments:
       parent -- name of AIRM concept.
       scope -- string defining the scope (european supplement OR global).
@@ -168,7 +172,7 @@ class Airm:
 
   def get_logical_properties_by_class(self, class_name, scope):
     """Return a dictionary with the AIRM logical model properties matching the provided class name.
-    
+
     Keyword arguments:
       class_name -- name of AIRM concept.
       scope -- string defining the scope (european supplement OR global).
@@ -188,7 +192,7 @@ class Airm:
 
   def get_children_for_logical_model_class(self, urn, scope):
     """Return a dictionary with the AIRM logical model children classes matching the provided parent urn.
-    
+
     Keyword arguments:
       urn -- urn of AIRM concept.
       scope -- string defining the scope (european supplement OR global).
@@ -206,7 +210,7 @@ class Airm:
 
   def get_supplements_for_logical_model_class(self, urn):
     """Return a dictionary with the AIRM logical model children classes matching the provided parent urn. Search the supplement only.
-    
+
     Keyword arguments:
       urn -- urn of AIRM concept.
     """
@@ -219,11 +223,11 @@ class Airm:
       return filtered_df.to_dict('records')
 
 def urn_to_url(urn):
-    """Return a url based on the provided urn of an AIRM concept
+  """Return a url based on the provided urn of an AIRM concept
 
-    Keyword arguments:
-      urn -- urn of AIRM concept.
-    """
+  Keyword arguments:
+    urn -- urn of AIRM concept.
+  """
   if "urn:" in urn:
     urn_parts = urn.split(':')
     if ":ses:" in urn:
@@ -245,7 +249,7 @@ def urn_to_url(urn):
       page = subparts[-2]+".html"
       target = '#'+subparts[-1]
     else:  
-      page = urn_parts[-1]
+      page = urn_parts[-1]+".html"
       target = ''
       
     return "http://airm.aero/viewer/1.0.0/"+model+'/'+supplement+page+target
@@ -259,7 +263,7 @@ def create_connected_index():
 
   df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/ICAO_WXXM_3.0.0_Semantic_Correspondence_Report.xlsx")
   df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/AMXM_2.0.0_Semantic_Correspondence_Report.xlsx")
-  df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx")
+  #df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/ADR_23.5.0_Semantic_Correspondence_Report.xlsx")
   df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/AIXM_5.1.1_Semantic_Correspondence_Report.xlsx")
   df_connected_index_rows = add_mapping_to_connected_index(df_connected_index_rows, "xlsx/FIXM_4.2.0_Semantic_Correspondence_Report.xlsx")
   
@@ -268,11 +272,11 @@ def create_connected_index():
       df_connected_index_out.to_excel(writer, sheet_name='connected_index')
 
 def add_mapping_to_connected_index(connected_index, mapping_file_pathname):
-    """Return a dictionary with updated connected index, after adding the contents from the mapping provided as a parameter
-    
-    Keyword arguments:
-      mapping_file_pathname -- string with path and filename of a mapping xlsx file.
-    """
+  """Return a dictionary with updated connected index, after adding the contents from the mapping provided as a parameter
+
+  Keyword arguments:
+    mapping_file_pathname -- string with path and filename of a mapping xlsx file.
+  """
   import mapping
   mapping = mapping.Mapping(mapping_file_pathname)
   mapping_dict = mapping.dataframe.to_dict('records')

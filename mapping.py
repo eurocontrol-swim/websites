@@ -58,11 +58,11 @@ class Mapping:
       return results.to_dict('records')
 
   def get_data_concepts(self, info_concept):
-    """Return a dictionary containing the data concept for a given information concept from the mapping.
+      """Return a dictionary containing the data concept for a given information concept from the mapping.
 
-    Keyword arguments:
+      Keyword arguments:
       info_concept -- dictionary entry with the information concept to be used as a filter to retrieve the associated data concepts.
-    """
+      """
       dataframe = self.dataframe.copy()
       #dataframe = dataframe.drop_duplicates(subset='Information Concept', keep="last")
       #TO DO Update list of tags dataframe = dataframe.drop(["Data Concept", "Definition", "Type", "Semantic Correspondence", "Additional Traces", "Rationale", "Notes"], axis=1)
